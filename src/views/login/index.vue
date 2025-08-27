@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script lang="ts" setup name="LoginPage">
+<script setup lang="ts">
   import router from '@/router';
   import { reactive, ref } from 'vue';
   import { useUserStore } from '@/store/modules/user';
@@ -44,14 +44,14 @@
     padding: 20px;
 
     h2 {
-      letter-spacing: 10px;
       text-align: center;
+      letter-spacing: 10px;
     }
 
     .nut-form-item {
       margin-bottom: 20px;
-      border-radius: 20px;
       background: #f2f3f5;
+      border-radius: 20px;
 
       input {
         background: transparent;

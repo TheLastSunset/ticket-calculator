@@ -22,7 +22,7 @@
   const router = useRouter();
   const page = ref(1);
 
-  let details = reactive<any>({ data: {} });
+  const details = reactive<any>({ data: {} });
 
   watch(
     () => router,
@@ -36,6 +36,7 @@
 <style lang="scss" scoped>
   .nut-swiper-item {
     line-height: 500px;
+
     img {
       width: 100%;
       height: 100%;
@@ -44,10 +45,12 @@
 
   .info {
     padding: 20px;
+
     .price {
-      color: #f2270c;
       display: inline-block;
       font-size: 32px;
+      color: #f2270c;
+
       em {
         font-size: 56px;
         font-style: normal;

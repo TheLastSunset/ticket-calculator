@@ -1,11 +1,9 @@
 import { createVitePlugins } from './build/vite/plugins';
 import { resolve } from 'path';
-import { ConfigEnv, loadEnv, UserConfig } from 'vite';
+import type { ConfigEnv, UserConfig } from 'vite';
+import { loadEnv } from 'vite';
 import { wrapperEnv } from './build/utils';
-
-const pathResolve = (dir: string) => {
-  return resolve(process.cwd(), '.', dir);
-};
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default function ({ command, mode }: ConfigEnv): UserConfig {
@@ -18,22 +16,7 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
     base: '/',
     root,
     resolve: {
-      alias: [
-        {
-          find: 'vue-i18n',
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
-        },
-        // @/xxxx => src/xxxx
-        {
-          find: /@\//,
-          replacement: pathResolve('src') + '/',
-        },
-        // #/xxxx => types/xxxx
-        {
-          find: /#\//,
-          replacement: pathResolve('types') + '/',
-        },
-      ],
+      alias: { '@': fileURLToPath(new URL('./src', import.meta.url)), '#': fileURLToPath(new URL('./types', import.meta.url)) },
     },
     server: {
       host: true,
@@ -53,7 +36,6 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern-compiler',
           quietDeps: true,
           silenceDeprecations: ['legacy-js-api'],
           // 配置 nutui 全局 scss 变量

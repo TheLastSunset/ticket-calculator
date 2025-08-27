@@ -74,8 +74,7 @@
   .main-page {
     box-sizing: border-box;
     height: calc(100vh - 92px);
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden scroll;
   }
 
   .tabbar {
@@ -84,7 +83,7 @@
   }
 
   .border {
-    padding-left: 30px;
     padding-right: 30px;
+    padding-left: 30px;
   }
 </style>

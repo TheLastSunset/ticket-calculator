@@ -9,18 +9,18 @@
     :shop-name="item.shopName"
     :shopDesc="item.shopDesc"
     :delivery="item.delivery"
-    @click="(_e) => toDetails(index)"
+    @click="(_e: any) => toDetails(index)"
   />
 </template>
 
-<script lang="ts" setup name="ListPage">
+<script setup lang="ts">
   import { listData } from './data';
 
   const router = useRouter();
 
-  let list = ref(listData);
+  const list = ref(listData);
 
-  const toDetails = (index) => {
+  const toDetails = (index: number) => {
     router.push({ path: '/details', query: { id: index } });
   };
 </script>

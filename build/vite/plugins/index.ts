@@ -6,7 +6,6 @@
 import type { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import vueSetupExtend from 'vite-plugin-vue-setup-extend-plus';
 import { ConfigSvgIconsPlugin } from './svgIcons';
 import { AutoRegistryComponents } from './component';
 import { AutoImportDeps } from './autoImport';
@@ -28,8 +27,6 @@ export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
     vue(),
     // JSX支持
     vueJsx(),
-    // setup语法糖组件名支持
-    vueSetupExtend(),
   ];
 
   // 自动按需引入组件
@@ -48,25 +45,35 @@ export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
   vitePlugins.push(ConfigProgressPlugin());
 
   // eruda
-  VITE_USE_ERUDA && vitePlugins.push(ConfigEruda());
+  if (VITE_USE_ERUDA) {
+    vitePlugins.push(ConfigEruda());
+  }
 
   // rollup-plugin-visualizer
-  VITE_USE_REPORT && vitePlugins.push(ConfigVisualizerConfig());
+  if (VITE_USE_REPORT) {
+    vitePlugins.push(ConfigVisualizerConfig());
+  }
 
   // vite-plugin-mock
-  VITE_USE_MOCK && vitePlugins.push(ConfigMockPlugin(isBuild));
+  if (VITE_USE_MOCK) {
+    vitePlugins.push(ConfigMockPlugin(isBuild));
+  }
 
   // vite-plugin-svg-icons
   vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
 
-  VITE_USE_HTTPS && vitePlugins.push(basicSsl());
+  if (VITE_USE_HTTPS) {
+    vitePlugins.push(basicSsl());
+  }
 
   if (isBuild) {
     // vite-plugin-imagemin
     vitePlugins.push(ConfigImageminPlugin());
 
     // 开启.gz压缩  rollup-plugin-gzip
-    VITE_USE_COMPRESS && vitePlugins.push(ConfigCompressPlugin());
+    if (VITE_USE_COMPRESS) {
+      vitePlugins.push(ConfigCompressPlugin());
+    }
   }
 
   return vitePlugins;

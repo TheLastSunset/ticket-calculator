@@ -16,7 +16,7 @@
   </nut-grid>
 </template>
 
-<script lang="ts" setup name="MemberPage">
+<script setup lang="ts">
   import { useUserStore } from '@/store/modules/user';
   import { useRouter } from 'vue-router';
   import { Dongdong } from '@nutui/icons-vue';
