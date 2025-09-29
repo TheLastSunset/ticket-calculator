@@ -7,7 +7,7 @@ interface Response {
 
 export default [
   {
-    url: '/api/login',
+    url: '/mock-api/login',
     method: 'post',
     response: ({ body, query }: Response) => {
       console.log('body>>>>>>>>', body);

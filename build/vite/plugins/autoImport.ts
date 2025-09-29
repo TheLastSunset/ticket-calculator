@@ -1,12 +1,12 @@
 /**
- * @name AutoImportDeps
+ * @name ConfigAutoImportPlugin
  * @description 按需加载，自动引入
  */
 
 import AutoImport from 'unplugin-auto-import/vite';
 import { VarletUIResolver, VantResolver } from 'unplugin-vue-components/resolvers';
 
-export const AutoImportDeps = () => {
+export const ConfigAutoImportPlugin = () => {
   return AutoImport({
     dts: 'types/auto-imports.d.ts',
     imports: [

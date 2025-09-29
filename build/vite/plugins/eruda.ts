@@ -1,10 +1,10 @@
 /**
- * @name ConfigEruda
+ * @name ConfigErudaPlugin
  * @description 控制台，方便移动端调试
  */
 
-import eruda from 'vite-plugin-eruda';
+import eruda from '@zhaojjiang/vite-plugin-eruda';
 
-export const ConfigEruda = () => {
+export const ConfigErudaPlugin = () => {
   return eruda();
 };

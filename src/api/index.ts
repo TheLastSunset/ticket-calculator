@@ -5,7 +5,7 @@ import { http } from '@/utils/request';
  * @returns UseAxiosReturn
  */
 export function loginPassword() {
-  return http.post(`/api/login`, {
+  return http.post(`/mock-api/login`, {
     data: { name: '123' },
   });
 }

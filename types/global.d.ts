@@ -51,6 +51,7 @@ declare global {
     VITE_USE_COMPRESS: boolean;
     VITE_USE_REPORT: boolean;
     VITE_USE_HTTPS: boolean;
+    VITE_USE_PWA: boolean;
   }
 
   declare function parseInt(s: string | number, radix?: number): number;

@@ -1,15 +1,16 @@
 /**
- * @name ConfigVisualizerConfig
+ * @name ConfigVisualizerPlugin
  * @description 打包体积分析
  */
 
-import visualizer from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer';
+import type { PluginOption } from 'vite';
 
-export function ConfigVisualizerConfig() {
+export const ConfigVisualizerPlugin = () => {
   return visualizer({
     filename: './node_modules/.cache/visualizer/stats.html',
     open: true,
     gzipSize: true,
     brotliSize: true,
-  }) as Plugin;
-}
+  }) as PluginOption;
+};

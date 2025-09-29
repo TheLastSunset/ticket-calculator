@@ -1,5 +1,5 @@
 /**
- * @name SvgIconsPlugin
+ * @name ConfigSvgIconsPlugin
  * @description 加载SVG文件，自动引入
  */
 

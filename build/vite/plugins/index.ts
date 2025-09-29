@@ -7,20 +7,22 @@ import type { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { ConfigSvgIconsPlugin } from './svgIcons';
-import { AutoRegistryComponents } from './component';
-import { AutoImportDeps } from './autoImport';
+import { ConfigAutoComponentsPlugin } from './component';
+import { ConfigAutoImportPlugin } from './autoImport';
 import { ConfigMockPlugin } from './mock';
 import { ConfigCompressPlugin } from './compress';
 import { ConfigPagesPlugin } from './pages';
 import { ConfigRestartPlugin } from './restart';
 import { ConfigProgressPlugin } from './progress';
-import { ConfigEruda } from './eruda';
+import { ConfigErudaPlugin } from './eruda';
 import { ConfigImageminPlugin } from './imagemin';
-import { ConfigVisualizerConfig } from './visualizer';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+import { ConfigVisualizerPlugin } from './visualizer';
+import { ConfigSslPlugin } from './ssl';
+import { ConfigQrcodePlugin } from './qrcode';
+import { ConfigPwaPlugin } from './pwa';
 
 export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
-  const { VITE_USE_MOCK, VITE_USE_ERUDA, VITE_USE_COMPRESS, VITE_USE_REPORT, VITE_USE_HTTPS } = env;
+  const { VITE_USE_MOCK, VITE_USE_ERUDA, VITE_USE_COMPRESS, VITE_USE_REPORT, VITE_USE_HTTPS, VITE_USE_PWA } = env;
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     // vue支持
@@ -30,10 +32,10 @@ export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
   ];
 
   // 自动按需引入组件
-  vitePlugins.push(AutoRegistryComponents());
+  vitePlugins.push(ConfigAutoComponentsPlugin());
 
   // 自动按需引入依赖
-  vitePlugins.push(AutoImportDeps());
+  vitePlugins.push(ConfigAutoImportPlugin());
 
   // 自动生成路由
   vitePlugins.push(ConfigPagesPlugin());
@@ -44,36 +46,45 @@ export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
   // 构建时显示进度条
   vitePlugins.push(ConfigProgressPlugin());
 
-  // eruda
+  // svg 图标
+  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
+
+  // eruda调试工具
   if (VITE_USE_ERUDA) {
-    vitePlugins.push(ConfigEruda());
+    vitePlugins.push(ConfigErudaPlugin());
   }
 
-  // rollup-plugin-visualizer
+  // 打包分析工具
   if (VITE_USE_REPORT) {
-    vitePlugins.push(ConfigVisualizerConfig());
+    vitePlugins.push(ConfigVisualizerPlugin());
   }
 
-  // vite-plugin-mock
+  // 数据 mock
   if (VITE_USE_MOCK) {
     vitePlugins.push(ConfigMockPlugin(isBuild));
   }
 
-  // vite-plugin-svg-icons
-  vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
-
   if (VITE_USE_HTTPS) {
-    vitePlugins.push(basicSsl());
+    // 引入模拟 SSl 证书
+    vitePlugins.push(ConfigSslPlugin());
+  }
+
+  if (VITE_USE_PWA) {
+    vitePlugins.push(ConfigPwaPlugin());
   }
 
   if (isBuild) {
-    // vite-plugin-imagemin
-    vitePlugins.push(ConfigImageminPlugin());
-
-    // 开启.gz压缩  rollup-plugin-gzip
+    // 开启.gz压缩
     if (VITE_USE_COMPRESS) {
       vitePlugins.push(ConfigCompressPlugin());
+      // 图片压缩
+      vitePlugins.push(ConfigImageminPlugin());
     }
+  }
+
+  if (!isBuild) {
+    // 开启二维码插件
+    vitePlugins.push(ConfigQrcodePlugin());
   }
 
   return vitePlugins;

@@ -8,7 +8,6 @@ export {};
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    BasicModal: typeof import('./../src/components/Modal/src/BasicModal.vue')['default']
     NutAvatar: typeof import('@nutui/nutui')['Avatar']
     NutButton: typeof import('@nutui/nutui')['Button']
     NutCard: typeof import('@nutui/nutui')['Card']
@@ -19,8 +18,6 @@ declare module 'vue' {
     NutGrid: typeof import('@nutui/nutui')['Grid']
     NutGridItem: typeof import('@nutui/nutui')['GridItem']
     NutInput: typeof import('@nutui/nutui')['Input']
-    NutSwiper: typeof import('@nutui/nutui')['Swiper']
-    NutSwiperItem: typeof import('@nutui/nutui')['SwiperItem']
     NutTabbar: typeof import('@nutui/nutui')['Tabbar']
     NutTabbarItem: typeof import('@nutui/nutui')['TabbarItem']
     RouterLink: typeof import('vue-router')['RouterLink']

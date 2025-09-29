@@ -30,7 +30,7 @@
         const userInfo = await userStore.login();
         console.log(userInfo);
         if (userInfo) {
-          router.push({ path: '/home' });
+          router.push({ path: '/member' });
         }
       } else {
         console.log('error submit!!', errors);
