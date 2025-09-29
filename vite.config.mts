@@ -1,5 +1,4 @@
 import { createVitePlugins } from './build/vite/plugins';
-import { resolve } from 'path';
 import type { ConfigEnv, UserConfig } from 'vite';
 import { loadEnv } from 'vite';
 import { wrapperEnv } from './build/utils';
