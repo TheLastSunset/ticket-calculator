@@ -20,7 +20,7 @@ importers:
         version: 4.3.14(unplugin-vue-components@29.1.0(@babel/parser@7.28.4)(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
       '@varlet/ui':
         specifier: ^3.12.0
-        version: 3.12.0(vue@3.5.22(typescript@5.9.3))
+        version: 3.12.3(vue@3.5.22(typescript@5.9.3))
       '@vueuse/core':
         specifier: 13.9.0
         version: 13.9.0(vue@3.5.22(typescript@5.9.3))
@@ -87,7 +87,7 @@ importers:
         version: 1.3.0
       '@varlet/import-resolver':
         specifier: ^3.12.0
-        version: 3.12.0
+        version: 3.12.3
       '@vitejs/plugin-basic-ssl':
         specifier: ^2.0.0
         version: 2.1.0(vite@7.1.10(@types/node@24.8.1)(jiti@2.6.0)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))
@@ -1710,22 +1710,22 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@varlet/icons@3.12.0':
-    resolution: {integrity: sha512-nLaXjXH3Y8XM98SJ9C01VLRc1/KaHYgOPbMUSEyoVhNAlyBM6ZcGVCd4zeJX+WwVdsn9fAxQ1PiZX625q/6r8A==}
+  '@varlet/icons@3.12.3':
+    resolution: {integrity: sha512-cK15AxpBbxwkSKdcy5BcRbgcGB7h0Cwyd10G6ikw+bzGbjnGkjKbkQf7pNFrlw+B4LHXEYV7mpSt2/sEv3EOtw==}
 
-  '@varlet/import-resolver@3.12.0':
-    resolution: {integrity: sha512-Uq0gcnOUfIJnMUdsSOtzlq5MQ/RmlVbNdxk28JlvCwl5+zdVhFsHnMr70lDvobfN84/hMlBDM9nZQj+3ymzrxA==}
+  '@varlet/import-resolver@3.12.3':
+    resolution: {integrity: sha512-3E/DX8ExixVl21eiHQOdQqK43Yt6efUxzsusj7mASarX3JkcjiN5ezphPSLe4EoR8XhC8grhd0q4GXUYBpfFmA==}
 
-  '@varlet/shared@3.12.0':
-    resolution: {integrity: sha512-+6LH5UeWUFl1sV06kEf1/VHq1XQ8B6dnAveA2/+WKH7LJkL0uAOae0iuwYYQr0i2aDvKULwBJfIHlrf4DQ7Uyw==}
+  '@varlet/shared@3.12.3':
+    resolution: {integrity: sha512-3IcqdzUUXeJC4qMy+f04SkmSKR28G2T1xTRM6Sau7336aCLuu2aZRH7fttJfbHRFS7TTYOuEeGG3X1Kvu6Qm3A==}
 
-  '@varlet/ui@3.12.0':
-    resolution: {integrity: sha512-1R5qnvf5tR1tzHdx452zFu3thUaCXZnKoSMuPbUOWIG/db9JDetS21UOtVw0aYxTihIcsCj3qJCHBGy43GJTYQ==}
+  '@varlet/ui@3.12.3':
+    resolution: {integrity: sha512-leqc6t9j2LNwYxuVvfMAiM55kdro4Y8OyoQvlIVSyGkWYeCqG7MKKhey/Yl3OF+b5EsyCuzj+RkNzOc6uniCqw==}
     peerDependencies:
       vue: ^3.2.0
 
-  '@varlet/use@3.12.0':
-    resolution: {integrity: sha512-8wIJoB7wvTxDw0Q/COjFgOLxHQgSXgOA9vqcyrEmpKsdxyUtZWfeyaUH+3LxUHzMuTLLOA+ppc27tYsW1pAHNA==}
+  '@varlet/use@3.12.3':
+    resolution: {integrity: sha512-bue3+6AlVKqW5iTGm8k0iHPfOaMYDX3C0HFNESI45eVP46G0sKs0mDOC7VBbot6ayRpJKokxsO1xriph+IezIQ==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -7856,29 +7856,29 @@ snapshots:
     dependencies:
       vue: 3.5.22(typescript@5.9.3)
 
-  '@varlet/icons@3.12.0': {}
+  '@varlet/icons@3.12.3': {}
 
-  '@varlet/import-resolver@3.12.0':
+  '@varlet/import-resolver@3.12.3':
     dependencies:
-      '@varlet/shared': 3.12.0
+      '@varlet/shared': 3.12.3
 
-  '@varlet/shared@3.12.0':
+  '@varlet/shared@3.12.3':
     dependencies:
       rattail: 1.0.17
 
-  '@varlet/ui@3.12.0(vue@3.5.22(typescript@5.9.3))':
+  '@varlet/ui@3.12.3(vue@3.5.22(typescript@5.9.3))':
     dependencies:
       '@popperjs/core': 2.11.8
-      '@varlet/icons': 3.12.0
-      '@varlet/shared': 3.12.0
-      '@varlet/use': 3.12.0(vue@3.5.22(typescript@5.9.3))
+      '@varlet/icons': 3.12.3
+      '@varlet/shared': 3.12.3
+      '@varlet/use': 3.12.3(vue@3.5.22(typescript@5.9.3))
       dayjs: 1.11.18
       decimal.js: 10.6.0
       vue: 3.5.22(typescript@5.9.3)
 
-  '@varlet/use@3.12.0(vue@3.5.22(typescript@5.9.3))':
+  '@varlet/use@3.12.3(vue@3.5.22(typescript@5.9.3))':
     dependencies:
-      '@varlet/shared': 3.12.0
+      '@varlet/shared': 3.12.3
       vue: 3.5.22(typescript@5.9.3)
 
   '@vitejs/plugin-basic-ssl@2.1.0(vite@7.1.10(@types/node@24.8.1)(jiti@2.6.0)(sass@1.93.2)(terser@5.44.0)(yaml@2.8.1))':
