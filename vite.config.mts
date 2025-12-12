@@ -53,7 +53,7 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
   }
 
   return {
-    base: '/',
+    base: '/ticket-calculator',
     root,
     resolve: {
       alias: { '@': fileURLToPath(new URL('./src', import.meta.url)), '#': fileURLToPath(new URL('./types', import.meta.url)) },
