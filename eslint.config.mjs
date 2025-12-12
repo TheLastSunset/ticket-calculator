@@ -18,5 +18,5 @@ export default defineConfigWithVueTs(
     },
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', 'uno.config.ts']),
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', '**/docs/**', 'uno.config.ts']),
 );
