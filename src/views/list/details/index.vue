@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { detailsData } from '../data';
+  import { tickets as detailsData } from '../data';
   const router = useRouter();
   const page = ref(1);
 

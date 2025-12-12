@@ -18,7 +18,7 @@
         <span class="counter-label">👨 成人</span>
         <div class="counter-controls">
           <button class="counter-btn" @click="changeCount('adult', -1)">−</button>
-          <span class="counter-value">{{ counts.adult }}</span>
+          <span class="counter-value">{{ counts.adult.num }}</span>
           <button class="counter-btn" @click="changeCount('adult', 1)">+</button>
         </div>
       </div>
@@ -27,7 +27,7 @@
         <span class="counter-label">👶 儿童</span>
         <div class="counter-controls">
           <button class="counter-btn" @click="changeCount('child', -1)">−</button>
-          <span class="counter-value">{{ counts.child }}</span>
+          <span class="counter-value">{{ counts.child.num }}</span>
           <button class="counter-btn" @click="changeCount('child', 1)">+</button>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <span class="counter-label">👴 老人</span>
         <div class="counter-controls">
           <button class="counter-btn" @click="changeCount('senior', -1)">−</button>
-          <span class="counter-value">{{ counts.senior }}</span>
+          <span class="counter-value">{{ counts.senior.num }}</span>
           <button class="counter-btn" @click="changeCount('senior', 1)">+</button>
         </div>
       </div>
@@ -45,60 +45,58 @@
     <div class="form-group">
       <label>折扣比例</label>
       <div class="counter-group">
-        <span class="counter-label">正常</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeRatio('normal', -0.01)">−</button>
-          <span class="counter-value">{{ ratio.normal }}</span>
-          <button class="counter-btn" @click="changeRatio('normal', 0.01)">+</button>
-        </div>
+        <button class="counter-btn" @click="changeRatio('standard', -0.01)">−</button>
+        <van-field v-model="ratio.standard" type="number" label="标准" />
+        <button class="counter-btn" @click="changeRatio('standard', 0.01)">+</button>
       </div>
 
       <div class="counter-group">
-        <span class="counter-label">早鸟</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeRatio('earlyBird', -0.01)">−</button>
-          <span class="counter-value">{{ ratio.earlyBird }}</span>
-          <button class="counter-btn" @click="changeRatio('earlyBird', 0.01)">+</button>
-        </div>
+        <button class="counter-btn" @click="changeRatio('earlyBird', -0.01)">−</button>
+        <van-field v-model="ratio.earlyBird" type="number" label="早鸟" />
+        <button class="counter-btn" @click="changeRatio('earlyBird', 0.01)">+</button>
       </div>
     </div>
 
+    <div>
+      <van-button size="small" type="primary" @click="copyTicketInfo">复制出票信息</van-button>
+    </div>
+
     <div class="summary">
-      <h2>💰 费用汇总</h2>
+      <h2>💰 费用汇总-标准</h2>
       <div class="summary-item">
         <span class="summary-label">总金额</span>
         <span class="summary-value">
-          ¥<span>{{ normalSummary.amount }}</span>
+          ¥<span>{{ standardSummary.amount }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">官方票价</span>
         <span class="summary-value">
-          ¥<span>{{ normalSummary.originalAmount }}</span>
+          ¥<span>{{ standardSummary.originalAmount }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总佣金</span>
         <span class="summary-value">
-          ¥<span>{{ normalSummary.commission }}</span>
+          ¥<span>{{ standardSummary.commission }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总成本-平台</span>
         <span class="summary-value">
-          ¥<span>{{ normalSummary.costPlatform }}</span>
+          ¥<span>{{ standardSummary.costPlatform }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总成本</span>
         <span class="summary-value">
-          ¥<span>{{ normalSummary.totalCost }}</span>
+          ¥<span>{{ standardSummary.totalCost }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总利润</span>
         <span class="summary-value">
-          ¥<span>{{ normalSummary.profit }}</span>
+          ¥<span>{{ standardSummary.profit }}</span>
         </span>
       </div>
     </div>
@@ -151,15 +149,15 @@
 
   // 人数计数器
   const counts = ref({
-    adult: 0,
-    child: 0,
-    senior: 0,
+    adult: { num: 0, simpleText: '大' } as any,
+    child: { num: 0, simpleText: '小' } as any,
+    senior: { num: 0, simpleText: '老' } as any,
   });
 
   // 当前选择的日期类型
   const currentDayType = ref('workday');
 
-  const normalSummary = ref({
+  const standardSummary = ref({
     amount: '0',
     originalAmount: '0',
     costPlatform: '0',
@@ -178,8 +176,8 @@
   });
 
   const ratio = ref({
-    normal: 0.916,
-    earlyBird: 0.93,
+    standard: 0.926,
+    earlyBird: 0.95,
     costPlatform: 0.02,
   });
 
@@ -194,8 +192,8 @@
   };
 
   const changeCount = (type: string, value: number) => {
-    if (counts.value[type] === 0 && value < 0) return;
-    counts.value[type] += value;
+    if (counts.value[type].num === 0 && value < 0) return;
+    counts.value[type].num += value;
   };
 
   const changeRatio = (type: string, value: number) => {
@@ -249,19 +247,22 @@
     }
 
     // 计算成人
-    earlyBirdTotalAmount += counts.value.adult * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT').price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.adult * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT').price;
-    earlyBirdTotalCommission += counts.value.adult * 0;
+    earlyBirdTotalAmount +=
+      counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT').price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT').price;
+    earlyBirdTotalCommission += counts.value.adult.num * 0;
 
     // 计算儿童
-    earlyBirdTotalAmount += counts.value.child * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD').price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.child * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD').price;
-    earlyBirdTotalCommission += counts.value.child * 0;
+    earlyBirdTotalAmount +=
+      counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD').price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD').price;
+    earlyBirdTotalCommission += counts.value.child.num * 0;
 
     // 计算老人
-    earlyBirdTotalAmount += counts.value.senior * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR').price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.senior * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR').price;
-    earlyBirdTotalCommission += counts.value.senior * 0;
+    earlyBirdTotalAmount +=
+      counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR').price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR').price;
+    earlyBirdTotalCommission += counts.value.senior.num * 0;
 
     // 计算利润
     earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.earlyBird;
@@ -277,19 +278,19 @@
     earlyBirdSummary.value.profit = earlyBirdTotalProfit.toFixed(2);
 
     // 计算成人
-    totalAmount += counts.value.adult * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT').price * ratio.value.normal;
-    totalOriginalAmount += counts.value.adult * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT').price;
-    totalCommission += counts.value.adult * 10;
+    totalAmount += counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT').price * ratio.value.standard;
+    totalOriginalAmount += counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT').price;
+    totalCommission += counts.value.adult.num * 10;
 
     // 计算儿童
-    totalAmount += counts.value.child * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD').price * ratio.value.normal;
-    totalOriginalAmount += counts.value.child * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD').price;
-    totalCommission += counts.value.child * 10;
+    totalAmount += counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD').price * ratio.value.standard;
+    totalOriginalAmount += counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD').price;
+    totalCommission += counts.value.child.num * 10;
 
     // 计算老人
-    totalAmount += counts.value.senior * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR').price * ratio.value.normal;
-    totalOriginalAmount += counts.value.senior * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR').price;
-    totalCommission += counts.value.senior * 10;
+    totalAmount += counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR').price * ratio.value.standard;
+    totalOriginalAmount += counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR').price;
+    totalCommission += counts.value.senior.num * 10;
 
     // 计算利润
     totalCostPlatform = totalAmount * ratio.value.costPlatform;
@@ -297,16 +298,39 @@
     const totalProfit = totalAmount - totalCost - totalCommission;
 
     // 更新显示
-    normalSummary.value.amount = totalAmount.toFixed(2);
-    normalSummary.value.originalAmount = totalOriginalAmount.toFixed(2);
-    normalSummary.value.costPlatform = totalCostPlatform.toFixed(2);
-    normalSummary.value.commission = totalCommission.toFixed(2);
-    normalSummary.value.totalCost = totalCost.toFixed(2);
-    normalSummary.value.profit = totalProfit.toFixed(2);
+    standardSummary.value.amount = totalAmount.toFixed(2);
+    standardSummary.value.originalAmount = totalOriginalAmount.toFixed(2);
+    standardSummary.value.costPlatform = totalCostPlatform.toFixed(2);
+    standardSummary.value.commission = totalCommission.toFixed(2);
+    standardSummary.value.totalCost = totalCost.toFixed(2);
+    standardSummary.value.profit = totalProfit.toFixed(2);
   }
 
   // 初始化计算
   calculate();
+
+  const copyTicketInfo = () => {
+    function formatSimpleText(type) {
+      return `${counts.value[type].num ? counts.value[type].num + counts.value[type].simpleText : ''}`;
+    }
+    let ticketInfo = `${travelDate.value} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
+    const finalAmount: number = Math.ceil(Number.parseFloat(standardSummary.value.amount) / 5) * 5;
+    const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
+    const isEarlyBirdTicket = diffDays >= 9;
+    if (isEarlyBirdTicket) {
+      const earlyBirdFinalAmount: number = Math.ceil(Number.parseFloat(earlyBirdSummary.value.amount) / 5) * 5;
+      ticketInfo += `
+早鸟票：${earlyBirdFinalAmount}`;
+    }
+    ticketInfo += `
+标准票：${finalAmount}`;
+    if (isEarlyBirdTicket) {
+      ticketInfo += `
+早鸟价格优惠，不可改签，需提前 10 天预订
+标准可改签一次`;
+    }
+    navigator.clipboard.writeText(ticketInfo);
+  };
 </script>
 
 <style lang="scss" scoped>

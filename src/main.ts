@@ -4,6 +4,7 @@ import { i18n } from '@/i18n';
 import router from '@/router';
 import store from '@/store';
 import './assets/font/iconfont.css';
+import 'virtual:uno.css';
 
 import '@nutui/nutui/dist/packages/toast/style/css';
 import '@nutui/nutui/dist/packages/notify/style/css';

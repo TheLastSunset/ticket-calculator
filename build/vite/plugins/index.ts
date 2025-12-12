@@ -20,6 +20,7 @@ import { ConfigVisualizerPlugin } from './visualizer';
 import { ConfigSslPlugin } from './ssl';
 import { ConfigQrcodePlugin } from './qrcode';
 import { ConfigPwaPlugin } from './pwa';
+import { ConfigUnoCSSPlugin } from './unocss';
 
 export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
   const { VITE_USE_MOCK, VITE_USE_ERUDA, VITE_USE_COMPRESS, VITE_USE_REPORT, VITE_USE_HTTPS, VITE_USE_PWA } = env;
@@ -81,6 +82,8 @@ export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
       vitePlugins.push(ConfigImageminPlugin());
     }
   }
+
+  vitePlugins.push(ConfigUnoCSSPlugin());
 
   if (!isBuild) {
     // 开启二维码插件
