@@ -147,6 +147,10 @@
   import { tickets } from './data';
   import dayjs from 'dayjs';
 
+  dayjs.locale('zh-cn', {
+    weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+  });
+
   // 人数计数器
   const counts = ref({
     adult: { num: 0, simpleText: '大' } as any,
@@ -176,7 +180,7 @@
   });
 
   const ratio = ref({
-    standard: 0.926,
+    standard: 0.93,
     earlyBird: 0.95,
     costPlatform: 0.02,
   });
@@ -313,7 +317,7 @@
     function formatSimpleText(type) {
       return `${counts.value[type].num ? counts.value[type].num + counts.value[type].simpleText : ''}`;
     }
-    let ticketInfo = `${travelDate.value} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
+    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
     const finalAmount: number = Math.ceil(Number.parseFloat(standardSummary.value.amount) / 5) * 5;
     const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
     const isEarlyBirdTicket = diffDays >= 9;
@@ -326,6 +330,7 @@
 标准票：${finalAmount}`;
     if (isEarlyBirdTicket) {
       ticketInfo += `
+
 早鸟价格优惠，不可改签，需提前 10 天预订
 标准可改签一次`;
     }
