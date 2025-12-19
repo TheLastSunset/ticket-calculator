@@ -5,11 +5,6 @@
     <div class="form-group">
       <van-cell title="选择日期" :value="travelDate" @click="show = true" />
       <van-calendar v-model:show="show" @confirm="onConfirm" />
-      <div id="dayType">
-        <span class="day-type" :class="currentDayType === 'weekend' ? 'weekend' : 'workday'">
-          {{ currentDayType === 'weekend' ? '周末 - 节假日价格' : '工作日 - 标准价格' }}
-        </span>
-      </div>
     </div>
 
     <div class="form-group">
@@ -158,9 +153,6 @@
     senior: { num: 0, simpleText: '老' } as any,
   });
 
-  // 当前选择的日期类型
-  const currentDayType = ref('workday');
-
   const standardSummary = ref({
     amount: '0',
     originalAmount: '0',
@@ -180,7 +172,7 @@
   });
 
   const ratio = ref({
-    standard: 0.93,
+    standard: 0.95,
     earlyBird: 0.95,
     costPlatform: 0.02,
   });
@@ -208,25 +200,15 @@
   // 初始化日期为今天
   travelDate.value = formatDate(new Date());
 
-  checkDayType();
-
   watch(
     [travelDate, counts, ratio],
     () => {
-      checkDayType();
       calculate();
     },
     {
       deep: true,
     },
   );
-
-  // 检查是否为工作日
-  function checkDayType() {
-    const dayOfWeek = dayjs(travelDate.value).day();
-
-    currentDayType.value = dayOfWeek === 0 || dayOfWeek === 6 ? 'weekend' : 'workday';
-  }
 
   // 计算总金额
   function calculate() {
@@ -251,9 +233,9 @@
     }
 
     // 计算成人
-    earlyBirdTotalAmount +=
-      counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT').price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT').price;
+    const adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
+    earlyBirdTotalAmount += counts.value.adult.num * adult.price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += counts.value.adult.num * adult.price;
     earlyBirdTotalCommission += counts.value.adult.num * 0;
 
     // 计算儿童
