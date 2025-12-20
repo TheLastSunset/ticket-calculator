@@ -7,144 +7,154 @@
       <van-calendar v-model:show="show" @confirm="onConfirm" />
     </div>
 
-    <div class="form-group">
-      <label>选择人数</label>
-      <div class="counter-group">
-        <span class="counter-label">👨 成人</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeCount('adult', -1)">−</button>
-          <span class="counter-value">{{ counts.adult.num }}</span>
-          <button class="counter-btn" @click="changeCount('adult', 1)">+</button>
+    <van-tabs v-model:active="tabActiveName">
+      <van-tab title="票务计算" name="calculator">
+        <div class="form-group">
+          <label>选择人数</label>
+          <div class="counter-group">
+            <span class="counter-label">👨 成人</span>
+            <div class="counter-controls">
+              <button class="counter-btn" @click="changeCount('adult', -1)">−</button>
+              <span class="counter-value">{{ counts.adult.num }}</span>
+              <button class="counter-btn" @click="changeCount('adult', 1)">+</button>
+            </div>
+          </div>
+
+          <div class="counter-group">
+            <span class="counter-label">👶 儿童</span>
+            <div class="counter-controls">
+              <button class="counter-btn" @click="changeCount('child', -1)">−</button>
+              <span class="counter-value">{{ counts.child.num }}</span>
+              <button class="counter-btn" @click="changeCount('child', 1)">+</button>
+            </div>
+          </div>
+
+          <div class="counter-group">
+            <span class="counter-label">👴 老人</span>
+            <div class="counter-controls">
+              <button class="counter-btn" @click="changeCount('senior', -1)">−</button>
+              <span class="counter-value">{{ counts.senior.num }}</span>
+              <button class="counter-btn" @click="changeCount('senior', 1)">+</button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="counter-group">
-        <span class="counter-label">👶 儿童</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeCount('child', -1)">−</button>
-          <span class="counter-value">{{ counts.child.num }}</span>
-          <button class="counter-btn" @click="changeCount('child', 1)">+</button>
+        <div class="form-group">
+          <label>折扣比例</label>
+          <div class="counter-group">
+            <button class="counter-btn" @click="changeRatio('standard', -0.01)">−</button>
+            <van-field v-model="ratio.standard" type="number" label="标准" />
+            <button class="counter-btn" @click="changeRatio('standard', 0.01)">+</button>
+          </div>
+
+          <div class="counter-group">
+            <button class="counter-btn" @click="changeRatio('earlyBird', -0.01)">−</button>
+            <van-field v-model="ratio.earlyBird" type="number" label="早鸟" />
+            <button class="counter-btn" @click="changeRatio('earlyBird', 0.01)">+</button>
+          </div>
         </div>
-      </div>
 
-      <div class="counter-group">
-        <span class="counter-label">👴 老人</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeCount('senior', -1)">−</button>
-          <span class="counter-value">{{ counts.senior.num }}</span>
-          <button class="counter-btn" @click="changeCount('senior', 1)">+</button>
+        <div>
+          <van-button size="small" type="primary" @click="copyTicketInfo">复制出票信息</van-button>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label>折扣比例</label>
-      <div class="counter-group">
-        <button class="counter-btn" @click="changeRatio('standard', -0.01)">−</button>
-        <van-field v-model="ratio.standard" type="number" label="标准" />
-        <button class="counter-btn" @click="changeRatio('standard', 0.01)">+</button>
-      </div>
+        <div class="summary">
+          <h2>💰 费用汇总-标准</h2>
+          <div class="summary-item">
+            <span class="summary-label">总金额</span>
+            <span class="summary-value">
+              ¥<span>{{ standardSummary.amount }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">官方票价</span>
+            <span class="summary-value">
+              ¥<span>{{ standardSummary.originalAmount }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总佣金</span>
+            <span class="summary-value">
+              ¥<span>{{ standardSummary.commission }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总成本-平台</span>
+            <span class="summary-value">
+              ¥<span>{{ standardSummary.costPlatform }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总成本</span>
+            <span class="summary-value">
+              ¥<span>{{ standardSummary.totalCost }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总利润</span>
+            <span class="summary-value">
+              ¥<span>{{ standardSummary.profit }}</span>
+            </span>
+          </div>
+        </div>
 
-      <div class="counter-group">
-        <button class="counter-btn" @click="changeRatio('earlyBird', -0.01)">−</button>
-        <van-field v-model="ratio.earlyBird" type="number" label="早鸟" />
-        <button class="counter-btn" @click="changeRatio('earlyBird', 0.01)">+</button>
-      </div>
-    </div>
-
-    <div>
-      <van-button size="small" type="primary" @click="copyTicketInfo">复制出票信息</van-button>
-    </div>
-
-    <div class="summary">
-      <h2>💰 费用汇总-标准</h2>
-      <div class="summary-item">
-        <span class="summary-label">总金额</span>
-        <span class="summary-value">
-          ¥<span>{{ standardSummary.amount }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">官方票价</span>
-        <span class="summary-value">
-          ¥<span>{{ standardSummary.originalAmount }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总佣金</span>
-        <span class="summary-value">
-          ¥<span>{{ standardSummary.commission }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总成本-平台</span>
-        <span class="summary-value">
-          ¥<span>{{ standardSummary.costPlatform }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总成本</span>
-        <span class="summary-value">
-          ¥<span>{{ standardSummary.totalCost }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总利润</span>
-        <span class="summary-value">
-          ¥<span>{{ standardSummary.profit }}</span>
-        </span>
-      </div>
-    </div>
-
-    <div class="summary">
-      <h2>💰 费用汇总-早鸟</h2>
-      <div class="summary-item">
-        <span class="summary-label">总金额</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.amount }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">官方票价</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.originalAmount }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总佣金</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.commission }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总成本-平台</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.costPlatform }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总成本</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.totalCost }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总利润</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.profit }}</span>
-        </span>
-      </div>
-    </div>
+        <div class="summary">
+          <h2>💰 费用汇总-早鸟</h2>
+          <div class="summary-item">
+            <span class="summary-label">总金额</span>
+            <span class="summary-value">
+              ¥<span>{{ earlyBirdSummary.amount }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">官方票价</span>
+            <span class="summary-value">
+              ¥<span>{{ earlyBirdSummary.originalAmount }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总佣金</span>
+            <span class="summary-value">
+              ¥<span>{{ earlyBirdSummary.commission }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总成本-平台</span>
+            <span class="summary-value">
+              ¥<span>{{ earlyBirdSummary.costPlatform }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总成本</span>
+            <span class="summary-value">
+              ¥<span>{{ earlyBirdSummary.totalCost }}</span>
+            </span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">总利润</span>
+            <span class="summary-value">
+              ¥<span>{{ earlyBirdSummary.profit }}</span>
+            </span>
+          </div>
+        </div>
+      </van-tab>
+      <van-tab title="证件整理" name="identifyLint">
+        <identify-lint></identify-lint>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { tickets } from './data';
   import dayjs from 'dayjs';
+  import { showToast } from 'vant';
+  import { tickets } from './data';
+  import IdentifyLint from '@/views/list/components/identifyLint.vue';
 
   dayjs.locale('zh-cn', {
     weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
   });
+  const tabActiveName = ref('calculator');
 
   // 人数计数器
   const counts = ref({
@@ -226,6 +236,10 @@
     const filterTickets = tickets.data.filter((item) => {
       return item.travelDate === travelDate.value;
     });
+    if (filterTickets.length == 0) {
+      showToast('Ticket data not found');
+      return;
+    }
     const ticketMap: Map<string, any> = new Map();
     for (const element of filterTickets) {
       const ticket: any = element;
