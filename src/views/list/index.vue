@@ -233,21 +233,21 @@
     }
 
     // 计算成人
-    const adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
+    let adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
     earlyBirdTotalAmount += counts.value.adult.num * adult.price * ratio.value.earlyBird;
     earlyBirdTotalOriginalAmount += counts.value.adult.num * adult.price;
     earlyBirdTotalCommission += counts.value.adult.num * 0;
 
     // 计算儿童
-    earlyBirdTotalAmount +=
-      counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD').price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD').price;
+    let child = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD');
+    earlyBirdTotalAmount += counts.value.child.num * child.price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += counts.value.child.num * child.price;
     earlyBirdTotalCommission += counts.value.child.num * 0;
 
     // 计算老人
-    earlyBirdTotalAmount +=
-      counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR').price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR').price;
+    let senior = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR');
+    earlyBirdTotalAmount += counts.value.senior.num * senior.price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += counts.value.senior.num * senior.price;
     earlyBirdTotalCommission += counts.value.senior.num * 0;
 
     // 计算利润
@@ -264,18 +264,21 @@
     earlyBirdSummary.value.profit = earlyBirdTotalProfit.toFixed(2);
 
     // 计算成人
-    totalAmount += counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT').price * ratio.value.standard;
-    totalOriginalAmount += counts.value.adult.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT').price;
+    adult = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT');
+    totalAmount += counts.value.adult.num * adult.price * ratio.value.standard;
+    totalOriginalAmount += counts.value.adult.num * adult.price;
     totalCommission += counts.value.adult.num * 10;
 
     // 计算儿童
-    totalAmount += counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD').price * ratio.value.standard;
-    totalOriginalAmount += counts.value.child.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD').price;
+    child = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD');
+    totalAmount += counts.value.child.num * child.price * ratio.value.standard;
+    totalOriginalAmount += counts.value.child.num * child.price;
     totalCommission += counts.value.child.num * 10;
 
     // 计算老人
-    totalAmount += counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR').price * ratio.value.standard;
-    totalOriginalAmount += counts.value.senior.num * ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR').price;
+    senior = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR');
+    totalAmount += counts.value.senior.num * senior.price * ratio.value.standard;
+    totalOriginalAmount += counts.value.senior.num * senior.price;
     totalCommission += counts.value.senior.num * 10;
 
     // 计算利润
@@ -299,6 +302,7 @@
     function formatSimpleText(type) {
       return `${counts.value[type].num ? counts.value[type].num + counts.value[type].simpleText : ''}`;
     }
+
     let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
     const finalAmount: number = Math.ceil(Number.parseFloat(standardSummary.value.amount) / 5) * 5;
     const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
