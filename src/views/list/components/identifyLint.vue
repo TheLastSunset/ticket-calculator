@@ -22,6 +22,7 @@
             currentLine = line;
           "
         />
+        <van-field v-model="line.idValid" label="ID 是否有效" type="text" />
         <van-field v-model="line.ticketType" label="票种" type="text" />
         <van-button type="primary" size="small" @click="identifyTransfer(i)">互换</van-button>
       </div>
@@ -35,13 +36,16 @@
 <script setup lang="ts">
   import dayjs from 'dayjs';
   import type { TicketInfo } from '@/views/list/list';
-  import type { PickerColumn } from 'vant';
+  import type { PickerColumn, PickerConfirmEventParams } from 'vant';
+  import type { Numeric } from 'vant/es/utils';
+
+  const props = defineProps(['travelDate']);
 
   const input = ref('');
   const lines = ref([] as TicketInfo[]);
 
   const showPicker = ref(false);
-  const pickerSelectedValues = ref([]);
+  const pickerSelectedValues = ref([] as Numeric[]);
   const currentLine = ref({} as TicketInfo);
 
   // 证件类型枚举
@@ -59,6 +63,19 @@
   }
   // default value
   pickerSelectedValues.value = [idTypeOptions[0].value];
+
+  // TODO: auto plans
+  // const plans = [
+  //   { text: '出境游 400-45（节假日成人）', value: 'CNY 409-45=364+10=374'},
+  //   { text: '客路 96 折（节假日儿童/老人）', value: 'CNY 319.7-30=289.7+10=299.7'},
+  //   { text: '客路 96 折（工作日成人）', value: 'CNY 345.6-30=315.6+10=325.6'},
+  //   { text: '出境游 200-20（工作日儿童）', value: 'CNY 276-20=256+3=259'},
+  //   { text: '光大 400-50（早鸟成人）', value: 'CNY 439-50=389+10=399'},
+  // ]
+  //
+  // const pickerPlans : PickerColumn =  computed(() => {
+  //   return plans.map(item => {return { text: item.text, value: item.value }})
+  // })
 
   // 校验中国身份证号码
   const validateChinaID = (id: string) => {
@@ -181,7 +198,7 @@
     lines.value.forEach((line) => {
       const result = identifyInput(line.id);
       line.idType = result.type;
-      line.ticketType = result.details ? result.details.ticketType : null;
+      line.ticketType = result.details ? result.details.ticketType : undefined;
     });
   };
 
@@ -209,7 +226,7 @@
     obj.id = temp;
   };
 
-  const onIdTypeConfirm = ({ selectedValues }) => {
+  const onIdTypeConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
     currentLine.value.idType = selectedValues[0];
     resetPicker();
   };
@@ -220,12 +237,13 @@
   };
 
   const handleCopy = () => {
-    let ticketInfo = '\n';
+    let ticketInfo = '';
     ticketInfo += lines.value
       .map((item) => {
-        return `${item.name} ${item.id}`;
+        return `上海乐高乐园 ${dayjs(props.travelDate).format('YYYYMMDD')} ${item.ticketType} ${item.idType} 金额
+${item.name} ${item.id}`;
       })
-      .join('\n\n');
+      .join('\n');
     navigator.clipboard.writeText(ticketInfo);
   };
 </script>

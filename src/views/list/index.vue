@@ -11,6 +11,7 @@
       <van-tab title="票务计算" name="calculator">
         <div class="form-group">
           <label>选择人数</label>
+          <!-- TODO: add quark tag-->
           <div class="counter-group">
             <span class="counter-label">👨 成人</span>
             <div class="counter-controls">
@@ -41,6 +42,7 @@
 
         <div class="form-group">
           <label>折扣比例</label>
+          <!-- TODO: add quark tag-->
           <div class="counter-group">
             <button class="counter-btn" @click="changeRatio('standard', -0.01)">−</button>
             <van-field v-model="ratio.standard" type="number" label="标准" />
@@ -139,7 +141,10 @@
         </div>
       </van-tab>
       <van-tab title="证件整理" name="identifyLint">
-        <identify-lint></identify-lint>
+        <identify-lint :travel-date="travelDate" />
+      </van-tab>
+      <van-tab title="术语" name="term">
+        <term />
       </van-tab>
     </van-tabs>
   </div>
@@ -150,6 +155,7 @@
   import { showToast } from 'vant';
   import { tickets } from './data';
   import IdentifyLint from '@/views/list/components/identifyLint.vue';
+  import Term from '@/views/list/components/term.vue';
 
   dayjs.locale('zh-cn', {
     weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
@@ -318,7 +324,7 @@
     }
 
     let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
-    const finalAmount: number = Math.ceil(Number.parseFloat(standardSummary.value.amount) / 5) * 5;
+    const finalAmount: number = Math.ceil(Math.floor(Number.parseFloat(standardSummary.value.amount)) / 5) * 5;
     const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
     const isEarlyBirdTicket = diffDays >= 9;
     if (isEarlyBirdTicket) {
