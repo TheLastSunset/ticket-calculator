@@ -1,5 +1,5 @@
-/* empty css              */ import { r as e, a as t, u as a, B as l } from './index-DOmUyLGe.js';
-import { t as n } from './data-CzclRJSf.js';
+/* empty css              */ import { r as e, a as t, u as a, B as l } from './index-fnNRl7Bk.js';
+import { t as n } from './data-B0ZE2-TY.js';
 import {
   d as o,
   r,
@@ -17,28 +17,28 @@ import {
   M as y,
   N as b,
   O as w,
-  i as x,
-  P as D,
+  i as D,
+  P as x,
   v as k,
   D as S,
   c as $,
   a as C,
   Q as M,
-  u as T,
-  x as A,
+  u as A,
+  x as T,
   k as O,
   F as I,
   z as N,
   o as _,
   t as B,
   _ as H,
-} from './index-DTlM0rv7.js';
+} from './index-DrIsk5jV.js';
 import {
   c as V,
   e as L,
-  i as P,
-  a as z,
-  m as E,
+  i as E,
+  a as P,
+  m as z,
   b as R,
   n as Y,
   u as F,
@@ -73,28 +73,28 @@ import {
   M as ye,
   N as be,
   O as we,
-  P as xe,
-  Q as De,
+  P as De,
+  Q as xe,
   I as ke,
   R as Se,
   S as $e,
   T as Ce,
   U as Me,
-  V as Te,
-  W as Ae,
+  V as Ae,
+  W as Te,
   X as Oe,
   Y as Ie,
   Z as Ne,
   _ as _e,
   $ as Be,
   a0 as He,
-} from './index-eFWSJLrZ.js';
-import { u as Ve, a as Le, c as Pe, L as ze, s as Ee, P as Re, b as Ye } from './function-call-BkKQLTr8.js';
-import { u as Fe } from './use-height-hfuAc1Hx.js';
+} from './index-CbCZTLW7.js';
+import { u as Ve, a as Le, c as Ee, L as Pe, s as ze, P as Re, b as Ye } from './function-call-DxP1f-FE.js';
+import { u as Fe } from './use-height-CYK9QBje.js';
 const [We, Ue, je] = V('picker'),
   Ge = (e) => e.find((e) => !e.disabled) || e[0];
 function Ze(e, t) {
-  for (let a = (t = z(t, 0, e.length)); a < e.length; a++) if (!e[a].disabled) return a;
+  for (let a = (t = P(t, 0, e.length)); a < e.length; a++) if (!e[a].disabled) return a;
   for (let a = t - 1; a >= 0; a--) if (!e[a].disabled) return a;
   return 0;
 }
@@ -109,13 +109,13 @@ var et = o({
   name: Ke,
   props: {
     value: Y,
-    fields: E(Object),
+    fields: z(Object),
     options: R(),
     readonly: Boolean,
     allowHtml: Boolean,
-    optionHeight: E(Number),
-    swipeDuration: E(Y),
-    visibleOptionNum: E(Y),
+    optionHeight: z(Number),
+    swipeDuration: z(Y),
+    visibleOptionNum: z(Y),
   },
   emits: ['change', 'clickOption', 'scrollInto'],
   setup(e, { emit: t, slots: a }) {
@@ -138,8 +138,8 @@ var et = o({
         (l && o !== f.value ? (d = r) : r(), (f.value = o));
       },
       w = () => e.readonly || !e.options.length,
-      x = (t) => z(Math.round(-t / e.optionHeight), 0, g() - 1),
-      D = i(() => x(f.value)),
+      D = (t) => P(Math.round(-t / e.optionHeight), 0, g() - 1),
+      x = i(() => D(f.value)),
       k = () => {
         ((l = !1), (p.value = 0), d && (d(), (d = null)));
       },
@@ -164,10 +164,10 @@ var et = o({
           return void ((t, a) => {
             const l = Math.abs(t / a);
             t = f.value + (l / 0.003) * (t < 0 ? -1 : 1);
-            const n = x(t);
+            const n = D(t);
             ((p.value = +e.swipeDuration), b(n));
           })(t, a);
-        const n = x(f.value);
+        const n = D(f.value);
         ((p.value = 200),
           b(n),
           setTimeout(() => {
@@ -208,9 +208,9 @@ var et = o({
         (a) => {
           if (w()) return;
           (h.move(a), h.isVertical() && ((l = !0), U(a, !0)));
-          const r = z(n + h.deltaY.value, -g() * e.optionHeight, e.optionHeight),
-            i = x(r);
-          (i !== D.value && t('scrollInto', e.options[i]), (f.value = r));
+          const r = P(n + h.deltaY.value, -g() * e.optionHeight, e.optionHeight),
+            i = D(r);
+          (i !== x.value && t('scrollInto', e.options[i]), (f.value = r));
           const s = Date.now();
           s - o > 300 && ((o = s), (c = r));
         },
@@ -358,10 +358,10 @@ function wt(e, t) {
       e.value && a.observe(e.value);
     }));
 }
-const [xt, Dt] = V('sticky');
+const [Dt, xt] = V('sticky');
 const kt = se(
     o({
-      name: xt,
+      name: Dt,
       props: { zIndex: Y, position: ee('top'), container: Object, offsetTop: Q(0), offsetBottom: Q(0) },
       emits: ['scroll', 'change'],
       setup(e, { emit: t, slots: a }) {
@@ -423,7 +423,7 @@ const kt = se(
           () => {
             var e;
             return u('div', { ref: l, style: d.value }, [
-              u('div', { class: Dt({ fixed: o.fixed && !s.value }), style: v.value }, [null == (e = a.default) ? void 0 : e.call(a)]),
+              u('div', { class: xt({ fixed: o.fixed && !s.value }), style: v.value }, [null == (e = a.default) ? void 0 : e.call(a)]),
             ]);
           }
         );
@@ -446,7 +446,7 @@ const kt = se(
     stopPropagation: ue,
   },
   Mt = Symbol(St);
-const Tt = se(
+const At = se(
     o({
       name: St,
       props: Ct,
@@ -459,47 +459,47 @@ const Tt = se(
         const c = Ve(),
           { children: d, linkChildren: b } = ce(Mt),
           w = i(() => d.length),
-          x = i(() => o[e.vertical ? 'height' : 'width']),
-          D = i(() => (e.vertical ? c.deltaY.value : c.deltaX.value)),
+          D = i(() => o[e.vertical ? 'height' : 'width']),
+          x = i(() => (e.vertical ? c.deltaY.value : c.deltaX.value)),
           k = i(() => {
             if (o.rect) {
-              return (e.vertical ? o.rect.height : o.rect.width) - x.value * w.value;
+              return (e.vertical ? o.rect.height : o.rect.width) - D.value * w.value;
             }
             return 0;
           }),
-          S = i(() => (x.value ? Math.ceil(Math.abs(k.value) / x.value) : w.value)),
-          $ = i(() => w.value * x.value),
+          S = i(() => (D.value ? Math.ceil(Math.abs(k.value) / D.value) : w.value)),
+          $ = i(() => w.value * D.value),
           C = i(() => (o.active + w.value) % w.value),
           M = i(() => {
             const t = e.vertical ? 'vertical' : 'horizontal';
             return c.direction.value === t;
           }),
-          T = i(() => {
+          A = i(() => {
             const t = {
               transitionDuration: `${o.swiping ? 0 : e.duration}ms`,
               transform: `translate${e.vertical ? 'Y' : 'X'}(${+o.offset.toFixed(2)}px)`,
             };
-            if (x.value) {
+            if (D.value) {
               const a = e.vertical ? 'height' : 'width',
                 l = e.vertical ? 'width' : 'height';
               ((t[a] = `${$.value}px`), (t[l] = e[l] ? `${e[l]}px` : ''));
             }
             return t;
           }),
-          A = (t, a = 0) => {
-            let l = t * x.value;
+          T = (t, a = 0) => {
+            let l = t * D.value;
             e.loop || (l = Math.min(l, -k.value));
             let n = a - l;
-            return (e.loop || (n = z(n, k.value, 0)), n);
+            return (e.loop || (n = P(n, k.value, 0)), n);
           },
           O = ({ pace: a = 0, offset: l = 0, emitChange: n }) => {
             if (w.value <= 1) return;
             const { active: r } = o,
               i = ((t) => {
                 const { active: a } = o;
-                return t ? (e.loop ? z(a + t, -1, w.value) : z(a + t, 0, S.value)) : a;
+                return t ? (e.loop ? P(a + t, -1, w.value) : P(a + t, 0, S.value)) : a;
               })(a),
-              s = A(i, l);
+              s = T(i, l);
             if (e.loop) {
               if (d[0] && s !== k.value) {
                 const e = s < k.value;
@@ -543,7 +543,7 @@ const Tt = se(
               (w.value && -1 === (t = Math.min(w.value - 1, t)) && (t = w.value - 1),
                 (o.active = t),
                 (o.swiping = !0),
-                (o.offset = A(t)),
+                (o.offset = T(t)),
                 d.forEach((e) => {
                   e.setOffset(0);
                 }),
@@ -552,20 +552,20 @@ const Tt = se(
             ne(l) ? h().then(a) : a();
           },
           L = () => V(o.active);
-        let P;
-        const E = (t) => {
-            !e.touchable || t.touches.length > 1 || (c.start(t), (s = !1), (P = Date.now()), B(), I());
+        let E;
+        const z = (t) => {
+            !e.touchable || t.touches.length > 1 || (c.start(t), (s = !1), (E = Date.now()), B(), I());
           },
           R = () => {
             if (!e.touchable || !o.swiping) return;
-            const a = Date.now() - P,
-              l = D.value / a;
-            if ((Math.abs(l) > 0.25 || Math.abs(D.value) > x.value / 2) && M.value) {
+            const a = Date.now() - E,
+              l = x.value / a;
+            if ((Math.abs(l) > 0.25 || Math.abs(x.value) > D.value / 2) && M.value) {
               const t = e.vertical ? c.offsetY.value : c.offsetX.value;
               let a = 0;
-              ((a = e.loop ? (t > 0 ? (D.value > 0 ? -1 : 1) : 0) : -Math[D.value > 0 ? 'ceil' : 'floor'](D.value / x.value)),
+              ((a = e.loop ? (t > 0 ? (x.value > 0 ? -1 : 1) : 0) : -Math[x.value > 0 ? 'ceil' : 'floor'](x.value / D.value)),
                 O({ pace: a, emitChange: !0 }));
-            } else D.value && O({ pace: 0 });
+            } else x.value && O({ pace: 0 });
             ((s = !1), (o.swiping = !1), t('dragEnd', { index: C.value }), H());
           },
           Y = (t, a) => {
@@ -600,7 +600,7 @@ const Tt = se(
                 }));
             },
           }),
-          b({ size: x, props: e, count: w, activeIndicator: C }),
+          b({ size: D, props: e, count: w, activeIndicator: C }),
           p(
             () => e.initialSwipe,
             (e) => V(+e),
@@ -620,8 +620,8 @@ const Tt = se(
             'touchmove',
             (a) => {
               if (e.touchable && o.swiping && (c.move(a), M.value)) {
-                (!e.loop && ((0 === o.active && D.value > 0) || (o.active === w.value - 1 && D.value < 0))) ||
-                  (U(a, e.stopPropagation), O({ offset: D.value }), s || (t('dragStart', { index: C.value }), (s = !0)));
+                (!e.loop && ((0 === o.active && x.value > 0) || (o.active === w.value - 1 && x.value < 0))) ||
+                  (U(a, e.stopPropagation), O({ offset: x.value }), s || (t('dragStart', { index: C.value }), (s = !0)));
               }
             },
             { target: n },
@@ -633,9 +633,9 @@ const Tt = se(
                 'div',
                 {
                   ref: n,
-                  style: T.value,
+                  style: A.value,
                   class: $t('track', { vertical: e.vertical }),
-                  onTouchstartPassive: E,
+                  onTouchstartPassive: z,
                   onTouchend: R,
                   onTouchcancel: R,
                 },
@@ -652,17 +652,17 @@ const Tt = se(
       },
     }),
   ),
-  [At, Ot] = V('tabs');
+  [Tt, Ot] = V('tabs');
 var It = o({
-  name: At,
+  name: Tt,
   props: {
-    count: E(Number),
+    count: z(Number),
     inited: Boolean,
     animated: Boolean,
-    duration: E(Y),
+    duration: z(Y),
     swipeable: Boolean,
     lazyRender: Boolean,
-    currentIndex: E(Number),
+    currentIndex: z(Number),
   },
   emits: ['change'],
   setup(e, { emit: t, slots: a }) {
@@ -673,7 +673,7 @@ var It = o({
         const o = null == (t = a.default) ? void 0 : t.call(a);
         return e.animated || e.swipeable
           ? u(
-              Tt,
+              At,
               {
                 ref: l,
                 loop: !1,
@@ -738,25 +738,25 @@ var Vt = o({
       g = r(),
       b = r(),
       w = yt(),
-      x = te(v),
-      [D, k] = bt(),
+      D = te(v),
+      [x, k] = bt(),
       { children: S, linkChildren: $ } = ce(Ht),
       C = f({ inited: !1, position: '', lineStyle: {}, currentIndex: -1 }),
       M = i(() => S.length > +t.swipeThreshold || !t.ellipsis || t.shrink),
-      T = i(() => ({ borderColor: t.color, background: t.background })),
-      A = (e, t) => {
+      A = i(() => ({ borderColor: t.color, background: t.background })),
+      T = (e, t) => {
         var a;
         return null != (a = e.name) ? a : t;
       },
       O = i(() => {
         const e = S[C.currentIndex];
-        if (e) return A(e, C.currentIndex);
+        if (e) return T(e, C.currentIndex);
       }),
       I = i(() => ae(t.offsetTop)),
       N = i(() => (t.sticky ? I.value + n : 0)),
       _ = (e) => {
         const a = m.value,
-          l = D.value;
+          l = x.value;
         if (!(M.value && a && l && l[C.currentIndex])) return;
         const n = l[C.currentIndex].$el,
           o = n.offsetLeft - (a.offsetWidth - n.offsetWidth) / 2;
@@ -780,13 +780,13 @@ var Vt = o({
       B = () => {
         const e = C.inited;
         h(() => {
-          const a = D.value;
+          const a = x.value;
           if (!a || !a[C.currentIndex] || 'line' !== t.type || ne(v.value)) return;
           const l = a[C.currentIndex].$el,
             { lineWidth: n, lineHeight: o } = t,
             r = l.offsetLeft + l.offsetWidth / 2,
             i = { width: fe(n), backgroundColor: t.color, transform: `translateX(${r}px) translateX(-50%)` };
-          if ((e && (i.transitionDuration = `${t.duration}s`), P(o))) {
+          if ((e && (i.transitionDuration = `${t.duration}s`), E(o))) {
             const e = fe(o);
             ((i.height = e), (i.borderRadius = e));
           }
@@ -801,23 +801,23 @@ var Vt = o({
             e += t;
           }
         })(e);
-        if (!P(n)) return;
+        if (!E(n)) return;
         const o = S[n],
-          r = A(o, n),
+          r = T(o, n),
           i = null !== C.currentIndex;
         (C.currentIndex !== n && ((C.currentIndex = n), l || _(), B()),
           r !== t.active && (a('update:active', r), i && a('change', r, o.title)),
           s && !t.scrollspy && he(Math.ceil(ge(v.value) - I.value)));
       },
       V = (e, t) => {
-        const a = S.findIndex((t, a) => A(t, a) === e);
+        const a = S.findIndex((t, a) => T(t, a) === e);
         H(-1 === a ? 0 : a, t);
       },
       L = (e = !1) => {
         if (t.scrollspy) {
           const a = S[C.currentIndex].$el;
-          if (a && x.value) {
-            const l = ge(a, x.value) - N.value;
+          if (a && D.value) {
+            const l = ge(a, D.value) - N.value;
             ((o = !0),
               d && d(),
               (d = (function (e, t, a, l) {
@@ -837,17 +837,17 @@ var Vt = o({
                     Z(n);
                   }
                 );
-              })(x.value, l, e ? 0 : +t.duration, () => {
+              })(D.value, l, e ? 0 : +t.duration, () => {
                 o = !1;
               })));
           }
         }
       },
-      z = (l, n, o) => {
+      P = (l, n, o) => {
         const { title: r, disabled: i } = S[n],
-          s = A(S[n], n);
+          s = T(S[n], n);
         (i ||
-          (Pe(t.beforeChange, {
+          (Ee(t.beforeChange, {
             args: [s],
             done: () => {
               (H(n), L());
@@ -856,7 +856,7 @@ var Vt = o({
           e(l)),
           a('clickTab', { name: s, title: r, event: o, disabled: i }));
       },
-      E = (e) => {
+      z = (e) => {
         ((s = e.isFixed), a('scroll', e));
       },
       R = () => {
@@ -873,12 +873,12 @@ var Vt = o({
                   ref: m,
                   role: 'tablist',
                   class: _t('nav', [o, { shrink: t.shrink, complete: M.value }]),
-                  style: T.value,
+                  style: A.value,
                   'aria-orientation': 'horizontal',
                 },
                 [
                   null == (e = l['nav-left']) ? void 0 : e.call(l),
-                  S.map((e) => e.renderTitle(z)),
+                  S.map((e) => e.renderTitle(P)),
                   R(),
                   null == (a = l['nav-right']) ? void 0 : a.call(l),
                 ],
@@ -946,7 +946,7 @@ var Vt = o({
             H(e);
           }
         },
-        { target: x, passive: !0 },
+        { target: D, passive: !0 },
       ),
       $({
         id: w,
@@ -960,7 +960,7 @@ var Vt = o({
       }),
       () =>
         u('div', { ref: v, class: _t([t.type]) }, [
-          t.showHeader ? (t.sticky ? u(kt, { container: v.value, offsetTop: I.value, onScroll: E }, { default: () => [Y()] }) : Y()) : null,
+          t.showHeader ? (t.sticky ? u(kt, { container: v.value, offsetTop: I.value, onScroll: z }, { default: () => [Y()] }) : Y()) : null,
           u(
             It,
             {
@@ -986,18 +986,18 @@ var Vt = o({
   },
 });
 const Lt = Symbol(),
-  Pt = Symbol(),
-  zt = (e) => {
-    const t = b(Pt, null);
+  Et = Symbol(),
+  Pt = (e) => {
+    const t = b(Et, null);
     (w(Lt, e),
       w(
-        Pt,
+        Et,
         i(() => (null == t || t.value) && e.value),
       ));
   },
-  [Et, Rt] = V('tab'),
+  [zt, Rt] = V('tab'),
   Yt = o({
-    name: Et,
+    name: zt,
     props: {
       id: String,
       dot: Boolean,
@@ -1024,7 +1024,7 @@ const Lt = Symbol(),
         }),
         l = () => {
           const a = u('span', { class: Rt('text', { ellipsis: !e.scrollable }) }, [t.title ? t.title() : e.title]);
-          return e.dot || (P(e.badge) && '' !== e.badge)
+          return e.dot || (E(e.badge) && '' !== e.badge)
             ? u(ye, { dot: e.dot, content: e.badge, showZero: e.showZeroBadge }, { default: () => [a] })
             : a;
         };
@@ -1164,13 +1164,13 @@ const Zt = se(
               (o.setLine(), o.scrollIntoView());
             },
           ),
-          zt(m),
+          Pt(m),
           Le({
             id: a,
             renderTitle: (l) =>
               u(
                 Yt,
-                D(
+                x(
                   {
                     key: a,
                     id: `${o.id}-${d.value}`,
@@ -1216,7 +1216,7 @@ const Zt = se(
                 },
               );
             const f = l.value || s || !c ? (null == (e = t.default) ? void 0 : e.call(t)) : null;
-            return x(
+            return D(
               u(
                 'div',
                 {
@@ -1292,7 +1292,7 @@ const Qt = se(
                   for (; n && n[t.children]; ) {
                     const e = n[t.children],
                       r = a.value[o];
-                    ((n = P(r) ? qe(e, r, t) : void 0), !n && e.length && (n = qe(e, Ge(e)[t.value], t)), o++, l.push(e));
+                    ((n = E(r) ? qe(e, r, t) : void 0), !n && e.length && (n = qe(e, Ge(e)[t.value], t)), o++, l.push(e));
                   }
                   return l;
                 })(t, d.value, n);
@@ -1309,19 +1309,19 @@ const Qt = se(
               ((a[e] = t), (n.value = a));
             }
           },
-          x = () => ({ selectedValues: n.value.slice(0), selectedOptions: y.value, selectedIndexes: b.value }),
+          D = () => ({ selectedValues: n.value.slice(0), selectedOptions: y.value, selectedIndexes: b.value }),
           k = () => {
             s.forEach((e) => e.stopMomentum());
-            const e = x();
+            const e = D();
             return (
               h(() => {
-                const e = x();
+                const e = D();
                 t('confirm', e);
               }),
               e
             );
           },
-          S = () => t('cancel', x()),
+          S = () => t('cancel', D()),
           $ = () =>
             f.value.map((l, o) =>
               u(
@@ -1344,13 +1344,13 @@ const Qt = se(
                             Xe(a, e, d.value) || w(t, a.length ? a[0][d.value.value] : void 0);
                           }),
                         h(() => {
-                          t('change', L({ columnIndex: a }, x()));
+                          t('change', L({ columnIndex: a }, D()));
                         }));
                     })(e, o),
                   onClickOption: (e) =>
                     ((e, a) => {
                       const l = { columnIndex: a, currentOption: e };
-                      (t('clickOption', L(x(), l)), t('scrollInto', l));
+                      (t('clickOption', L(D(), l)), t('scrollInto', l));
                     })(e, o),
                   onScrollInto: (e) => {
                     t('scrollInto', { currentOption: e, columnIndex: o });
@@ -1363,7 +1363,7 @@ const Qt = se(
             if (g.value) {
               const t = { height: `${v.value}px` },
                 a = { backgroundSize: `100% ${(e - v.value) / 2}px` };
-              return [u('div', { class: Ue('mask'), style: a }, null), u('div', { class: [xe, Ue('frame')], style: t }, null)];
+              return [u('div', { class: Ue('mask'), style: a }, null), u('div', { class: [De, Ue('frame')], style: t }, null)];
             }
           },
           M = () => {
@@ -1371,27 +1371,27 @@ const Qt = se(
               n = { height: `${t}px` };
             return e.loading || g.value || !a.empty ? u('div', { ref: l, class: Ue('columns'), style: n }, [$(), C(t)]) : a.empty();
           },
-          T = () => {
-            if (e.showToolbar && !o) return u(ot, D(we(e, nt), { onConfirm: k, onCancel: S }), we(a, lt));
+          A = () => {
+            if (e.showToolbar && !o) return u(ot, x(we(e, nt), { onConfirm: k, onCancel: S }), we(a, lt));
           },
-          A = (e) => {
+          T = (e) => {
             e.forEach((e, t) => {
               e.length && !Xe(e, n.value[t], d.value) && w(t, Ge(e)[d.value.value]);
             });
           };
         let O;
-        (p(f, (e) => A(e), { immediate: !0 }),
+        (p(f, (e) => T(e), { immediate: !0 }),
           p(
             () => e.modelValue,
             (t) => {
-              (De(t, n.value) || De(t, O) || ((n.value = t.slice(0)), (O = t.slice(0))), 0 === e.modelValue.length && A(f.value));
+              (xe(t, n.value) || xe(t, O) || ((n.value = t.slice(0)), (O = t.slice(0))), 0 === e.modelValue.length && T(f.value));
             },
             { deep: !0 },
           ),
           p(
             n,
             (a) => {
-              De(a, e.modelValue) || ((O = a.slice(0)), t('update:modelValue', O));
+              xe(a, e.modelValue) || ((O = a.slice(0)), t('update:modelValue', O));
             },
             { immediate: !0 },
           ),
@@ -1401,12 +1401,12 @@ const Qt = se(
           () => {
             var t, l;
             return u('div', { class: Ue() }, [
-              'top' === e.toolbarPosition ? T() : null,
-              e.loading ? u(ze, { class: Ue('loading') }, null) : null,
+              'top' === e.toolbarPosition ? A() : null,
+              e.loading ? u(Pe, { class: Ue('loading') }, null) : null,
               null == (t = a['columns-top']) ? void 0 : t.call(a),
               M(),
               null == (l = a['columns-bottom']) ? void 0 : l.call(a),
-              'bottom' === e.toolbarPosition ? T() : null,
+              'bottom' === e.toolbarPosition ? A() : null,
             ]);
           }
         );
@@ -1440,11 +1440,11 @@ const la = se(
     setup(e, { slots: t }) {
       const l = a(),
         n = () => {
-          if (t.label || P(e.label)) return u('div', { class: [ta('label'), e.labelClass] }, [t.label ? t.label() : e.label]);
+          if (t.label || E(e.label)) return u('div', { class: [ta('label'), e.labelClass] }, [t.label ? t.label() : e.label]);
         },
         o = () => {
           var a;
-          if (t.title || P(e.title)) {
+          if (t.title || E(e.title)) {
             const l = null == (a = t.title) ? void 0 : a.call(t);
             if (Array.isArray(l) && 0 === l.length) return;
             return u('div', { class: [ta('title'), e.titleClass], style: e.titleStyle }, [l || u('span', null, [e.title]), n()]);
@@ -1452,7 +1452,7 @@ const la = se(
         },
         r = () => {
           const a = t.value || t.default;
-          if (a || P(e.value)) return u('div', { class: [ta('value'), e.valueClass] }, [a ? a() : u('span', null, [e.value])]);
+          if (a || E(e.value)) return u('div', { class: [ta('value'), e.valueClass] }, [a ? a() : u('span', null, [e.value])]);
         },
         i = () => {
           if (t['right-icon']) return t['right-icon']();
@@ -1570,12 +1570,12 @@ const ma = se(
         o = r(),
         s = r(),
         c = r(),
-        { parent: d } = F(Ae),
+        { parent: d } = F(Te),
         v = () => {
           var t;
           return String(null != (t = e.modelValue) ? t : '');
         },
-        m = (t) => (P(e[t]) ? e[t] : d && P(d.props[t]) ? d.props[t] : void 0),
+        m = (t) => (E(e[t]) ? e[t] : d && E(d.props[t]) ? d.props[t] : void 0),
         y = i(() => {
           const t = m('readonly');
           if (e.clearable && !t) {
@@ -1586,7 +1586,7 @@ const ma = se(
           return !1;
         }),
         b = i(() => (c.value && a.input ? c.value() : e.modelValue)),
-        x = i(() => {
+        D = i(() => {
           var t;
           const a = m('required');
           return 'auto' === a ? (null == (t = e.rules) ? void 0 : t.some((e) => e.required)) : a;
@@ -1638,7 +1638,7 @@ const ma = se(
                   }))
                 : l());
           }),
-        T = (t) => {
+        A = (t) => {
           if (d && e.rules) {
             const { validateTrigger: a } = d.props,
               l = Oe(a).includes(t),
@@ -1646,13 +1646,13 @@ const ma = se(
             n.length && M(n);
           }
         },
-        A = (a, l = 'onChange') => {
+        T = (a, l = 'onChange') => {
           var r, i;
           const s = a;
           a = ((t) => {
             var a;
             const { maxlength: l } = e;
-            if (P(l) && sa(t) > +l) {
+            if (E(l) && sa(t) > +l) {
               const e = v();
               if (e && sa(e) === +l) return e;
               const r = null == (a = o.value) ? void 0 : a.selectionEnd;
@@ -1668,15 +1668,15 @@ const ma = se(
           const u = s.length - a.length;
           if ('number' === e.type || 'digit' === e.type) {
             const t = 'number' === e.type;
-            if (((a = Te(a, t, t)), 'onBlur' === l && '' !== a && (void 0 !== e.min || void 0 !== e.max))) {
-              const t = z(+a, null != (r = e.min) ? r : -1 / 0, null != (i = e.max) ? i : 1 / 0);
+            if (((a = Ae(a, t, t)), 'onBlur' === l && '' !== a && (void 0 !== e.min || void 0 !== e.max))) {
+              const t = P(+a, null != (r = e.min) ? r : -1 / 0, null != (i = e.max) ? i : 1 / 0);
               +a !== t && (a = t.toString());
             }
           }
           let c = 0;
           if (e.formatter && l === e.formatTrigger) {
             const { formatter: t, maxlength: l } = e;
-            if (((a = t(a)), P(l) && sa(a) > +l && (a = ua(a, +l)), o.value && n.focused)) {
+            if (((a = t(a)), E(l) && sa(a) > +l && (a = ua(a, +l)), o.value && n.focused)) {
               const { selectionEnd: e } = o.value,
                 a = ua(s, e);
               c = t(a).length - a.length;
@@ -1685,7 +1685,7 @@ const ma = se(
           if (o.value && o.value.value !== a)
             if (n.focused) {
               let { selectionStart: e, selectionEnd: t } = o.value;
-              if (((o.value.value = a), P(e) && P(t))) {
+              if (((o.value.value = a), E(e) && E(t))) {
                 const l = a.length;
                 (u ? ((e -= u), (t -= u)) : c && ((e += c), (t += c)), o.value.setSelectionRange(Math.min(e, l), Math.min(t, l)));
               }
@@ -1693,7 +1693,7 @@ const ma = se(
           a !== e.modelValue && t('update:modelValue', a);
         },
         O = (e) => {
-          e.target.composing || A(e.target.value);
+          e.target.composing || T(e.target.value);
         },
         I = () => {
           var e;
@@ -1723,11 +1723,11 @@ const ma = se(
           ((n.focused = !0), t('focus', e), h(_), m('readonly') && I());
         },
         H = (e) => {
-          ((n.focused = !1), A(v(), 'onBlur'), t('blur', e), m('readonly') || (T('onBlur'), h(_), Ie()));
+          ((n.focused = !1), T(v(), 'onBlur'), t('blur', e), m('readonly') || (A('onBlur'), h(_), Ie()));
         },
         V = (e) => t('clickInput', e),
         L = (e) => t('clickLeftIcon', e),
-        E = (e) => t('clickRightIcon', e),
+        z = (e) => t('clickRightIcon', e),
         R = i(() => ('boolean' == typeof e.error ? e.error : !(!d || !d.props.showError || 'failed' !== n.status) || void 0)),
         Y = i(() => {
           const e = m('labelWidth'),
@@ -1774,10 +1774,10 @@ const ma = se(
             onCompositionstart: ra,
           };
           return 'textarea' === e.type
-            ? u('textarea', D(n, { inputmode: e.inputmode }), null)
+            ? u('textarea', x(n, { inputmode: e.inputmode }), null)
             : u(
                 'input',
-                D(
+                x(
                   ((r = e.type),
                   (i = e.inputmode),
                   'number' === r && ((r = 'text'), null != i || (i = 'decimal')),
@@ -1792,7 +1792,7 @@ const ma = se(
         X = () => {
           const t = a['right-icon'];
           if (e.rightIcon || t)
-            return u('div', { class: da('right-icon'), onClick: E }, [
+            return u('div', { class: da('right-icon'), onClick: z }, [
               t ? t() : u(ke, { name: e.rightIcon, classPrefix: e.iconPrefix }, null),
             ]);
         },
@@ -1823,15 +1823,15 @@ const ma = se(
         ];
       return (
         Le({ blur: I, focus: N, validate: M, formValue: b, resetValidation: $, getValidationStatus: () => n.status }),
-        w(Ne, { customValue: c, resetValidation: $, validateWithTrigger: T }),
+        w(Ne, { customValue: c, resetValidation: $, validateWithTrigger: A }),
         p(
           () => e.modelValue,
           () => {
-            (A(v()), $(), T('onChange'), h(_));
+            (T(v()), $(), A('onChange'), h(_));
           },
         ),
         g(() => {
-          (A(v(), e.formatTrigger), h(_));
+          (T(v(), e.formatTrigger), h(_));
         }),
         W(
           'touchstart',
@@ -1866,7 +1866,7 @@ const ma = se(
               clickable: e.clickable,
               titleStyle: Y.value,
               valueClass: da('value'),
-              titleClass: [da('label', [n, { required: x.value }]), e.labelClass],
+              titleClass: [da('label', [n, { required: D.value }]), e.labelClass],
               arrowDirection: e.arrowDirection,
             },
             {
@@ -1905,7 +1905,7 @@ const ma = se(
     },
   }),
 );
-se(Ee);
+se(ze);
 const [fa, pa, ha] = V('calendar');
 function ga(e, t) {
   const a = e.getFullYear(),
@@ -1928,11 +1928,11 @@ function ya(e, t) {
 }
 const ba = (e) => new Date(e),
   wa = (e) => (Array.isArray(e) ? e.map(ba) : ba(e));
-function xa(e, t) {
+function Da(e, t) {
   const a = ba(e);
   return (a.setDate(a.getDate() + t), a);
 }
-function Da(e, t) {
+function xa(e, t) {
   const a = ba(e);
   return (a.setMonth(a.getMonth() + t), a.getDate() !== e.getDate() && a.setDate(0), a);
 }
@@ -1940,12 +1940,12 @@ function ka(e, t) {
   const a = ba(e);
   return (a.setFullYear(a.getFullYear() + t), a.getDate() !== e.getDate() && a.setDate(0), a);
 }
-const Sa = (e) => xa(e, -1),
-  $a = (e) => xa(e, 1),
-  Ca = (e) => Da(e, -1),
-  Ma = (e) => Da(e, 1),
-  Ta = (e) => ka(e, -1),
-  Aa = (e) => ka(e, 1),
+const Sa = (e) => Da(e, -1),
+  $a = (e) => Da(e, 1),
+  Ca = (e) => xa(e, -1),
+  Ma = (e) => xa(e, 1),
+  Aa = (e) => ka(e, -1),
+  Ta = (e) => ka(e, 1),
   Oa = () => {
     const e = new Date();
     return (e.setHours(0, 0, 0, 0), e);
@@ -1954,7 +1954,7 @@ L({}, Jt, { modelValue: R(), filter: Function, formatter: { type: Function, defa
 const [Ia] = V('calendar-day');
 var Na = o({
   name: Ia,
-  props: { item: E(Object), color: String, index: Number, offset: _e(0), rowHeight: String },
+  props: { item: z(Object), color: String, index: Number, offset: _e(0), rowHeight: String },
   emits: ['click', 'clickDisabledDate'],
   setup(e, { emit: t, slots: a }) {
     const l = i(() => {
@@ -2016,7 +2016,7 @@ const [_a] = V('calendar-month');
 var Ba = o({
   name: _a,
   props: {
-    date: E(Date),
+    date: z(Date),
     type: String,
     color: String,
     minDate: Date,
@@ -2106,7 +2106,7 @@ var Ba = o({
         const e = Math.ceil((f.value + m.value) / 7);
         return Array(e).fill({ type: 'placeholder' });
       }),
-      x = i(() => {
+      D = i(() => {
         const t = [],
           a = e.date.getFullYear(),
           l = e.date.getMonth();
@@ -2118,7 +2118,7 @@ var Ba = o({
         }
         return t;
       }),
-      D = i(() => x.value.filter((e) => 'disabled' === e.type)),
+      x = i(() => D.value.filter((e) => 'disabled' === e.type)),
       k = (l, n) =>
         u(
           Na,
@@ -2146,12 +2146,12 @@ var Ba = o({
             q(e, a.top + n + e.scrollTop - oe(e).top);
           }
         },
-        disabledDays: D,
+        disabledDays: x,
       }),
       () =>
         u('div', { class: pa('month'), ref: s }, [
           y(),
-          u('div', { ref: o, role: 'grid', class: pa('days') }, [b(), (p.value ? x : w).value.map(k)]),
+          u('div', { ref: o, role: 'grid', class: pa('days') }, [b(), (p.value ? D : w).value.map(k)]),
         ])
     );
   },
@@ -2173,9 +2173,9 @@ var Va = o({
   emits: ['clickSubtitle', 'panelChange'],
   setup(e, { slots: t, emit: a }) {
     const l = i(() => e.date && e.minDate && ga(Ca(e.date), e.minDate) < 0),
-      n = i(() => e.date && e.minDate && ga(Ta(e.date), e.minDate) < 0),
+      n = i(() => e.date && e.minDate && ga(Aa(e.date), e.minDate) < 0),
       o = i(() => e.date && e.maxDate && ga(Ma(e.date), e.maxDate) > 0),
-      r = i(() => e.date && e.maxDate && ga(Aa(e.date), e.maxDate) > 0),
+      r = i(() => e.date && e.maxDate && ga(Ta(e.date), e.maxDate) > 0),
       s = () => {
         if (e.showTitle) {
           const a = e.title || ha('title'),
@@ -2198,7 +2198,7 @@ var Va = o({
           ]),
           g =
             i &&
-            u('view', { class: pa('header-action', { disabled: m }), onClick: m ? void 0 : () => d((a ? Aa : Ta)(e.date)) }, [
+            u('view', { class: pa('header-action', { disabled: m }), onClick: m ? void 0 : () => d((a ? Ta : Aa)(e.date)) }, [
               c ? c({ disabled: m }) : u(ke, { class: { [j]: !m }, name: p }, null),
             ]);
         return a ? [h, g] : [g, h];
@@ -2272,7 +2272,7 @@ const La = se(
     setup(e, { emit: t, slots: a }) {
       const n = i(() => 'none' !== e.switchMode),
         o = i(() => (e.minDate || n.value ? e.minDate : Oa())),
-        s = i(() => (e.maxDate || n.value ? e.maxDate : Da(Oa(), 6))),
+        s = i(() => (e.maxDate || n.value ? e.maxDate : xa(Oa(), 6))),
         c = (e, t = o.value, a = s.value) => (t && -1 === ya(e, t) ? t : a && 1 === ya(e, a) ? a : e),
         d = (t = e.defaultDate) => {
           const { type: a, allowSameDay: l } = e;
@@ -2298,7 +2298,7 @@ const La = se(
         g = r(),
         [y, b] = bt(),
         w = i(() => (e.firstDayOfWeek ? +e.firstDayOfWeek % 7 : 0)),
-        x = i(() => {
+        D = i(() => {
           const e = [];
           if (!o.value || !s.value) return e;
           const t = new Date(o.value);
@@ -2318,12 +2318,12 @@ const La = se(
         S = () => {
           const e = X(m.value),
             a = e + v,
-            l = x.value.map((e, t) => y.value[t].getHeight());
+            l = D.value.map((e, t) => y.value[t].getHeight());
           if (a > l.reduce((e, t) => e + t, 0) && e > 0) return;
           let n,
             o = 0;
           const r = [-1, -1];
-          for (let i = 0; i < x.value.length; i++) {
+          for (let i = 0; i < D.value.length; i++) {
             const s = y.value[i];
             (o <= a &&
               o + l[i] >= e &&
@@ -2332,7 +2332,7 @@ const La = se(
               y.value[i].showed || ((y.value[i].showed = !0), t('monthShow', { date: s.date, title: s.getTitle() }))),
               (o += l[i]));
           }
-          (x.value.forEach((e, t) => {
+          (D.value.forEach((e, t) => {
             const a = t >= r[0] - 1 && t <= r[1] + 1;
             y.value[t].setVisible(a);
           }),
@@ -2342,7 +2342,7 @@ const La = se(
           n.value
             ? (h.value = e)
             : G(() => {
-                (x.value.some((t, a) => 0 === ga(t, e) && (m.value && y.value[a].scrollToDate(m.value, e), !0)), S());
+                (D.value.some((t, a) => 0 === ga(t, e) && (m.value && y.value[a].scrollToDate(m.value, e), !0)), S());
               });
         },
         C = () => {
@@ -2360,10 +2360,10 @@ const La = se(
               }),
             C());
         },
-        T = (e = d()) => {
+        A = (e = d()) => {
           ((f.value = e), C());
         },
-        A = (e) => {
+        T = (e) => {
           ((h.value = e), t('panelChange', { date: e }));
         },
         O = () => {
@@ -2386,7 +2386,7 @@ const La = se(
                 (o && Ye(n || ha('rangePrompt', l)), t('overRange'), 1)
               );
             })(a);
-            if (!l) return void n([a[0], xa(a[0], +e.maxRange - 1)]);
+            if (!l) return void n([a[0], Da(a[0], +e.maxRange - 1)]);
           }
           (n(a), l && !e.showConfirm && O());
         },
@@ -2432,7 +2432,7 @@ const La = se(
           const i = 0 !== r || !e.showSubtitle;
           return u(
             Ba,
-            D(
+            x(
               {
                 ref: n.value ? g : b(r),
                 date: l,
@@ -2471,7 +2471,7 @@ const La = se(
             );
           }
         },
-        P = () => {
+        E = () => {
           var l, r;
           return u('div', { class: pa() }, [
             u(
@@ -2487,11 +2487,11 @@ const La = se(
                 switchMode: e.switchMode,
                 firstDayOfWeek: w.value,
                 onClickSubtitle: (e) => t('clickSubtitle', e),
-                onPanelChange: A,
+                onPanelChange: T,
               },
               we(a, ['title', 'subtitle', 'prev-month', 'prev-year', 'next-month', 'next-year']),
             ),
-            u('div', { ref: m, class: pa('body'), onScroll: n.value ? void 0 : S }, [n.value ? V(h.value, 0) : x.value.map(V)]),
+            u('div', { ref: m, class: pa('body'), onScroll: n.value ? void 0 : S }, [n.value ? V(h.value, 0) : D.value.map(V)]),
             u('div', { class: [pa('footer'), { 'van-safe-area-bottom': e.safeAreaInsetBottom }] }, [L()]),
           ]);
         };
@@ -2499,15 +2499,15 @@ const La = se(
         p(() => e.show, M),
         p(
           () => [e.type, e.minDate, e.maxDate, e.switchMode],
-          () => T(d(f.value)),
+          () => A(d(f.value)),
         ),
         p(
           () => e.defaultDate,
           (e) => {
-            T(e);
+            A(e);
           },
         ),
-        Le({ reset: T, scrollToDate: $, getSelectedDate: () => f.value }),
+        Le({ reset: A, scrollToDate: $, getSelectedDate: () => f.value }),
         J(M),
         () =>
           e.poppable
@@ -2526,22 +2526,22 @@ const La = se(
                   onClickOverlay: B,
                   'onUpdate:show': H,
                 },
-                { default: P },
+                { default: E },
               )
-            : P()
+            : E()
       );
     },
   }),
 );
-function Pa(e) {
+function Ea(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, 'default') ? e.default : e;
 }
-var za,
-  Ea = { exports: {} };
-const Ra = Pa(
-    (za ||
-      ((za = 1),
-      (Ea.exports = (function () {
+var Pa,
+  za = { exports: {} };
+const Ra = Ea(
+    (Pa ||
+      ((Pa = 1),
+      (za.exports = (function () {
         var e = 1e3,
           t = 6e4,
           a = 36e5,
@@ -2607,9 +2607,9 @@ const Ra = Pa(
           b = 'en',
           w = {};
         w[b] = h;
-        var x = '$isDayjsObject',
-          D = function (e) {
-            return e instanceof C || !(!e || !e[x]);
+        var D = '$isDayjsObject',
+          x = function (e) {
+            return e instanceof C || !(!e || !e[D]);
           },
           k = function e(t, a, l) {
             var n;
@@ -2626,19 +2626,19 @@ const Ra = Pa(
             return (!l && n && (b = n), n || (!l && b));
           },
           S = function (e, t) {
-            if (D(e)) return e.clone();
+            if (x(e)) return e.clone();
             var a = 'object' == typeof t ? t : {};
             return ((a.date = e), (a.args = arguments), new C(a));
           },
           $ = y;
         (($.l = k),
-          ($.i = D),
+          ($.i = x),
           ($.w = function (e, t) {
             return S(e, { locale: t.$L, utc: t.$u, x: t.$x, $offset: t.$offset });
           }));
         var C = (function () {
             function h(e) {
-              ((this.$L = k(e.locale, null, !0)), this.parse(e), (this.$x = this.$x || e.x || {}), (this[x] = !0));
+              ((this.$L = k(e.locale, null, !0)), this.parse(e), (this.$x = this.$x || e.x || {}), (this[D] = !0));
             }
             var g = h.prototype;
             return (
@@ -2964,7 +2964,7 @@ const Ra = Pa(
             return (e.$i || (e(t, C, S), (e.$i = !0)), S);
           }),
           (S.locale = k),
-          (S.isDayjs = D),
+          (S.isDayjs = x),
           (S.unix = function (e) {
             return S(1e3 * e);
           }),
@@ -2974,7 +2974,7 @@ const Ra = Pa(
           S
         );
       })())),
-    Ea.exports),
+    za.exports),
   ),
   Ya = { class: 'content' },
   Fa = { class: 'input-group' },
@@ -2982,32 +2982,34 @@ const Ra = Pa(
   Ua = { class: 'input-group' },
   ja = o({
     __name: 'identifyLint',
+    props: ['travelDate'],
     setup(e) {
-      const t = r(''),
-        a = r([]),
-        n = r(!1),
-        o = r([]),
-        i = r({}),
-        s = {
+      const t = e,
+        a = r(''),
+        n = r([]),
+        o = r(!1),
+        i = r([]),
+        s = r({}),
+        c = {
           CHINA_ID: { fullName: '中国居民身份证', shortName: '身份证' },
           PASSPORT: { fullName: '护照', shortName: '护照' },
           HK_MACAU_PASS: { fullName: '港澳通行证（回乡证）', shortName: '回乡证' },
           TAIWAN_PASS: { fullName: '台湾通行证', shortName: '台湾通行证' },
           UNKNOWN: { fullName: '未知类型', shortName: '未知' },
         },
-        c = [];
-      for (const l in s) c.push({ text: s[l].fullName, value: s[l].shortName });
-      o.value = [c[0].value];
-      const d = (e) => {
+        d = [];
+      for (const l in c) d.push({ text: c[l].fullName, value: c[l].shortName });
+      i.value = [d[0].value];
+      const v = (e) => {
           if (18 !== e.length) return null;
-          return { birthday: `${e.slice(6, 4)}-${e.slice(10, 2)}-${e.slice(12, 2)}`, ticketType: v(e.slice(6, 14)) };
+          return { birthday: `${e.slice(6, 4)}-${e.slice(10, 2)}-${e.slice(12, 2)}`, ticketType: m(e.slice(6, 14)) };
         },
-        v = (e) => {
+        m = (e) => {
           const t = Ra().diff(e, 'y');
           return t < 2 ? '免票' : t <= 12 ? '儿童' : t < 60 ? '成人' : '老人';
         },
-        m = (e) => {
-          if (!e) return { type: s.UNKNOWN.shortName, valid: !1, message: '输入不能为空' };
+        f = (e) => {
+          if (!e) return { type: c.UNKNOWN.shortName, valid: !1, message: '输入不能为空' };
           const t = e.trim();
           if (/^\d{15}$|^\d{17}[\dXx]$/.test(t)) {
             const e = ((e) => {
@@ -3017,28 +3019,28 @@ const Ra = Pa(
               for (let l = 0; l < 17; l++) a += parseInt(e[l]) * t[l];
               return ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'][a % 11] === e[17].toUpperCase();
             })(t);
-            return { type: s.CHINA_ID.shortName, valid: e, message: e ? '有效的身份证号码' : '身份证号码校验失败', details: d(t) };
+            return { type: c.CHINA_ID.shortName, valid: e, message: e ? '有效的身份证号码' : '身份证号码校验失败', details: v(t) };
           }
           return /^[CHM]\d{8,10}$/.test(t)
-            ? { type: s.HK_MACAU_PASS.shortName }
+            ? { type: c.HK_MACAU_PASS.shortName }
             : ((e) => /^\d{8,10}$/.test(e))(t)
-              ? { type: s.TAIWAN_PASS.shortName, valid: !0, message: '台湾通行证' }
+              ? { type: c.TAIWAN_PASS.shortName, valid: !0, message: '台湾通行证' }
               : ((e) => /^[EG]\d{8}$/.test(e) || /^[A-Z]{1,2}\d{6,9}$/.test(e))(t)
-                ? { type: s.PASSPORT.shortName, valid: !0, message: '护照号码' }
-                : { type: s.UNKNOWN.shortName, valid: !1, message: '无法识别的输入类型' };
-        },
-        f = () => {
-          a.value.forEach((e) => {
-            const t = m(e.id);
-            ((e.idType = t.type), (e.ticketType = t.details ? t.details.ticketType : null));
-          });
+                ? { type: c.PASSPORT.shortName, valid: !0, message: '护照号码' }
+                : { type: c.UNKNOWN.shortName, valid: !1, message: '无法识别的输入类型' };
         },
         p = () => {
-          const e = t.value
+          n.value.forEach((e) => {
+            const t = f(e.id);
+            ((e.idType = t.type), (e.ticketType = t.details ? t.details.ticketType : void 0));
+          });
+        },
+        h = () => {
+          const e = a.value
             .split('\n')
             .map((e) => e.trim())
             .filter((e) => '' !== e);
-          a.value = e.map((e) => {
+          n.value = e.map((e) => {
             const t = e
               .split(' ')
               .map((e) => e.trim())
@@ -3046,19 +3048,22 @@ const Ra = Pa(
             return { name: t[0], id: t[1] };
           });
         },
-        h = ({ selectedValues: e }) => {
-          ((i.value.idType = e[0]), g());
-        },
-        g = () => {
-          ((n.value = !1), (i.value = {}));
+        g = ({ selectedValues: e }) => {
+          ((s.value.idType = e[0]), y());
         },
         y = () => {
-          let e = '\n';
-          ((e += a.value.map((e) => `${e.name} ${e.id}`).join('\n\n')), navigator.clipboard.writeText(e));
+          ((o.value = !1), (s.value = {}));
+        },
+        b = () => {
+          let e = '';
+          ((e += n.value
+            .map((e) => `上海乐高乐园 ${Ra(t.travelDate).format('YYYYMMDD')} ${e.ticketType} ${e.idType} 金额\n${e.name} ${e.id}`)
+            .join('\n')),
+            navigator.clipboard.writeText(e));
         };
-      return (e, r) => {
-        const s = ma,
-          d = l,
+      return (e, t) => {
+        const r = ma,
+          c = l,
           v = Qt,
           m = Re;
         return (
@@ -3067,26 +3072,26 @@ const Ra = Pa(
             C('div', Fa, [
               C('div', Wa, [
                 u(
-                  s,
+                  r,
                   {
                     type: 'textarea',
-                    modelValue: T(t),
-                    'onUpdate:modelValue': r[0] || (r[0] = (e) => (A(t) ? (t.value = e) : null)),
+                    modelValue: A(a),
+                    'onUpdate:modelValue': t[0] || (t[0] = (e) => (T(a) ? (a.value = e) : null)),
                     rows: '10',
-                    onKeyup: M(f, ['enter']),
+                    onKeyup: M(p, ['enter']),
                     placeholder: '例如：张三 110101199001011234',
                   },
                   null,
                   8,
                   ['modelValue'],
                 ),
-                u(d, { onClick: p, type: 'primary', size: 'small' }, { default: O(() => [...(r[3] || (r[3] = [S('分割', -1)]))]), _: 1 }),
+                u(c, { onClick: h, type: 'primary', size: 'small' }, { default: O(() => [...(t[3] || (t[3] = [S('分割', -1)]))]), _: 1 }),
                 u(
-                  d,
-                  { onClick: f, type: 'primary', size: 'small' },
-                  { default: O(() => [...(r[4] || (r[4] = [S('自动识别', -1)]))]), _: 1 },
+                  c,
+                  { onClick: p, type: 'primary', size: 'small' },
+                  { default: O(() => [...(t[4] || (t[4] = [S('自动识别', -1)]))]), _: 1 },
                 ),
-                u(d, { onClick: y, type: 'primary', size: 'small' }, { default: O(() => [...(r[5] || (r[5] = [S('复制', -1)]))]), _: 1 }),
+                u(c, { onClick: b, type: 'primary', size: 'small' }, { default: O(() => [...(t[5] || (t[5] = [S('复制', -1)]))]), _: 1 }),
               ]),
             ]),
             C('div', Ua, [
@@ -3095,20 +3100,20 @@ const Ra = Pa(
                 I,
                 null,
                 N(
-                  T(a),
-                  (e, t) => (
+                  A(n),
+                  (e, a) => (
                     _(),
                     $('div', { key: e.name }, [
-                      u(s, { modelValue: e.name, 'onUpdate:modelValue': (t) => (e.name = t), label: '姓名', type: 'text' }, null, 8, [
+                      u(r, { modelValue: e.name, 'onUpdate:modelValue': (t) => (e.name = t), label: '姓名', type: 'text' }, null, 8, [
                         'modelValue',
                         'onUpdate:modelValue',
                       ]),
-                      u(s, { modelValue: e.id, 'onUpdate:modelValue': (t) => (e.id = t), label: 'ID', type: 'text' }, null, 8, [
+                      u(r, { modelValue: e.id, 'onUpdate:modelValue': (t) => (e.id = t), label: 'ID', type: 'text' }, null, 8, [
                         'modelValue',
                         'onUpdate:modelValue',
                       ]),
                       u(
-                        s,
+                        r,
                         {
                           modelValue: e.idType,
                           'onUpdate:modelValue': (t) => (e.idType = t),
@@ -3116,7 +3121,7 @@ const Ra = Pa(
                           readonly: '',
                           label: '类型',
                           onClick: (t) => {
-                            ((n.value = !0), (i.value = e));
+                            ((o.value = !0), (s.value = e));
                           },
                         },
                         null,
@@ -3124,25 +3129,32 @@ const Ra = Pa(
                         ['modelValue', 'onUpdate:modelValue', 'onClick'],
                       ),
                       u(
-                        s,
+                        r,
+                        { modelValue: e.idValid, 'onUpdate:modelValue': (t) => (e.idValid = t), label: 'ID 是否有效', type: 'text' },
+                        null,
+                        8,
+                        ['modelValue', 'onUpdate:modelValue'],
+                      ),
+                      u(
+                        r,
                         { modelValue: e.ticketType, 'onUpdate:modelValue': (t) => (e.ticketType = t), label: '票种', type: 'text' },
                         null,
                         8,
                         ['modelValue', 'onUpdate:modelValue'],
                       ),
                       u(
-                        d,
+                        c,
                         {
                           type: 'primary',
                           size: 'small',
                           onClick: (e) =>
                             ((e) => {
-                              const t = a.value[e],
-                                l = t.name;
-                              ((t.name = t.id), (t.id = l));
-                            })(t),
+                              const t = n.value[e],
+                                a = t.name;
+                              ((t.name = t.id), (t.id = a));
+                            })(a),
                         },
-                        { default: O(() => [...(r[6] || (r[6] = [S('互换', -1)]))]), _: 1 },
+                        { default: O(() => [...(t[6] || (t[6] = [S('互换', -1)]))]), _: 1 },
                         8,
                         ['onClick'],
                       ),
@@ -3154,17 +3166,17 @@ const Ra = Pa(
             ]),
             u(
               m,
-              { show: T(n), 'onUpdate:show': r[2] || (r[2] = (e) => (A(n) ? (n.value = e) : null)), round: '', position: 'bottom' },
+              { show: A(o), 'onUpdate:show': t[2] || (t[2] = (e) => (T(o) ? (o.value = e) : null)), round: '', position: 'bottom' },
               {
                 default: O(() => [
                   u(
                     v,
                     {
-                      columns: c,
-                      modelValue: T(o),
-                      'onUpdate:modelValue': r[1] || (r[1] = (e) => (A(o) ? (o.value = e) : null)),
-                      onCancel: g,
-                      onConfirm: h,
+                      columns: d,
+                      modelValue: A(i),
+                      'onUpdate:modelValue': t[1] || (t[1] = (e) => (T(i) ? (i.value = e) : null)),
+                      onCancel: y,
+                      onConfirm: g,
                     },
                     null,
                     8,
@@ -3181,48 +3193,49 @@ const Ra = Pa(
       };
     },
   }),
-  Ga = { class: 'container' },
-  Za = { class: 'form-group' },
+  Ga = o({ __name: 'term', setup: (e) => (e, t) => (_(), $('div')) }),
+  Za = { class: 'container' },
   Xa = { class: 'form-group' },
-  qa = { class: 'counter-group' },
-  Ka = { class: 'counter-controls' },
-  Ja = { class: 'counter-value' },
-  Qa = { class: 'counter-group' },
-  el = { class: 'counter-controls' },
-  tl = { class: 'counter-value' },
-  al = { class: 'counter-group' },
-  ll = { class: 'counter-controls' },
-  nl = { class: 'counter-value' },
-  ol = { class: 'form-group' },
-  rl = { class: 'counter-group' },
+  qa = { class: 'form-group' },
+  Ka = { class: 'counter-group' },
+  Ja = { class: 'counter-controls' },
+  Qa = { class: 'counter-value' },
+  el = { class: 'counter-group' },
+  tl = { class: 'counter-controls' },
+  al = { class: 'counter-value' },
+  ll = { class: 'counter-group' },
+  nl = { class: 'counter-controls' },
+  ol = { class: 'counter-value' },
+  rl = { class: 'form-group' },
   il = { class: 'counter-group' },
-  sl = { class: 'summary' },
-  ul = { class: 'summary-item' },
-  cl = { class: 'summary-value' },
-  dl = { class: 'summary-item' },
-  vl = { class: 'summary-value' },
-  ml = { class: 'summary-item' },
-  fl = { class: 'summary-value' },
-  pl = { class: 'summary-item' },
-  hl = { class: 'summary-value' },
-  gl = { class: 'summary-item' },
-  yl = { class: 'summary-value' },
-  bl = { class: 'summary-item' },
-  wl = { class: 'summary-value' },
+  sl = { class: 'counter-group' },
+  ul = { class: 'summary' },
+  cl = { class: 'summary-item' },
+  dl = { class: 'summary-value' },
+  vl = { class: 'summary-item' },
+  ml = { class: 'summary-value' },
+  fl = { class: 'summary-item' },
+  pl = { class: 'summary-value' },
+  hl = { class: 'summary-item' },
+  gl = { class: 'summary-value' },
+  yl = { class: 'summary-item' },
+  bl = { class: 'summary-value' },
+  wl = { class: 'summary-item' },
+  Dl = { class: 'summary-value' },
   xl = { class: 'summary' },
-  Dl = { class: 'summary-item' },
-  kl = { class: 'summary-value' },
-  Sl = { class: 'summary-item' },
-  $l = { class: 'summary-value' },
-  Cl = { class: 'summary-item' },
-  Ml = { class: 'summary-value' },
-  Tl = { class: 'summary-item' },
+  kl = { class: 'summary-item' },
+  Sl = { class: 'summary-value' },
+  $l = { class: 'summary-item' },
+  Cl = { class: 'summary-value' },
+  Ml = { class: 'summary-item' },
   Al = { class: 'summary-value' },
-  Ol = { class: 'summary-item' },
-  Il = { class: 'summary-value' },
-  Nl = { class: 'summary-item' },
-  _l = { class: 'summary-value' },
-  Bl = H(
+  Tl = { class: 'summary-item' },
+  Ol = { class: 'summary-value' },
+  Il = { class: 'summary-item' },
+  Nl = { class: 'summary-value' },
+  _l = { class: 'summary-item' },
+  Bl = { class: 'summary-value' },
+  Hl = H(
     o({
       __name: 'index',
       setup(e) {
@@ -3231,7 +3244,7 @@ const Ra = Pa(
           a = r({ adult: { num: 0, simpleText: '大' }, child: { num: 0, simpleText: '小' }, senior: { num: 0, simpleText: '老' } }),
           o = r({ amount: '0', originalAmount: '0', costPlatform: '0', commission: '0', totalCost: '0', profit: '0' }),
           i = r({ amount: '0', originalAmount: '0', costPlatform: '0', commission: '0', totalCost: '0', profit: '0' }),
-          s = r({ standard: 0.95, earlyBird: 0.95, costPlatform: 0.02 }),
+          s = r({ standard: 0.94, earlyBird: 0.95, costPlatform: 0.02 }),
           c = r(''),
           d = r(!1),
           v = (e) => Ra(e).format('YYYY-MM-DD'),
@@ -3245,75 +3258,83 @@ const Ra = Pa(
             (0 === s.value[e] && t < 0) || (s.value[e] = (100 * s.value[e] + 100 * t) / 100);
           };
         function g() {
+          const e = n.data.filter((e) => e.travelDate === c.value);
+          if (0 == e.length) return void Ye('Ticket data not found');
+          const t = new Map();
+          for (const a of e) {
+            const e = a;
+            t.set(e.touristResortTicketsCategoryFullCode, e);
+          }
+          return t;
+        }
+        function y() {
           let e = 0,
             t = 0,
             l = 0,
+            n = 0,
             r = 0,
             u = 0,
+            c = 0,
             d = 0,
             v = 0,
-            m = 0,
-            f = 0,
-            p = 0;
-          const h = n.data.filter((e) => e.travelDate === c.value);
-          if (0 == h.length) return void Ye('Ticket data not found');
-          const g = new Map();
-          for (const a of h) {
-            const e = a;
-            g.set(e.touristResortTicketsCategoryFullCode, e);
-          }
-          let y = g.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-          ((e += a.value.adult.num * y.price * s.value.earlyBird), (t += a.value.adult.num * y.price), (u += 0 * a.value.adult.num));
-          let b = g.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD');
-          ((e += a.value.child.num * b.price * s.value.earlyBird), (t += a.value.child.num * b.price), (u += 0 * a.value.child.num));
-          let w = g.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR');
-          ((e += a.value.senior.num * w.price * s.value.earlyBird),
-            (t += a.value.senior.num * w.price),
-            (u += 0 * a.value.senior.num),
-            (r = e * s.value.earlyBird),
-            (l = u + r));
-          const x = e - l - u;
+            m = 0;
+          const f = g();
+          let p = f.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
+          ((e += a.value.adult.num * p.price * s.value.earlyBird), (t += a.value.adult.num * p.price), (r += 0 * a.value.adult.num));
+          let h = f.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD');
+          ((e += a.value.child.num * h.price * s.value.earlyBird), (t += a.value.child.num * h.price), (r += 0 * a.value.child.num));
+          let y = f.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR');
+          ((e += a.value.senior.num * y.price * s.value.earlyBird),
+            (t += a.value.senior.num * y.price),
+            (r += 0 * a.value.senior.num),
+            (n = e * s.value.earlyBird),
+            (l = r + n));
+          const b = e - l - r;
           ((i.value.amount = e.toFixed(2)),
             (i.value.originalAmount = t.toFixed(2)),
-            (i.value.costPlatform = r.toFixed(2)),
-            (i.value.profit = x.toFixed(2)),
-            (y = g.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')),
-            (d += a.value.adult.num * y.price * s.value.standard),
-            (v += a.value.adult.num * y.price),
-            (p += 10 * a.value.adult.num),
-            (b = g.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')),
-            (d += a.value.child.num * b.price * s.value.standard),
-            (v += a.value.child.num * b.price),
-            (p += 10 * a.value.child.num),
-            (w = g.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')),
-            (d += a.value.senior.num * w.price * s.value.standard),
-            (v += a.value.senior.num * w.price),
-            (p += 10 * a.value.senior.num),
-            (f = d * s.value.costPlatform),
-            (m = p + f));
-          const D = d - m - p;
-          ((o.value.amount = d.toFixed(2)),
-            (o.value.originalAmount = v.toFixed(2)),
-            (o.value.costPlatform = f.toFixed(2)),
-            (o.value.commission = p.toFixed(2)),
-            (o.value.totalCost = m.toFixed(2)),
-            (o.value.profit = D.toFixed(2)));
+            (i.value.costPlatform = n.toFixed(2)),
+            (i.value.profit = b.toFixed(2)),
+            (p = f.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')),
+            (u += a.value.adult.num * p.price * s.value.standard),
+            (c += a.value.adult.num * p.price),
+            (m += 10 * a.value.adult.num),
+            (h = f.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')),
+            (u += a.value.child.num * h.price * s.value.standard),
+            (c += a.value.child.num * h.price),
+            (m += 10 * a.value.child.num),
+            (y = f.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')),
+            (u += a.value.senior.num * y.price * s.value.standard),
+            (c += a.value.senior.num * y.price),
+            (m += 10 * a.value.senior.num),
+            (v = u * s.value.costPlatform),
+            (d = m + v));
+          const w = u - d - m;
+          ((o.value.amount = u.toFixed(2)),
+            (o.value.originalAmount = c.toFixed(2)),
+            (o.value.costPlatform = v.toFixed(2)),
+            (o.value.commission = m.toFixed(2)),
+            (o.value.totalCost = d.toFixed(2)),
+            (o.value.profit = w.toFixed(2)));
         }
         ((c.value = v(new Date())),
           p(
-            [c, a, s],
+            [a, s],
             () => {
-              g();
+              y();
             },
             { deep: !0 },
           ),
-          g());
-        const y = () => {
+          p([c], () => {
+            const e = g().get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
+            (e.standardRatio ? (s.value.standard = e.standardRatio) : (s.value.standard = 0.94), y());
+          }),
+          y());
+        const b = () => {
           function e(e) {
             return `${a.value[e].num ? a.value[e].num + a.value[e].simpleText : ''}`;
           }
           let t = `${c.value} ${Ra(c.value).format('dddd')} ${e('adult')}${e('child')}${e('senior')}`;
-          const l = 5 * Math.ceil(Number.parseFloat(o.value.amount) / 5),
+          const l = 5 * Math.ceil(Math.floor(Number.parseFloat(o.value.amount)) / 5),
             n = Ra(c.value).diff(new Date(), 'd') >= 9;
           if (n) {
             t += `\n早鸟票：${5 * Math.ceil(Number.parseFloat(i.value.amount) / 5)}`;
@@ -3327,64 +3348,64 @@ const Ra = Pa(
             v = La,
             p = ma,
             g = l,
-            b = Zt,
+            y = Zt,
             w = Xt;
           return (
             _(),
-            $('div', Ga, [
+            $('div', Za, [
               n[47] || (n[47] = C('h1', null, '🎫 票务计算器', -1)),
-              C('div', Za, [
-                u(r, { title: '选择日期', value: T(c), onClick: n[0] || (n[0] = (e) => (d.value = !0)) }, null, 8, ['value']),
-                u(v, { show: T(d), 'onUpdate:show': n[1] || (n[1] = (e) => (A(d) ? (d.value = e) : null)), onConfirm: m }, null, 8, [
+              C('div', Xa, [
+                u(r, { title: '选择日期', value: A(c), onClick: n[0] || (n[0] = (e) => (d.value = !0)) }, null, 8, ['value']),
+                u(v, { show: A(d), 'onUpdate:show': n[1] || (n[1] = (e) => (T(d) ? (d.value = e) : null)), onConfirm: m }, null, 8, [
                   'show',
                 ]),
               ]),
               u(
                 w,
-                { active: T(t), 'onUpdate:active': n[14] || (n[14] = (e) => (A(t) ? (t.value = e) : null)) },
+                { active: A(t), 'onUpdate:active': n[14] || (n[14] = (e) => (T(t) ? (t.value = e) : null)) },
                 {
                   default: O(() => [
                     u(
-                      b,
+                      y,
                       { title: '票务计算', name: 'calculator' },
                       {
                         default: O(() => [
-                          C('div', Xa, [
+                          C('div', qa, [
                             n[18] || (n[18] = C('label', null, '选择人数', -1)),
-                            C('div', qa, [
+                            C('div', Ka, [
                               n[15] || (n[15] = C('span', { class: 'counter-label' }, '👨 成人', -1)),
-                              C('div', Ka, [
+                              C('div', Ja, [
                                 C('button', { class: 'counter-btn', onClick: n[2] || (n[2] = (e) => f('adult', -1)) }, '−'),
-                                C('span', Ja, B(T(a).adult.num), 1),
+                                C('span', Qa, B(A(a).adult.num), 1),
                                 C('button', { class: 'counter-btn', onClick: n[3] || (n[3] = (e) => f('adult', 1)) }, '+'),
                               ]),
                             ]),
-                            C('div', Qa, [
+                            C('div', el, [
                               n[16] || (n[16] = C('span', { class: 'counter-label' }, '👶 儿童', -1)),
-                              C('div', el, [
+                              C('div', tl, [
                                 C('button', { class: 'counter-btn', onClick: n[4] || (n[4] = (e) => f('child', -1)) }, '−'),
-                                C('span', tl, B(T(a).child.num), 1),
+                                C('span', al, B(A(a).child.num), 1),
                                 C('button', { class: 'counter-btn', onClick: n[5] || (n[5] = (e) => f('child', 1)) }, '+'),
                               ]),
                             ]),
-                            C('div', al, [
+                            C('div', ll, [
                               n[17] || (n[17] = C('span', { class: 'counter-label' }, '👴 老人', -1)),
-                              C('div', ll, [
+                              C('div', nl, [
                                 C('button', { class: 'counter-btn', onClick: n[6] || (n[6] = (e) => f('senior', -1)) }, '−'),
-                                C('span', nl, B(T(a).senior.num), 1),
+                                C('span', ol, B(A(a).senior.num), 1),
                                 C('button', { class: 'counter-btn', onClick: n[7] || (n[7] = (e) => f('senior', 1)) }, '+'),
                               ]),
                             ]),
                           ]),
-                          C('div', ol, [
+                          C('div', rl, [
                             n[19] || (n[19] = C('label', null, '折扣比例', -1)),
-                            C('div', rl, [
+                            C('div', il, [
                               C('button', { class: 'counter-btn', onClick: n[8] || (n[8] = (e) => h('standard', -0.01)) }, '−'),
                               u(
                                 p,
                                 {
-                                  modelValue: T(s).standard,
-                                  'onUpdate:modelValue': n[9] || (n[9] = (e) => (T(s).standard = e)),
+                                  modelValue: A(s).standard,
+                                  'onUpdate:modelValue': n[9] || (n[9] = (e) => (A(s).standard = e)),
                                   type: 'number',
                                   label: '标准',
                                 },
@@ -3394,13 +3415,13 @@ const Ra = Pa(
                               ),
                               C('button', { class: 'counter-btn', onClick: n[10] || (n[10] = (e) => h('standard', 0.01)) }, '+'),
                             ]),
-                            C('div', il, [
+                            C('div', sl, [
                               C('button', { class: 'counter-btn', onClick: n[11] || (n[11] = (e) => h('earlyBird', -0.01)) }, '−'),
                               u(
                                 p,
                                 {
-                                  modelValue: T(s).earlyBird,
-                                  'onUpdate:modelValue': n[12] || (n[12] = (e) => (T(s).earlyBird = e)),
+                                  modelValue: A(s).earlyBird,
+                                  'onUpdate:modelValue': n[12] || (n[12] = (e) => (A(s).earlyBird = e)),
                                   type: 'number',
                                   label: '早鸟',
                                 },
@@ -3414,69 +3435,74 @@ const Ra = Pa(
                           C('div', null, [
                             u(
                               g,
-                              { size: 'small', type: 'primary', onClick: y },
+                              { size: 'small', type: 'primary', onClick: b },
                               { default: O(() => [...(n[20] || (n[20] = [S('复制出票信息', -1)]))]), _: 1 },
                             ),
                           ]),
-                          C('div', sl, [
+                          C('div', ul, [
                             n[33] || (n[33] = C('h2', null, '💰 费用汇总-标准', -1)),
-                            C('div', ul, [
+                            C('div', cl, [
                               n[22] || (n[22] = C('span', { class: 'summary-label' }, '总金额', -1)),
-                              C('span', cl, [n[21] || (n[21] = S(' ¥', -1)), C('span', null, B(T(o).amount), 1)]),
+                              C('span', dl, [n[21] || (n[21] = S(' ¥', -1)), C('span', null, B(A(o).amount), 1)]),
                             ]),
-                            C('div', dl, [
+                            C('div', vl, [
                               n[24] || (n[24] = C('span', { class: 'summary-label' }, '官方票价', -1)),
-                              C('span', vl, [n[23] || (n[23] = S(' ¥', -1)), C('span', null, B(T(o).originalAmount), 1)]),
+                              C('span', ml, [n[23] || (n[23] = S(' ¥', -1)), C('span', null, B(A(o).originalAmount), 1)]),
                             ]),
-                            C('div', ml, [
+                            C('div', fl, [
                               n[26] || (n[26] = C('span', { class: 'summary-label' }, '总佣金', -1)),
-                              C('span', fl, [n[25] || (n[25] = S(' ¥', -1)), C('span', null, B(T(o).commission), 1)]),
+                              C('span', pl, [n[25] || (n[25] = S(' ¥', -1)), C('span', null, B(A(o).commission), 1)]),
                             ]),
-                            C('div', pl, [
+                            C('div', hl, [
                               n[28] || (n[28] = C('span', { class: 'summary-label' }, '总成本-平台', -1)),
-                              C('span', hl, [n[27] || (n[27] = S(' ¥', -1)), C('span', null, B(T(o).costPlatform), 1)]),
+                              C('span', gl, [n[27] || (n[27] = S(' ¥', -1)), C('span', null, B(A(o).costPlatform), 1)]),
                             ]),
-                            C('div', gl, [
+                            C('div', yl, [
                               n[30] || (n[30] = C('span', { class: 'summary-label' }, '总成本', -1)),
-                              C('span', yl, [n[29] || (n[29] = S(' ¥', -1)), C('span', null, B(T(o).totalCost), 1)]),
+                              C('span', bl, [n[29] || (n[29] = S(' ¥', -1)), C('span', null, B(A(o).totalCost), 1)]),
                             ]),
-                            C('div', bl, [
+                            C('div', wl, [
                               n[32] || (n[32] = C('span', { class: 'summary-label' }, '总利润', -1)),
-                              C('span', wl, [n[31] || (n[31] = S(' ¥', -1)), C('span', null, B(T(o).profit), 1)]),
+                              C('span', Dl, [n[31] || (n[31] = S(' ¥', -1)), C('span', null, B(A(o).profit), 1)]),
                             ]),
                           ]),
                           C('div', xl, [
                             n[46] || (n[46] = C('h2', null, '💰 费用汇总-早鸟', -1)),
-                            C('div', Dl, [
+                            C('div', kl, [
                               n[35] || (n[35] = C('span', { class: 'summary-label' }, '总金额', -1)),
-                              C('span', kl, [n[34] || (n[34] = S(' ¥', -1)), C('span', null, B(T(i).amount), 1)]),
+                              C('span', Sl, [n[34] || (n[34] = S(' ¥', -1)), C('span', null, B(A(i).amount), 1)]),
                             ]),
-                            C('div', Sl, [
+                            C('div', $l, [
                               n[37] || (n[37] = C('span', { class: 'summary-label' }, '官方票价', -1)),
-                              C('span', $l, [n[36] || (n[36] = S(' ¥', -1)), C('span', null, B(T(i).originalAmount), 1)]),
+                              C('span', Cl, [n[36] || (n[36] = S(' ¥', -1)), C('span', null, B(A(i).originalAmount), 1)]),
                             ]),
-                            C('div', Cl, [
+                            C('div', Ml, [
                               n[39] || (n[39] = C('span', { class: 'summary-label' }, '总佣金', -1)),
-                              C('span', Ml, [n[38] || (n[38] = S(' ¥', -1)), C('span', null, B(T(i).commission), 1)]),
+                              C('span', Al, [n[38] || (n[38] = S(' ¥', -1)), C('span', null, B(A(i).commission), 1)]),
                             ]),
                             C('div', Tl, [
                               n[41] || (n[41] = C('span', { class: 'summary-label' }, '总成本-平台', -1)),
-                              C('span', Al, [n[40] || (n[40] = S(' ¥', -1)), C('span', null, B(T(i).costPlatform), 1)]),
+                              C('span', Ol, [n[40] || (n[40] = S(' ¥', -1)), C('span', null, B(A(i).costPlatform), 1)]),
                             ]),
-                            C('div', Ol, [
+                            C('div', Il, [
                               n[43] || (n[43] = C('span', { class: 'summary-label' }, '总成本', -1)),
-                              C('span', Il, [n[42] || (n[42] = S(' ¥', -1)), C('span', null, B(T(i).totalCost), 1)]),
+                              C('span', Nl, [n[42] || (n[42] = S(' ¥', -1)), C('span', null, B(A(i).totalCost), 1)]),
                             ]),
-                            C('div', Nl, [
+                            C('div', _l, [
                               n[45] || (n[45] = C('span', { class: 'summary-label' }, '总利润', -1)),
-                              C('span', _l, [n[44] || (n[44] = S(' ¥', -1)), C('span', null, B(T(i).profit), 1)]),
+                              C('span', Bl, [n[44] || (n[44] = S(' ¥', -1)), C('span', null, B(A(i).profit), 1)]),
                             ]),
                           ]),
                         ]),
                         _: 1,
                       },
                     ),
-                    u(b, { title: '证件整理', name: 'identifyLint' }, { default: O(() => [u(ja)]), _: 1 }),
+                    u(
+                      y,
+                      { title: '证件整理', name: 'identifyLint' },
+                      { default: O(() => [u(ja, { 'travel-date': A(c) }, null, 8, ['travel-date'])]), _: 1 },
+                    ),
+                    u(y, { title: '术语', name: 'term' }, { default: O(() => [u(Ga)]), _: 1 }),
                   ]),
                   _: 1,
                 },
@@ -3488,6 +3514,6 @@ const Ra = Pa(
         };
       },
     }),
-    [['__scopeId', 'data-v-188c44b3']],
+    [['__scopeId', 'data-v-047f5fcd']],
   );
-export { Bl as default };
+export { Hl as default };
