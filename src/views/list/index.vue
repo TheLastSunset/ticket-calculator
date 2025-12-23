@@ -188,7 +188,7 @@
   });
 
   const ratio = ref({
-    standard: 0.95,
+    standard: 0.94,
     earlyBird: 0.95,
     costPlatform: 0.02,
   });
@@ -217,7 +217,7 @@
   travelDate.value = formatDate(new Date());
 
   watch(
-    [travelDate, counts, ratio],
+    [counts, ratio],
     () => {
       calculate();
     },
@@ -225,6 +225,34 @@
       deep: true,
     },
   );
+
+  watch([travelDate], () => {
+    const ticketMap: Map<string, any> = getTicketMap();
+    const adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
+    if (adult.standardRatio) {
+      ratio.value.standard = adult.standardRatio;
+    } else {
+      ratio.value.standard = 0.94;
+    }
+
+    calculate();
+  });
+
+  function getTicketMap() {
+    const filterTickets = tickets.data.filter((item) => {
+      return item.travelDate === travelDate.value;
+    });
+    if (filterTickets.length == 0) {
+      showToast('Ticket data not found');
+      return;
+    }
+    const ticketMap: Map<string, any> = new Map();
+    for (const element of filterTickets) {
+      const ticket: any = element;
+      ticketMap.set(ticket.touristResortTicketsCategoryFullCode, ticket);
+    }
+    return ticketMap;
+  }
 
   // 计算总金额
   function calculate() {
@@ -239,18 +267,7 @@
     let totalCostPlatform = 0;
     let totalCommission = 0;
 
-    const filterTickets = tickets.data.filter((item) => {
-      return item.travelDate === travelDate.value;
-    });
-    if (filterTickets.length == 0) {
-      showToast('Ticket data not found');
-      return;
-    }
-    const ticketMap: Map<string, any> = new Map();
-    for (const element of filterTickets) {
-      const ticket: any = element;
-      ticketMap.set(ticket.touristResortTicketsCategoryFullCode, ticket);
-    }
+    const ticketMap: Map<string, any> = getTicketMap();
 
     // 计算成人
     let adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');

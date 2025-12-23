@@ -66,11 +66,11 @@
 
   // TODO: auto plans
   // const plans = [
-  //   { text: '出境游 400-45（节假日成人）', value: 'CNY 409-45=364+10=374'},
-  //   { text: '客路 96 折（节假日儿童/老人）', value: 'CNY 319.7-30=289.7+10=299.7'},
-  //   { text: '客路 96 折（工作日成人）', value: 'CNY 345.6-30=315.6+10=325.6'},
-  //   { text: '出境游 200-20（工作日儿童）', value: 'CNY 276-20=256+3=259'},
-  //   { text: '光大 400-50（早鸟成人）', value: 'CNY 439-50=389+10=399'},
+  //   { text: '出境游 400-45（成人-标准-439）', value: 'CNY 409-45=364+10=374', originalAmount: 439, ticketType: 'standard'},
+  //   { text: '客路 96 折（儿童/老人-标准-350）', value: 'CNY 319.7-30=289.7+10=299.7', originalAmount: 439, ticketType: 'standard'},
+  //   { text: '客路 96 折（成人-标准-379）', value: 'CNY 345.6-30=315.6+10=325.6', originalAmount: 439, ticketType: 'standard'},
+  //   { text: '出境游 200-20（儿童-标准-300）', value: 'CNY 276-20=256+3=259', originalAmount: 439, ticketType: 'standard'},
+  //   { text: '光大 400-50（成人-早鸟-439）', value: 'CNY 439-50=389+10=399', originalAmount: 439, ticketType: 'earlyBird'},
   // ]
   //
   // const pickerPlans : PickerColumn =  computed(() => {
