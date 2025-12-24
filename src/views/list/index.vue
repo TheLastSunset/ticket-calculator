@@ -8,142 +8,13 @@
     </div>
 
     <van-tabs v-model:active="tabActiveName">
-      <van-tab title="票务计算" name="calculator">
-        <div class="form-group">
-          <label>选择人数</label>
-          <!-- TODO: add quark tag-->
-          <div class="counter-group">
-            <span class="counter-label">👨 成人</span>
-            <div class="counter-controls">
-              <button class="counter-btn" @click="changeCount('adult', -1)">−</button>
-              <span class="counter-value">{{ counts.adult.num }}</span>
-              <button class="counter-btn" @click="changeCount('adult', 1)">+</button>
-            </div>
-          </div>
-
-          <div class="counter-group">
-            <span class="counter-label">👶 儿童</span>
-            <div class="counter-controls">
-              <button class="counter-btn" @click="changeCount('child', -1)">−</button>
-              <span class="counter-value">{{ counts.child.num }}</span>
-              <button class="counter-btn" @click="changeCount('child', 1)">+</button>
-            </div>
-          </div>
-
-          <div class="counter-group">
-            <span class="counter-label">👴 老人</span>
-            <div class="counter-controls">
-              <button class="counter-btn" @click="changeCount('senior', -1)">−</button>
-              <span class="counter-value">{{ counts.senior.num }}</span>
-              <button class="counter-btn" @click="changeCount('senior', 1)">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>折扣比例</label>
-          <!-- TODO: add quark tag-->
-          <div class="counter-group">
-            <button class="counter-btn" @click="changeRatio('standard', -0.01)">−</button>
-            <van-field v-model="ratio.standard" type="number" label="标准" />
-            <button class="counter-btn" @click="changeRatio('standard', 0.01)">+</button>
-          </div>
-
-          <div class="counter-group">
-            <button class="counter-btn" @click="changeRatio('earlyBird', -0.01)">−</button>
-            <van-field v-model="ratio.earlyBird" type="number" label="早鸟" />
-            <button class="counter-btn" @click="changeRatio('earlyBird', 0.01)">+</button>
-          </div>
-        </div>
-
-        <div>
-          <van-button size="small" type="primary" @click="copyTicketInfo">复制出票信息</van-button>
-        </div>
-
-        <div class="summary">
-          <h2>💰 费用汇总-标准</h2>
-          <div class="summary-item">
-            <span class="summary-label">总金额</span>
-            <span class="summary-value">
-              ¥<span>{{ standardSummary.amount }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">官方票价</span>
-            <span class="summary-value">
-              ¥<span>{{ standardSummary.originalAmount }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总佣金</span>
-            <span class="summary-value">
-              ¥<span>{{ standardSummary.commission }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总成本-平台</span>
-            <span class="summary-value">
-              ¥<span>{{ standardSummary.costPlatform }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总成本</span>
-            <span class="summary-value">
-              ¥<span>{{ standardSummary.totalCost }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总利润</span>
-            <span class="summary-value">
-              ¥<span>{{ standardSummary.profit }}</span>
-            </span>
-          </div>
-        </div>
-
-        <div class="summary">
-          <h2>💰 费用汇总-早鸟</h2>
-          <div class="summary-item">
-            <span class="summary-label">总金额</span>
-            <span class="summary-value">
-              ¥<span>{{ earlyBirdSummary.amount }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">官方票价</span>
-            <span class="summary-value">
-              ¥<span>{{ earlyBirdSummary.originalAmount }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总佣金</span>
-            <span class="summary-value">
-              ¥<span>{{ earlyBirdSummary.commission }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总成本-平台</span>
-            <span class="summary-value">
-              ¥<span>{{ earlyBirdSummary.costPlatform }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总成本</span>
-            <span class="summary-value">
-              ¥<span>{{ earlyBirdSummary.totalCost }}</span>
-            </span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">总利润</span>
-            <span class="summary-value">
-              ¥<span>{{ earlyBirdSummary.profit }}</span>
-            </span>
-          </div>
-        </div>
+      <van-tab title="票务计算" name="calculator" key="calculator">
+        <calculator :ref="calculatorRef" />
       </van-tab>
-      <van-tab title="证件整理" name="identifyLint">
-        <identify-lint :travel-date="travelDate" />
+      <van-tab title="证件整理" name="identifyLint" key="identifyLint">
+        <identify-lint />
       </van-tab>
-      <van-tab title="术语" name="term">
+      <van-tab title="术语" name="term" key="term">
         <term />
       </van-tab>
     </van-tabs>
@@ -152,212 +23,26 @@
 
 <script setup lang="ts">
   import dayjs from 'dayjs';
-  import { showToast } from 'vant';
-  import { tickets } from './data';
+  import Calculator from '@/views/list/components/calculator.vue';
   import IdentifyLint from '@/views/list/components/identifyLint.vue';
   import Term from '@/views/list/components/term.vue';
 
+  // TODO: refactor useDayjs
   dayjs.locale('zh-cn', {
     weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
   });
   const tabActiveName = ref('calculator');
-
-  // 人数计数器
-  const counts = ref({
-    adult: { num: 0, simpleText: '大' } as any,
-    child: { num: 0, simpleText: '小' } as any,
-    senior: { num: 0, simpleText: '老' } as any,
-  });
-
-  const standardSummary = ref({
-    amount: '0',
-    originalAmount: '0',
-    costPlatform: '0',
-    commission: '0',
-    totalCost: '0',
-    profit: '0',
-  });
-
-  const earlyBirdSummary = ref({
-    amount: '0',
-    originalAmount: '0',
-    costPlatform: '0',
-    commission: '0',
-    totalCost: '0',
-    profit: '0',
-  });
-
-  const ratio = ref({
-    standard: 0.94,
-    earlyBird: 0.95,
-    costPlatform: 0.02,
-  });
-
-  const travelDate = ref('');
-  const show = ref(false);
+  const calculatorRef = ref<typeof Calculator>(null);
 
   const formatDate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
+
+  const travelDate = ref(formatDate(new Date()));
+  provide('travelDate', travelDate);
+  const show = ref(false);
 
   const onConfirm = (value: Date) => {
     show.value = false;
     travelDate.value = formatDate(value);
-  };
-
-  const changeCount = (type: string, value: number) => {
-    if (counts.value[type].num === 0 && value < 0) return;
-    counts.value[type].num += value;
-  };
-
-  const changeRatio = (type: string, value: number) => {
-    if (ratio.value[type] === 0 && value < 0) return;
-    ratio.value[type] = (ratio.value[type] * 100 + value * 100) / 100;
-  };
-
-  // 初始化日期为今天
-  travelDate.value = formatDate(new Date());
-
-  watch(
-    [counts, ratio],
-    () => {
-      calculate();
-    },
-    {
-      deep: true,
-    },
-  );
-
-  watch([travelDate], () => {
-    const ticketMap: Map<string, any> = getTicketMap();
-    const adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-    if (adult.standardRatio) {
-      ratio.value.standard = adult.standardRatio;
-    } else {
-      ratio.value.standard = 0.94;
-    }
-
-    calculate();
-  });
-
-  function getTicketMap() {
-    const filterTickets = tickets.data.filter((item) => {
-      return item.travelDate === travelDate.value;
-    });
-    if (filterTickets.length == 0) {
-      showToast('Ticket data not found');
-      return;
-    }
-    const ticketMap: Map<string, any> = new Map();
-    for (const element of filterTickets) {
-      const ticket: any = element;
-      ticketMap.set(ticket.touristResortTicketsCategoryFullCode, ticket);
-    }
-    return ticketMap;
-  }
-
-  // 计算总金额
-  function calculate() {
-    let earlyBirdTotalAmount = 0;
-    let earlyBirdTotalOriginalAmount = 0;
-    let earlyBirdTotalCost = 0;
-    let earlyBirdTotalCostPlatform = 0;
-    let earlyBirdTotalCommission = 0;
-    let totalAmount = 0;
-    let totalOriginalAmount = 0;
-    let totalCost = 0;
-    let totalCostPlatform = 0;
-    let totalCommission = 0;
-
-    const ticketMap: Map<string, any> = getTicketMap();
-
-    // 计算成人
-    let adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-    earlyBirdTotalAmount += counts.value.adult.num * adult.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.adult.num * adult.price;
-    earlyBirdTotalCommission += counts.value.adult.num * 0;
-
-    // 计算儿童
-    let child = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD');
-    earlyBirdTotalAmount += counts.value.child.num * child.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.child.num * child.price;
-    earlyBirdTotalCommission += counts.value.child.num * 0;
-
-    // 计算老人
-    let senior = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR');
-    earlyBirdTotalAmount += counts.value.senior.num * senior.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.senior.num * senior.price;
-    earlyBirdTotalCommission += counts.value.senior.num * 0;
-
-    // 计算利润
-    earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.earlyBird;
-    earlyBirdTotalCost = earlyBirdTotalCommission + earlyBirdTotalCostPlatform;
-    const earlyBirdTotalProfit = earlyBirdTotalAmount - earlyBirdTotalCost - earlyBirdTotalCommission;
-
-    // 更新显示
-    earlyBirdSummary.value.amount = earlyBirdTotalAmount.toFixed(2);
-    earlyBirdSummary.value.originalAmount = earlyBirdTotalOriginalAmount.toFixed(2);
-    earlyBirdSummary.value.costPlatform = earlyBirdTotalCostPlatform.toFixed(2);
-    // earlyBirdSummary.value.commission = totalCommission.toFixed(2);
-    // earlyBirdSummary.value.totalCost = totalCost.toFixed(2);
-    earlyBirdSummary.value.profit = earlyBirdTotalProfit.toFixed(2);
-
-    // 计算成人
-    adult = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT');
-    totalAmount += counts.value.adult.num * adult.price * ratio.value.standard;
-    totalOriginalAmount += counts.value.adult.num * adult.price;
-    totalCommission += counts.value.adult.num * 10;
-
-    // 计算儿童
-    child = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD');
-    totalAmount += counts.value.child.num * child.price * ratio.value.standard;
-    totalOriginalAmount += counts.value.child.num * child.price;
-    totalCommission += counts.value.child.num * 10;
-
-    // 计算老人
-    senior = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR');
-    totalAmount += counts.value.senior.num * senior.price * ratio.value.standard;
-    totalOriginalAmount += counts.value.senior.num * senior.price;
-    totalCommission += counts.value.senior.num * 10;
-
-    // 计算利润
-    totalCostPlatform = totalAmount * ratio.value.costPlatform;
-    totalCost = totalCommission + totalCostPlatform;
-    const totalProfit = totalAmount - totalCost - totalCommission;
-
-    // 更新显示
-    standardSummary.value.amount = totalAmount.toFixed(2);
-    standardSummary.value.originalAmount = totalOriginalAmount.toFixed(2);
-    standardSummary.value.costPlatform = totalCostPlatform.toFixed(2);
-    standardSummary.value.commission = totalCommission.toFixed(2);
-    standardSummary.value.totalCost = totalCost.toFixed(2);
-    standardSummary.value.profit = totalProfit.toFixed(2);
-  }
-
-  // 初始化计算
-  calculate();
-
-  const copyTicketInfo = () => {
-    function formatSimpleText(type) {
-      return `${counts.value[type].num ? counts.value[type].num + counts.value[type].simpleText : ''}`;
-    }
-
-    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
-    const finalAmount: number = Math.ceil(Math.floor(Number.parseFloat(standardSummary.value.amount)) / 5) * 5;
-    const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
-    const isEarlyBirdTicket = diffDays >= 9;
-    if (isEarlyBirdTicket) {
-      const earlyBirdFinalAmount: number = Math.ceil(Number.parseFloat(earlyBirdSummary.value.amount) / 5) * 5;
-      ticketInfo += `
-早鸟票：${earlyBirdFinalAmount}`;
-    }
-    ticketInfo += `
-标准票：${finalAmount}`;
-    if (isEarlyBirdTicket) {
-      ticketInfo += `
-
-早鸟价格优惠，不可改签，需提前 10 天预订
-标准可改签一次`;
-    }
-    navigator.clipboard.writeText(ticketInfo);
   };
 </script>
 

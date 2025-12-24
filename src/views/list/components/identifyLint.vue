@@ -2,6 +2,7 @@
   <div class="content">
     <div class="input-group">
       <div class="input-wrapper">
+        <!-- TODO: person summary -->
         <van-field type="textarea" v-model="input" rows="10" @keyup.enter="handleCheck" placeholder="例如：张三 110101199001011234" />
         <van-button @click="splitLines" type="primary" size="small">分割</van-button>
         <van-button @click="handleCheck" type="primary" size="small">自动识别</van-button>
@@ -39,7 +40,7 @@
   import type { PickerColumn, PickerConfirmEventParams } from 'vant';
   import type { Numeric } from 'vant/es/utils';
 
-  const props = defineProps(['travelDate']);
+  const travelDate = inject<Ref<string, string>>('travelDate', ref(''));
 
   const input = ref('');
   const lines = ref([] as TicketInfo[]);
@@ -240,7 +241,7 @@
     let ticketInfo = '';
     ticketInfo += lines.value
       .map((item) => {
-        return `上海乐高乐园 ${dayjs(props.travelDate).format('YYYYMMDD')} ${item.ticketType} ${item.idType} 金额
+        return `上海乐高乐园 ${dayjs(travelDate.value).format('YYYYMMDD')} ${item.ticketType} ${item.idType} 金额
 ${item.name} ${item.id}`;
       })
       .join('\n');
