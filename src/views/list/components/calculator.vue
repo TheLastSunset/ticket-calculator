@@ -2,31 +2,12 @@
   <div>
     <div class="form-group">
       <label>选择人数</label>
-      <!-- TODO: add quark tag-->
-      <div class="counter-group">
-        <span class="counter-label">👨 成人</span>
+      <div class="counter-group" v-for="count in counts" :key="count.category">
+        <span class="counter-label">{{ count.label }}</span>
         <div class="counter-controls">
-          <button class="counter-btn" @click="changeCount('adult', -1)">−</button>
-          <span class="counter-value">{{ counts.adult.num }}</span>
-          <button class="counter-btn" @click="changeCount('adult', 1)">+</button>
-        </div>
-      </div>
-
-      <div class="counter-group">
-        <span class="counter-label">👶 儿童</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeCount('child', -1)">−</button>
-          <span class="counter-value">{{ counts.child.num }}</span>
-          <button class="counter-btn" @click="changeCount('child', 1)">+</button>
-        </div>
-      </div>
-
-      <div class="counter-group">
-        <span class="counter-label">👴 老人</span>
-        <div class="counter-controls">
-          <button class="counter-btn" @click="changeCount('senior', -1)">−</button>
-          <span class="counter-value">{{ counts.senior.num }}</span>
-          <button class="counter-btn" @click="changeCount('senior', 1)">+</button>
+          <button class="counter-btn" @click="changeCount(count, -1)">−</button>
+          <span class="counter-value">{{ count.num }}</span>
+          <button class="counter-btn" @click="changeCount(count, 1)">+</button>
         </div>
       </div>
     </div>
@@ -136,22 +117,63 @@
   import dayjs from 'dayjs';
   import { tickets } from '@/views/list/data.ts';
   import { showToast } from 'vant';
+  import type { PersonCount, TicketSummary } from '@/views/list/list';
 
   const travelDate = inject<Ref<string, string>>('travelDate', ref(''));
 
-  const counts = ref({
-    adult: { num: 0, simpleText: '大' } as any,
-    child: { num: 0, simpleText: '小' } as any,
-    senior: { num: 0, simpleText: '老' } as any,
-  });
+  const counts = ref<PersonCount[]>([
+    { label: '👨 成人', category: 'oneDayOneAdult', num: 0, simpleText: '大', fullText: '一日-成人', visible: true },
+    { label: '👶 儿童', category: 'oneDayOneChild', num: 0, simpleText: '小', fullText: '一日-儿童', visible: true },
+    { label: '👴 老人', category: 'oneDayOneSenior', num: 0, simpleText: '老', fullText: '一日-老人', visible: true },
+    {
+      label: '👨&👶 一大一小',
+      category: 'oneDayOneAdultAndOneChild',
+      num: 0,
+      simpleText: '一大一小',
+      fullText: '一日-一大一小',
+      visible: true,
+      details: [
+        {
+          category: 'oneDayOneAdult',
+          num: 1,
+        },
+        {
+          category: 'oneDayOneChild',
+          num: 1,
+        },
+      ],
+    },
+    {
+      label: '👴&👶 一老一小',
+      category: 'oneDayOneSeniorAndOneChild',
+      num: 0,
+      simpleText: '一老一小',
+      fullText: '一日-一老一小',
+      visible: true,
+      details: [
+        {
+          category: 'oneDayOneSenior',
+          num: 1,
+        },
+        {
+          category: 'oneDayOneChild',
+          num: 1,
+        },
+      ],
+    },
+  ]);
 
   const ratio = ref({
-    standard: 0.94,
-    earlyBird: 0.95,
+    standardDefault: 0.936,
+    standard: -1,
+    earlyBirdDefault: 0.95,
+    earlyBird: -1,
     costPlatform: 0.02,
   });
+  ratio.value.standard = ratio.value.standardDefault;
+  ratio.value.earlyBird = ratio.value.earlyBirdDefault;
 
-  const standardSummary = ref({
+  const standardSummary = ref<TicketSummary>({
     amount: '0',
     originalAmount: '0',
     costPlatform: '0',
@@ -160,7 +182,7 @@
     profit: '0',
   });
 
-  const earlyBirdSummary = ref({
+  const earlyBirdSummary = ref<TicketSummary>({
     amount: '0',
     originalAmount: '0',
     costPlatform: '0',
@@ -174,8 +196,10 @@
     const adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
     if (adult.standardRatio) {
       ratio.value.standard = adult.standardRatio;
+      ratio.value.earlyBird = adult.earlyBirdRatio;
     } else {
-      ratio.value.standard = 0.94;
+      ratio.value.standard = ratio.value.standardDefault;
+      ratio.value.earlyBird = ratio.value.earlyBirdDefault;
     }
     calculate();
   });
@@ -190,9 +214,9 @@
     },
   );
 
-  const changeCount = (type: string, value: number) => {
-    if (counts.value[type].num === 0 && value < 0) return;
-    counts.value[type].num += value;
+  const changeCount = (count: PersonCount, value: number) => {
+    if (count.num === 0 && value < 0) return;
+    count.num += value;
   };
 
   const changeRatio = (type: string, value: number) => {
@@ -216,6 +240,24 @@
     return ticketMap;
   }
 
+  const personCounts = computed(() => {
+    const localPersonCounts = {
+      oneDayOneAdult: { num: 0 },
+      oneDayOneChild: { num: 0 },
+      oneDayOneSenior: { num: 0 },
+    };
+    counts.value.forEach((count) => {
+      if (count.details) {
+        count.details.forEach((detail) => {
+          localPersonCounts[detail.category].num += count.num * detail.num;
+        });
+      } else {
+        localPersonCounts[count.category].num += count.num;
+      }
+    });
+    return localPersonCounts;
+  });
+
   // 计算总金额
   function calculate() {
     let earlyBirdTotalAmount = 0;
@@ -233,21 +275,21 @@
 
     // 计算成人
     let adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-    earlyBirdTotalAmount += counts.value.adult.num * adult.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.adult.num * adult.price;
-    earlyBirdTotalCommission += counts.value.adult.num * 0;
+    earlyBirdTotalAmount += personCounts.value.oneDayOneAdult.num * adult.price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += personCounts.value.oneDayOneAdult.num * adult.price;
+    earlyBirdTotalCommission += personCounts.value.oneDayOneAdult.num * 0;
 
     // 计算儿童
     let child = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD');
-    earlyBirdTotalAmount += counts.value.child.num * child.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.child.num * child.price;
-    earlyBirdTotalCommission += counts.value.child.num * 0;
+    earlyBirdTotalAmount += personCounts.value.oneDayOneChild.num * child.price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += personCounts.value.oneDayOneChild.num * child.price;
+    earlyBirdTotalCommission += personCounts.value.oneDayOneChild.num * 0;
 
     // 计算老人
     let senior = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR');
-    earlyBirdTotalAmount += counts.value.senior.num * senior.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += counts.value.senior.num * senior.price;
-    earlyBirdTotalCommission += counts.value.senior.num * 0;
+    earlyBirdTotalAmount += personCounts.value.oneDayOneSenior.num * senior.price * ratio.value.earlyBird;
+    earlyBirdTotalOriginalAmount += personCounts.value.oneDayOneSenior.num * senior.price;
+    earlyBirdTotalCommission += personCounts.value.oneDayOneSenior.num * 0;
 
     // 计算利润
     earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.earlyBird;
@@ -264,21 +306,21 @@
 
     // 计算成人
     adult = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT');
-    totalAmount += counts.value.adult.num * adult.price * ratio.value.standard;
-    totalOriginalAmount += counts.value.adult.num * adult.price;
-    totalCommission += counts.value.adult.num * 10;
+    totalAmount += personCounts.value.oneDayOneAdult.num * adult.price * ratio.value.standard;
+    totalOriginalAmount += personCounts.value.oneDayOneAdult.num * adult.price;
+    totalCommission += personCounts.value.oneDayOneAdult.num * 10;
 
     // 计算儿童
     child = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD');
-    totalAmount += counts.value.child.num * child.price * ratio.value.standard;
-    totalOriginalAmount += counts.value.child.num * child.price;
-    totalCommission += counts.value.child.num * 10;
+    totalAmount += personCounts.value.oneDayOneChild.num * child.price * ratio.value.standard;
+    totalOriginalAmount += personCounts.value.oneDayOneChild.num * child.price;
+    totalCommission += personCounts.value.oneDayOneChild.num * 10;
 
     // 计算老人
     senior = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR');
-    totalAmount += counts.value.senior.num * senior.price * ratio.value.standard;
-    totalOriginalAmount += counts.value.senior.num * senior.price;
-    totalCommission += counts.value.senior.num * 10;
+    totalAmount += personCounts.value.oneDayOneSenior.num * senior.price * ratio.value.standard;
+    totalOriginalAmount += personCounts.value.oneDayOneSenior.num * senior.price;
+    totalCommission += personCounts.value.oneDayOneSenior.num * 10;
 
     // 计算利润
     totalCostPlatform = totalAmount * ratio.value.costPlatform;
@@ -298,11 +340,18 @@
   calculate();
 
   const copyTicketInfo = () => {
-    function formatSimpleText(type) {
-      return `${counts.value[type].num ? counts.value[type].num + counts.value[type].simpleText : ''}`;
+    function formatSimpleText(type: string) {
+      return `${
+        personCounts.value[type].num
+          ? personCounts.value[type].num +
+            counts.value.find((item) => {
+              return item.category === type;
+            }).simpleText
+          : ''
+      }`;
     }
 
-    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('adult')}${formatSimpleText('child')}${formatSimpleText('senior')}`;
+    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('oneDayOneAdult')}${formatSimpleText('oneDayOneChild')}${formatSimpleText('oneDayOneSenior')}`;
     const finalAmount: number = Math.ceil(Math.floor(Number.parseFloat(standardSummary.value.amount)) / 5) * 5;
     const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
     const isEarlyBirdTicket = diffDays >= 9;
@@ -357,39 +406,6 @@
     font-size: 14px;
     font-weight: 600;
     color: #555;
-  }
-
-  input[type='date'] {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    transition: border-color 0.3s;
-  }
-
-  input[type='date']:focus {
-    outline: none;
-    border-color: #667eea;
-  }
-
-  .day-type {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 6px;
-  }
-
-  .workday {
-    color: #1976d2;
-    background: #e3f2fd;
-  }
-
-  .weekend {
-    color: #f57c00;
-    background: #fff3e0;
   }
 
   .counter-group {
