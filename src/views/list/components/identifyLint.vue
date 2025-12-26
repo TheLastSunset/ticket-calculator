@@ -2,8 +2,9 @@
   <div class="content">
     <div class="input-group">
       <div class="input-wrapper">
-        <!-- TODO: person summary -->
         <van-field type="textarea" v-model="input" rows="10" @keyup.enter="handleCheck" placeholder="例如：张三 110101199001011234" />
+        <div>票种统计：{{ personSummary }}</div>
+        <div>ID 统计：{{ validSummary }}</div>
         <van-button @click="splitLines" type="primary" size="small">分割</van-button>
         <van-button @click="handleCheck" type="primary" size="small">自动识别</van-button>
         <van-button @click="handleCopy" type="primary" size="small">复制</van-button>
@@ -23,7 +24,7 @@
             currentLine = line;
           "
         />
-        <van-field v-model="line.idValid" label="ID 是否有效" type="text" />
+        <van-field v-model="line.idValid" label="ID 状态" />
         <van-field v-model="line.ticketType" label="票种" type="text" />
         <van-button type="primary" size="small" @click="identifyTransfer(i)">互换</van-button>
       </div>
@@ -44,6 +45,8 @@
 
   const input = ref('');
   const lines = ref<TicketInfo[]>([]);
+  const personSummary = ref('');
+  const validSummary = ref('');
 
   const showPicker = ref(false);
   const pickerSelectedValues = ref<Numeric[]>([]);
@@ -69,8 +72,9 @@
   // const plans = [
   //   { text: '出境游 400-45（成人-标准-439）', value: 'CNY 409-45=364+10=374', originalAmount: 439, ticketType: 'standard' },
   //   { text: '客路 96 折（儿童/老人-标准-350）', value: 'CNY 319.7-30=289.7+10=299.7', originalAmount: 439, ticketType: 'standard' },
-  //   { text: '客路 96 折（成人-标准-379）', value: 'CNY 345.6-30=315.6+10=325.6', originalAmount: 439, ticketType: 'standard' },
-  //   { text: '出境游 200-20（儿童-标准-300）', value: 'CNY 276-20=256+3=259', originalAmount: 439, ticketType: 'standard' },
+  //   { text: '客路 96 折（成人-标准-379）', value: 'CNY 345.6-30=315.6+10=325.6', originalAmount: 379, ticketType: 'standard' },
+  //   { text: '客路 96 折（成人-标准-439）', value: 'CNY 402.2-30=372.2+10=382.2', originalAmount: 439, ticketType: 'standard' },
+  //   { text: '出境游 200-20（儿童-标准-300）', value: 'CNY 276-20=256+3=259', originalAmount: 300, ticketType: 'standard' },
   //   { text: '光大 400-50（成人-早鸟-439）', value: 'CNY 439-50=389+10=399', originalAmount: 439, ticketType: 'earlyBird' },
   //   { text: '建行 9 折（两大一小-1320）', value: 'CNY 1352-106=1246+8=1254', originalAmount: 1352, ticketType: 'standard' },
   //   { text: '建行 9 折（两大一小-1200）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
@@ -126,22 +130,34 @@
 
     return {
       birthday: `${year}-${month}-${day}`,
-      ticketType: getTicketType(id.slice(6, 14)),
+      ...getTicketInfo(id.slice(6, 14)),
     };
   };
 
-  const getTicketType = (birthday: string) => {
-    const years = dayjs().diff(birthday, 'y');
+  const getTicketInfo = (birthday: string) => {
+    const years = dayjs(travelDate.value).diff(birthday, 'y');
     if (years < 2) {
-      return '免票';
+      return {
+        ticketType: '免票',
+        orderPriority: 0,
+      };
     } else {
       if (years <= 12) {
-        return '儿童';
+        return {
+          ticketType: '儿童',
+          orderPriority: 2,
+        };
       }
       if (years < 60) {
-        return '成人';
+        return {
+          ticketType: '成人',
+          orderPriority: 1,
+        };
       }
-      return '老人';
+      return {
+        ticketType: '老人',
+        orderPriority: 3,
+      };
     }
   };
 
@@ -202,9 +218,29 @@
     lines.value.forEach((line) => {
       const result = identifyInput(line.id);
       line.idType = result.type;
-      line.ticketType = result.details ? result.details.ticketType : undefined;
-      line.idValid = result.valid;
+      line.ticketType = result.details ? result.details.ticketType : '未知';
+      if (result.valid === true) {
+        line.idValid = '有效';
+      } else {
+        if (result.valid === false) {
+          line.idValid = '无效';
+        } else {
+          line.idValid = '未知';
+        }
+      }
+      line.orderPriority = result.details ? result.details.orderPriority : 0;
     });
+    // sort by ticket type
+    lines.value.sort((a, b) => a.orderPriority - b.orderPriority);
+
+    let result = Object.groupBy(lines.value, ({ ticketType }) => ticketType);
+    personSummary.value = Object.keys(result)
+      .map((key) => `${key} ${result[key].length}`)
+      .join('，');
+    result = Object.groupBy(lines.value, ({ idValid }) => idValid);
+    validSummary.value = Object.keys(result)
+      .map((key) => `${key} ${result[key].length}`)
+      .join('，');
   };
 
   const splitLines = () => {
@@ -220,12 +256,13 @@
       return {
         name: nameAndIdentify[0],
         id: nameAndIdentify[1],
+        orderPriority: 1,
       } as TicketInfo;
     });
   };
 
   const identifyTransfer = (i: number) => {
-    const obj = lines.value[i] as TicketInfo;
+    const obj: TicketInfo = lines.value[i];
     const temp = obj.name;
     obj.name = obj.id;
     obj.id = temp;

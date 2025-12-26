@@ -4,8 +4,9 @@ export type TicketInfo = {
   name: string;
   id: string;
   idType?: Numeric;
-  idValid?: boolean;
+  idValid?: string;
   ticketType?: string;
+  orderPriority: number;
 };
 
 export type PersonCount = {
