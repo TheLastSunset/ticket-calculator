@@ -8,6 +8,8 @@
         <van-button @click="splitLines" type="primary" size="small">分割</van-button>
         <van-button @click="handleCheck" type="primary" size="small">自动识别</van-button>
         <van-button @click="handleCopy" type="primary" size="small">复制</van-button>
+        <!--        <van-button @click="" type="primary" size="small">互换</van-button>-->
+        <van-button @click="input = ''" type="primary" size="small">清空</van-button>
       </div>
     </div>
     <div class="input-group">
@@ -26,7 +28,7 @@
         />
         <van-field v-model="line.idValid" label="ID 状态" />
         <van-field v-model="line.ticketType" label="票种" type="text" />
-        <van-button type="primary" size="small" @click="identifyTransfer(i)">互换</van-button>
+        <van-button @click="identifyTransfer(i)" type="primary" size="small">互换</van-button>
       </div>
     </div>
     <van-popup v-model:show="showPicker" round position="bottom">
@@ -71,6 +73,7 @@
   // TODO: auto plans
   // const plans = [
   //   { text: '出境游 400-45（成人-标准-439）', value: 'CNY 409-45=364+10=374', originalAmount: 439, ticketType: 'standard' },
+  //   { text: '出境游 400-45（一大一小-标准-860）', value: 'CNY 409-45=364+10=374', originalAmount: 439, ticketType: 'standard' },
   //   { text: '客路 96 折（儿童/老人-标准-350）', value: 'CNY 319.7-30=289.7+10=299.7', originalAmount: 439, ticketType: 'standard' },
   //   { text: '客路 96 折（成人-标准-379）', value: 'CNY 345.6-30=315.6+10=325.6', originalAmount: 379, ticketType: 'standard' },
   //   { text: '客路 96 折（成人-标准-439）', value: 'CNY 402.2-30=372.2+10=382.2', originalAmount: 439, ticketType: 'standard' },
@@ -244,7 +247,12 @@
   };
 
   const splitLines = () => {
-    const result = input.value
+    let temp = input.value;
+    const invalidSymbols = [',', '，'];
+    invalidSymbols.forEach((item) => {
+      temp = temp.replace(item, ' ');
+    });
+    const result = temp
       .split('\n')
       .map((item) => item.trim())
       .filter((item) => item !== '');

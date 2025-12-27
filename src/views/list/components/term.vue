@@ -12,7 +12,11 @@
   import { terms } from '@/views/list/private.ts';
 
   const handleCopy = (term) => {
-    navigator.clipboard.writeText(term.fullText);
+    if (term.func) {
+      navigator.clipboard.writeText(term.func());
+    } else {
+      navigator.clipboard.writeText(term.fullText);
+    }
   };
 </script>
 <style scoped lang="scss"></style>

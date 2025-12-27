@@ -193,12 +193,16 @@
 
   watch([travelDate], () => {
     const ticketMap: Map<string, any> = getTicketMap();
-    const adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-    if (adult.standardRatio) {
-      ratio.value.standard = adult.standardRatio;
-      ratio.value.earlyBird = adult.earlyBirdRatio;
+    let adult = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT');
+    if (adult.ratio) {
+      ratio.value.standard = adult.ratio;
     } else {
       ratio.value.standard = ratio.value.standardDefault;
+    }
+    adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
+    if (adult.ratio) {
+      ratio.value.earlyBird = adult.ratio;
+    } else {
       ratio.value.earlyBird = ratio.value.earlyBirdDefault;
     }
     calculate();
@@ -361,7 +365,8 @@
 早鸟票：${earlyBirdFinalAmount}`;
     }
     ticketInfo += `
-标准票：${finalAmount}`;
+标准票：${finalAmount}
+临近出游日可能提前售罄，建议提前两天预定`;
     if (isEarlyBirdTicket) {
       ticketInfo += `
 
