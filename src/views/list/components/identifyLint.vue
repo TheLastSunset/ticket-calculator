@@ -8,8 +8,17 @@
         <van-button @click="splitLines" type="primary" size="small">分割</van-button>
         <van-button @click="handleCheck" type="primary" size="small">自动识别</van-button>
         <van-button @click="handleCopy" type="primary" size="small">复制</van-button>
-        <!--        <van-button @click="" type="primary" size="small">互换</van-button>-->
-        <van-button @click="input = ''" type="primary" size="small">清空</van-button>
+        <van-button @click="identifyTransfer" type="primary" size="small">互换</van-button>
+        <van-button
+          @click="
+            input = '';
+            lines = [];
+          "
+          type="primary"
+          size="small"
+        >
+          清空
+        </van-button>
       </div>
     </div>
     <div class="input-group">
@@ -22,17 +31,29 @@
           readonly
           label="类型"
           @click="
-            showPicker = true;
+            showIdPicker = true;
             currentLine = line;
           "
         />
         <van-field v-model="line.idValid" label="ID 状态" />
-        <van-field v-model="line.ticketType" label="票种" type="text" />
+        <van-field
+          v-model="line.ticketType"
+          is-link
+          readonly
+          label="票种"
+          @click="
+            showTicketPicker = true;
+            currentLine = line;
+          "
+        />
         <van-button @click="identifyTransfer(i)" type="primary" size="small">互换</van-button>
       </div>
     </div>
-    <van-popup v-model:show="showPicker" round position="bottom">
-      <van-picker :columns="idTypeOptions" v-model="pickerSelectedValues" @cancel="resetPicker" @confirm="onIdTypeConfirm" />
+    <van-popup v-model:show="showIdPicker" round position="bottom">
+      <van-picker :columns="idTypeOptions" v-model="idPickerSelectedValues" @cancel="resetIdPicker" @confirm="onIdTypeConfirm" />
+    </van-popup>
+    <van-popup v-model:show="showTicketPicker" round position="bottom">
+      <van-picker :columns="ticketOptions" v-model="ticketPickerSelectedValues" @cancel="resetTicketPicker" @confirm="onTicketConfirm" />
     </van-popup>
   </div>
 </template>
@@ -50,8 +71,10 @@
   const personSummary = ref('');
   const validSummary = ref('');
 
-  const showPicker = ref(false);
-  const pickerSelectedValues = ref<Numeric[]>([]);
+  const showIdPicker = ref(false);
+  const showTicketPicker = ref(false);
+  const idPickerSelectedValues = ref<Numeric[]>([]);
+  const ticketPickerSelectedValues = ref<Numeric[]>([]);
   const currentLine = ref<TicketInfo>();
 
   // 证件类型枚举
@@ -62,13 +85,26 @@
     TAIWAN_PASS: { fullName: '台湾通行证', shortName: '台湾通行证' },
     UNKNOWN: { fullName: '未知类型', shortName: '未知' },
   };
+  // 票种枚举
+  const TICKET_TYPES = {
+    ADULT: { fullName: '成人', shortName: '成人' },
+    CHILD: { fullName: '儿童', shortName: '儿童' },
+    SENIOR: { fullName: '老人', shortName: '老人' },
+    NOT: { fullName: '免票', shortName: '免票' },
+    UNKNOWN: { fullName: '未知', shortName: '未知' },
+  };
 
   const idTypeOptions: PickerColumn = [];
+  const ticketOptions: PickerColumn = [];
   for (const type in ID_TYPES) {
     idTypeOptions.push({ text: ID_TYPES[type].fullName, value: ID_TYPES[type].shortName });
   }
+  for (const type in TICKET_TYPES) {
+    ticketOptions.push({ text: TICKET_TYPES[type].fullName, value: TICKET_TYPES[type].shortName });
+  }
   // default value
-  pickerSelectedValues.value = [idTypeOptions[0].value];
+  idPickerSelectedValues.value = [idTypeOptions[0].value];
+  ticketPickerSelectedValues.value = [ticketOptions[0].value];
 
   // TODO: auto plans
   // const plans = [
@@ -82,6 +118,10 @@
   //   { text: '建行 9 折（两大一小-1320）', value: 'CNY 1352-106=1246+8=1254', originalAmount: 1352, ticketType: 'standard' },
   //   { text: '建行 9 折（两大一小-1200）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
   //   { text: '去哪儿一大一小+一大（两大一小-1180）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
+  //   { text: '一大一小（770）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
+  //   { text: '一大一小（860）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
+  //   { text: '一大一小（680）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
+  //   { text: '一大一小（590）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
   // ]
   //
   // const pickerPlans : PickerColumn =  computed(() => {
@@ -269,20 +309,38 @@
     });
   };
 
-  const identifyTransfer = (i: number) => {
-    const obj: TicketInfo = lines.value[i];
-    const temp = obj.name;
-    obj.name = obj.id;
-    obj.id = temp;
+  const identifyTransfer = (i?: number) => {
+    if (typeof i === 'number') {
+      const obj: TicketInfo = lines.value[i];
+      const temp = obj.name;
+      obj.name = obj.id;
+      obj.id = temp;
+    } else {
+      lines.value.forEach((obj) => {
+        const temp = obj.name;
+        obj.name = obj.id;
+        obj.id = temp;
+      });
+    }
   };
 
   const onIdTypeConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
     currentLine.value.idType = selectedValues[0];
-    resetPicker();
+    resetIdPicker();
   };
 
-  const resetPicker = () => {
-    showPicker.value = false;
+  const onTicketConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
+    currentLine.value.ticketType = selectedValues[0];
+    resetTicketPicker();
+  };
+
+  const resetIdPicker = () => {
+    showIdPicker.value = false;
+    currentLine.value = {} as TicketInfo;
+  };
+
+  const resetTicketPicker = () => {
+    showTicketPicker.value = false;
     currentLine.value = {} as TicketInfo;
   };
 
