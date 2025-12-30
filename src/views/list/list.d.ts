@@ -32,3 +32,11 @@ export type TicketSummary = {
   totalCost: string;
   profit: string;
 };
+
+export type Term = {
+  simpleText: string;
+  fullText?: string;
+  touristResort?: string;
+  func?: function;
+  visible?: boolean;
+};
