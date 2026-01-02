@@ -8,11 +8,14 @@
     </div>
 
     <van-tabs v-model:active="tabActiveName">
-      <van-tab title="票务计算" name="calculator" key="calculator">
-        <calculator :ref="calculatorRef" />
+      <van-tab title="票务" name="calculator" key="calculator">
+        <calculator />
       </van-tab>
-      <van-tab title="证件整理" name="identifyLint" key="identifyLint">
+      <van-tab title="证件" name="identifyLint" key="identifyLint">
         <identify-lint />
+      </van-tab>
+      <van-tab title="工具" name="tools" key="tools">
+        <avg />
       </van-tab>
       <van-tab title="术语" name="term" key="term">
         <term />
@@ -26,13 +29,13 @@
   import Calculator from '@/views/list/components/calculator.vue';
   import IdentifyLint from '@/views/list/components/identifyLint.vue';
   import Term from '@/views/list/components/term.vue';
+  import Avg from '@/views/list/components/avg.vue';
 
   // TODO: refactor useDayjs
   dayjs.locale('zh-cn', {
     weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
   });
   const tabActiveName = ref('calculator');
-  const calculatorRef = ref<typeof Calculator>(null);
 
   const formatDate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
 

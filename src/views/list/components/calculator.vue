@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="form-group">
+      <label>快捷操作</label>
+      <van-button size="small" type="primary" v-for="btn in quarkBtn" @click="btn.func" :key="btn.name">{{ btn.name }} </van-button>
+    </div>
+    <div class="form-group">
       <label>选择人数</label>
       <div class="counter-group" v-for="count in counts" :key="count.category">
         <span class="counter-label">{{ count.label }}</span>
@@ -13,7 +17,7 @@
     </div>
 
     <div class="form-group">
-      <label>折扣</label>
+      <label>差价</label>
       <div class="counter-group">
         <button class="counter-btn" @click="changeDiffAmount('standard', -5)">−</button>
         <van-field v-model="diffAmount.standard" type="number" label="标准" />
@@ -25,10 +29,6 @@
         <van-field v-model="diffAmount.earlyBird" type="number" label="早鸟" />
         <button class="counter-btn" @click="changeDiffAmount('earlyBird', 5)">+</button>
       </div>
-    </div>
-
-    <div>
-      <van-button size="small" type="primary" @click="copyTicketInfo">复制出票信息</van-button>
     </div>
 
     <div class="summary">
@@ -113,15 +113,21 @@
   </div>
 </template>
 <script setup lang="ts">
-  import type { PersonCount, Ticket, TicketSummary } from '@/views/list/list';
+  import type { PersonCount, QuarkBtn, Ticket, TicketSummary } from '@/views/list/list';
   import dayjs from 'dayjs';
   import { tickets } from '@/views/list/data.ts';
   import { showToast } from 'vant';
-  import { personCountConfig } from '@/views/list/components/config/personCounts.ts';
+  import { personCountConfig } from '@/views/list/components/config/calculator.ts';
 
   const travelDate = inject<Ref<string, string>>('travelDate', ref(''));
 
   const counts = ref<PersonCount[]>(personCountConfig.filter((item) => item.visible));
+
+  const resetForm = () => {
+    counts.value.forEach((item) => {
+      item.num = 0;
+    });
+  };
 
   const ratio = ref({
     costPlatform: 0.02,
@@ -178,7 +184,7 @@
       showToast('Ticket data not found');
       return;
     }
-    const ticketMap: Map<string, any> = new Map();
+    const ticketMap: Map<string, Ticket> = new Map();
     for (const element of filterTickets) {
       const ticket: any = element;
       ticketMap.set(ticket.touristResortTicketsCategoryFullCode, ticket);
@@ -217,7 +223,10 @@
     let totalCostPlatform = 0;
     const totalCommission = 0;
 
-    const ticketMap: Map<string, Ticket> = getTicketMap();
+    const ticketMap: Map<string, Ticket> | undefined = getTicketMap();
+    if (!ticketMap) {
+      return;
+    }
 
     // 计算早鸟
     for (const key in personCounts.value) {
@@ -263,8 +272,12 @@
   // 初始化计算
   calculate();
 
+  const amountCalculate = (amount: string, diffAmount: number) => {
+    return Math.ceil(Number.parseFloat(amount) / 5) * 5 + Number.parseFloat(diffAmount + '');
+  };
+
   const copyTicketInfo = () => {
-    function formatSimpleText(type: string) {
+    const formatSimpleText = (type: string) => {
       return `${
         personCounts.value[type].num
           ? personCounts.value[type].num +
@@ -273,14 +286,14 @@
             }).simpleText
           : ''
       }`;
-    }
+    };
 
     let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
-    const finalAmount: number = Math.ceil(Math.floor(Number.parseFloat(standardSummary.value.amount)) / 5) * 5;
+    const finalAmount: number = amountCalculate(standardSummary.value.amount, diffAmount.value.standard);
     const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
     const isEarlyBirdTicket = diffDays >= 9;
     if (isEarlyBirdTicket) {
-      const earlyBirdFinalAmount: number = Math.ceil(Number.parseFloat(earlyBirdSummary.value.amount) / 5) * 5;
+      const earlyBirdFinalAmount: number = amountCalculate(earlyBirdSummary.value.amount, diffAmount.value.earlyBird);
       ticketInfo += `
 早鸟票：${earlyBirdFinalAmount}`;
     }
@@ -295,6 +308,33 @@
     }
     navigator.clipboard.writeText(ticketInfo);
   };
+
+  const quarkBtn: QuarkBtn[] = [
+    {
+      name: `清空`,
+      func: resetForm,
+    },
+    {
+      name: `一大一小`,
+      func: () => {
+        resetForm();
+      },
+    },
+    {
+      name: `两大一小`,
+      func: () => {
+        resetForm();
+      },
+    },
+    {
+      name: `均价`,
+      func: () => {},
+    },
+    {
+      name: `出票信息`,
+      func: copyTicketInfo,
+    },
+  ];
 </script>
 
 <style scoped lang="scss">
