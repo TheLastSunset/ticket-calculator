@@ -13,18 +13,17 @@
     </div>
 
     <div class="form-group">
-      <label>折扣比例</label>
-      <!-- TODO: add quark tag-->
+      <label>折扣</label>
       <div class="counter-group">
-        <button class="counter-btn" @click="changeRatio('standard', -0.01)">−</button>
-        <van-field v-model="ratio.standard" type="number" label="标准" />
-        <button class="counter-btn" @click="changeRatio('standard', 0.01)">+</button>
+        <button class="counter-btn" @click="changeDiffAmount('standard', -5)">−</button>
+        <van-field v-model="diffAmount.standard" type="number" label="标准" />
+        <button class="counter-btn" @click="changeDiffAmount('standard', 5)">+</button>
       </div>
 
       <div class="counter-group">
-        <button class="counter-btn" @click="changeRatio('earlyBird', -0.01)">−</button>
-        <van-field v-model="ratio.earlyBird" type="number" label="早鸟" />
-        <button class="counter-btn" @click="changeRatio('earlyBird', 0.01)">+</button>
+        <button class="counter-btn" @click="changeDiffAmount('earlyBird', -5)">−</button>
+        <van-field v-model="diffAmount.earlyBird" type="number" label="早鸟" />
+        <button class="counter-btn" @click="changeDiffAmount('earlyBird', 5)">+</button>
       </div>
     </div>
 
@@ -114,64 +113,24 @@
   </div>
 </template>
 <script setup lang="ts">
+  import type { PersonCount, Ticket, TicketSummary } from '@/views/list/list';
   import dayjs from 'dayjs';
   import { tickets } from '@/views/list/data.ts';
   import { showToast } from 'vant';
-  import type { PersonCount, TicketSummary } from '@/views/list/list';
+  import { personCountConfig } from '@/views/list/components/config/personCounts.ts';
 
   const travelDate = inject<Ref<string, string>>('travelDate', ref(''));
 
-  const counts = ref<PersonCount[]>([
-    { label: '👨 成人', category: 'oneDayOneAdult', num: 0, simpleText: '大', fullText: '一日-成人', visible: true },
-    { label: '👶 儿童', category: 'oneDayOneChild', num: 0, simpleText: '小', fullText: '一日-儿童', visible: true },
-    { label: '👴 老人', category: 'oneDayOneSenior', num: 0, simpleText: '老', fullText: '一日-老人', visible: true },
-    {
-      label: '👨&👶 一大一小',
-      category: 'oneDayOneAdultAndOneChild',
-      num: 0,
-      simpleText: '一大一小',
-      fullText: '一日-一大一小',
-      visible: true,
-      details: [
-        {
-          category: 'oneDayOneAdult',
-          num: 1,
-        },
-        {
-          category: 'oneDayOneChild',
-          num: 1,
-        },
-      ],
-    },
-    {
-      label: '👴&👶 一老一小',
-      category: 'oneDayOneSeniorAndOneChild',
-      num: 0,
-      simpleText: '一老一小',
-      fullText: '一日-一老一小',
-      visible: true,
-      details: [
-        {
-          category: 'oneDayOneSenior',
-          num: 1,
-        },
-        {
-          category: 'oneDayOneChild',
-          num: 1,
-        },
-      ],
-    },
-  ]);
+  const counts = ref<PersonCount[]>(personCountConfig.filter((item) => item.visible));
 
   const ratio = ref({
-    standardDefault: 0.936,
-    standard: -1,
-    earlyBirdDefault: 0.95,
-    earlyBird: -1,
     costPlatform: 0.02,
   });
-  ratio.value.standard = ratio.value.standardDefault;
-  ratio.value.earlyBird = ratio.value.earlyBirdDefault;
+
+  const diffAmount = ref({
+    standard: 0,
+    earlyBird: 0,
+  });
 
   const standardSummary = ref<TicketSummary>({
     amount: '0',
@@ -191,25 +150,8 @@
     profit: '0',
   });
 
-  watch([travelDate], () => {
-    const ticketMap: Map<string, any> = getTicketMap();
-    let adult = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT');
-    if (adult.ratio) {
-      ratio.value.standard = adult.ratio;
-    } else {
-      ratio.value.standard = ratio.value.standardDefault;
-    }
-    adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-    if (adult.ratio) {
-      ratio.value.earlyBird = adult.ratio;
-    } else {
-      ratio.value.earlyBird = ratio.value.earlyBirdDefault;
-    }
-    calculate();
-  });
-
   watch(
-    [counts, ratio],
+    [travelDate, counts, ratio],
     () => {
       calculate();
     },
@@ -223,9 +165,9 @@
     count.num += value;
   };
 
-  const changeRatio = (type: string, value: number) => {
-    if (ratio.value[type] === 0 && value < 0) return;
-    ratio.value[type] = (ratio.value[type] * 100 + value * 100) / 100;
+  const changeDiffAmount = (type: string, value: number) => {
+    if (diffAmount.value[type] === 0 && value < 0) return;
+    diffAmount.value[type] = (diffAmount.value[type] * 100 + value * 100) / 100;
   };
 
   function getTicketMap() {
@@ -246,9 +188,9 @@
 
   const personCounts = computed(() => {
     const localPersonCounts = {
-      oneDayOneAdult: { num: 0 },
-      oneDayOneChild: { num: 0 },
-      oneDayOneSenior: { num: 0 },
+      SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT: { num: 0, earlyBirdLink: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT' },
+      SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD: { num: 0, earlyBirdLink: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD' },
+      SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR: { num: 0, earlyBirdLink: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR' },
     };
     counts.value.forEach((count) => {
       if (count.details) {
@@ -268,35 +210,31 @@
     let earlyBirdTotalOriginalAmount = 0;
     let earlyBirdTotalCost = 0;
     let earlyBirdTotalCostPlatform = 0;
-    let earlyBirdTotalCommission = 0;
+    const earlyBirdTotalCommission = 0;
     let totalAmount = 0;
     let totalOriginalAmount = 0;
     let totalCost = 0;
     let totalCostPlatform = 0;
-    let totalCommission = 0;
+    const totalCommission = 0;
 
-    const ticketMap: Map<string, any> = getTicketMap();
+    const ticketMap: Map<string, Ticket> = getTicketMap();
 
-    // 计算成人
-    let adult = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT');
-    earlyBirdTotalAmount += personCounts.value.oneDayOneAdult.num * adult.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += personCounts.value.oneDayOneAdult.num * adult.price;
-    earlyBirdTotalCommission += personCounts.value.oneDayOneAdult.num * 0;
-
-    // 计算儿童
-    let child = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD');
-    earlyBirdTotalAmount += personCounts.value.oneDayOneChild.num * child.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += personCounts.value.oneDayOneChild.num * child.price;
-    earlyBirdTotalCommission += personCounts.value.oneDayOneChild.num * 0;
-
-    // 计算老人
-    let senior = ticketMap.get('SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR');
-    earlyBirdTotalAmount += personCounts.value.oneDayOneSenior.num * senior.price * ratio.value.earlyBird;
-    earlyBirdTotalOriginalAmount += personCounts.value.oneDayOneSenior.num * senior.price;
-    earlyBirdTotalCommission += personCounts.value.oneDayOneSenior.num * 0;
+    // 计算早鸟
+    for (const key in personCounts.value) {
+      const element = personCounts.value[key];
+      const ticket = ticketMap.get(element.earlyBirdLink) as Ticket;
+      earlyBirdTotalAmount += element.num * ticket.preferSaleAmount;
+      earlyBirdTotalOriginalAmount += element.num * ticket.price;
+    }
+    // 计算标准
+    for (const element of counts.value) {
+      const ticket = ticketMap.get(element.category) as Ticket;
+      totalAmount += element.num * ticket.preferSaleAmount;
+      totalOriginalAmount += element.num * ticket.price;
+    }
 
     // 计算利润
-    earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.earlyBird;
+    earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.costPlatform;
     earlyBirdTotalCost = earlyBirdTotalCommission + earlyBirdTotalCostPlatform;
     const earlyBirdTotalProfit = earlyBirdTotalAmount - earlyBirdTotalCost - earlyBirdTotalCommission;
 
@@ -307,24 +245,6 @@
     // earlyBirdSummary.value.commission = totalCommission.toFixed(2);
     // earlyBirdSummary.value.totalCost = totalCost.toFixed(2);
     earlyBirdSummary.value.profit = earlyBirdTotalProfit.toFixed(2);
-
-    // 计算成人
-    adult = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT');
-    totalAmount += personCounts.value.oneDayOneAdult.num * adult.price * ratio.value.standard;
-    totalOriginalAmount += personCounts.value.oneDayOneAdult.num * adult.price;
-    totalCommission += personCounts.value.oneDayOneAdult.num * 10;
-
-    // 计算儿童
-    child = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD');
-    totalAmount += personCounts.value.oneDayOneChild.num * child.price * ratio.value.standard;
-    totalOriginalAmount += personCounts.value.oneDayOneChild.num * child.price;
-    totalCommission += personCounts.value.oneDayOneChild.num * 10;
-
-    // 计算老人
-    senior = ticketMap.get('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR');
-    totalAmount += personCounts.value.oneDayOneSenior.num * senior.price * ratio.value.standard;
-    totalOriginalAmount += personCounts.value.oneDayOneSenior.num * senior.price;
-    totalCommission += personCounts.value.oneDayOneSenior.num * 10;
 
     // 计算利润
     totalCostPlatform = totalAmount * ratio.value.costPlatform;
@@ -355,7 +275,7 @@
       }`;
     }
 
-    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('oneDayOneAdult')}${formatSimpleText('oneDayOneChild')}${formatSimpleText('oneDayOneSenior')}`;
+    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
     const finalAmount: number = Math.ceil(Math.floor(Number.parseFloat(standardSummary.value.amount)) / 5) * 5;
     const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
     const isEarlyBirdTicket = diffDays >= 9;
@@ -375,12 +295,6 @@
     }
     navigator.clipboard.writeText(ticketInfo);
   };
-
-  defineExpose({
-    ratio,
-    getTicketMap,
-    calculate,
-  });
 </script>
 
 <style scoped lang="scss">

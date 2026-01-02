@@ -39,4 +39,12 @@ export type Term = {
   touristResort?: string;
   func?: function;
   visible?: boolean;
+  comment?: string;
+};
+
+export type Ticket = {
+  touristResortTicketsCategoryFullCode: string;
+  travelDate: string;
+  price: number;
+  preferSaleAmount: number;
 };

@@ -107,23 +107,6 @@
   ticketPickerSelectedValues.value = [ticketOptions[0].value];
 
   // TODO: auto plans
-  // const plans = [
-  //   { text: '出境游 400-45（成人-标准-439）', value: 'CNY 409-45=364+10=374', originalAmount: 439, ticketType: 'standard' },
-  //   { text: '出境游 400-45（一大一小-标准-860）', value: 'CNY 409-45=364+10=374', originalAmount: 439, ticketType: 'standard' },
-  //   { text: '客路 96 折（儿童/老人-标准-350）', value: 'CNY 319.7-30=289.7+10=299.7', originalAmount: 439, ticketType: 'standard' },
-  //   { text: '客路 96 折（成人-标准-379）', value: 'CNY 345.6-30=315.6+10=325.6', originalAmount: 379, ticketType: 'standard' },
-  //   { text: '客路 96 折（成人-标准-439）', value: 'CNY 402.2-30=372.2+10=382.2', originalAmount: 439, ticketType: 'standard' },
-  //   { text: '出境游 200-20（儿童-标准-300）', value: 'CNY 276-20=256+3=259', originalAmount: 300, ticketType: 'standard' },
-  //   { text: '光大 400-50（成人-早鸟-439）', value: 'CNY 439-50=389+10=399', originalAmount: 439, ticketType: 'earlyBird' },
-  //   { text: '建行 9 折（两大一小-1320）', value: 'CNY 1352-106=1246+8=1254', originalAmount: 1352, ticketType: 'standard' },
-  //   { text: '建行 9 折（两大一小-1200）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
-  //   { text: '去哪儿一大一小+一大（两大一小-1180）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
-  //   { text: '一大一小（770）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
-  //   { text: '一大一小（860）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
-  //   { text: '一大一小（680）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
-  //   { text: '一大一小（590）', value: 'CNY 1229-106=1123+8=1131', originalAmount: 1229, ticketType: 'standard' },
-  // ]
-  //
   // const pickerPlans : PickerColumn =  computed(() => {
   //   return plans.map(item => {return { text: item.text, value: item.value }})
   // })
