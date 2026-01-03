@@ -1,6 +1,6 @@
 <template>
   <van-tabs v-model:active="tabActiveName">
-    <van-tab v-for="touristResort in touristResorts" :title="touristResort.name" :name="touristResort.code" :key="touristResort.name">
+    <van-tab v-for="touristResort in touristResorts" :title="touristResort.simpleName" :name="touristResort.code" :key="touristResort.name">
       <div v-for="term in termsRef" :key="term.fullText">
         <div>
           <span>{{ term.simpleText }}</span>

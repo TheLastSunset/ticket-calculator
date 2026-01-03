@@ -261,8 +261,8 @@
     earlyBirdSummary.value.amount = earlyBirdTotalAmount.toFixed(2);
     earlyBirdSummary.value.originalAmount = earlyBirdTotalOriginalAmount.toFixed(2);
     earlyBirdSummary.value.costPlatform = earlyBirdTotalCostPlatform.toFixed(2);
-    // earlyBirdSummary.value.commission = totalCommission.toFixed(2);
-    // earlyBirdSummary.value.totalCost = totalCost.toFixed(2);
+    earlyBirdSummary.value.commission = earlyBirdTotalCommission.toFixed(2);
+    earlyBirdSummary.value.totalCost = earlyBirdTotalCost.toFixed(2);
     earlyBirdSummary.value.profit = earlyBirdTotalProfit.toFixed(2);
 
     // 计算利润
