@@ -2,7 +2,15 @@
   <div>
     <div class="form-group">
       <label>快捷操作</label>
-      <van-button size="small" type="primary" v-for="btn in quarkBtn" @click="btn.func" :key="btn.name">{{ btn.name }} </van-button>
+      <van-button
+        size="small"
+        type="primary"
+        v-for="btn in quarkBtn"
+        @click="btn.func ? btn.func() : quarkBtnFunc(btn.name)"
+        :key="btn.name"
+      >
+        {{ btn.name }}
+      </van-button>
     </div>
     <div class="form-group">
       <label>选择人数</label>
@@ -117,9 +125,9 @@
   import dayjs from 'dayjs';
   import { tickets } from '@/views/list/data.ts';
   import { showToast } from 'vant';
-  import { personCountConfig } from '@/views/list/components/config/calculator.ts';
+  import { personCountConfig, quarkBtnConfig } from '@/views/list/components/config/calculator.ts';
 
-  const travelDate = inject<Ref<string, string>>('travelDate', ref(''));
+  const useDate = inject<Ref<string, string>>('useDate', ref(''));
 
   const counts = ref<PersonCount[]>(personCountConfig.filter((item) => item.visible));
 
@@ -127,6 +135,8 @@
     counts.value.forEach((item) => {
       item.num = 0;
     });
+    diffAmount.value.standard = 0;
+    diffAmount.value.earlyBird = 0;
   };
 
   const ratio = ref({
@@ -157,7 +167,7 @@
   });
 
   watch(
-    [travelDate, counts, ratio],
+    [useDate, counts, ratio],
     () => {
       calculate();
     },
@@ -178,7 +188,7 @@
 
   function getTicketMap() {
     const filterTickets = tickets.data.filter((item) => {
-      return item.travelDate === travelDate.value;
+      return item.useDate === useDate.value;
     });
     if (filterTickets.length == 0) {
       showToast('Ticket data not found');
@@ -187,7 +197,7 @@
     const ticketMap: Map<string, Ticket> = new Map();
     for (const element of filterTickets) {
       const ticket: any = element;
-      ticketMap.set(ticket.touristResortTicketsCategoryFullCode, ticket);
+      ticketMap.set(ticket.touristResortProductCategoryFullCode, ticket);
     }
     return ticketMap;
   }
@@ -288,9 +298,9 @@
       }`;
     };
 
-    let ticketInfo = `${travelDate.value} ${dayjs(travelDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
+    let ticketInfo = `${useDate.value} ${dayjs(useDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
     const finalAmount: number = amountCalculate(standardSummary.value.amount, diffAmount.value.standard);
-    const diffDays = dayjs(travelDate.value).diff(new Date(), 'd');
+    const diffDays = dayjs(useDate.value).diff(new Date(), 'd');
     const isEarlyBirdTicket = diffDays >= 9;
     if (isEarlyBirdTicket) {
       const earlyBirdFinalAmount: number = amountCalculate(earlyBirdSummary.value.amount, diffAmount.value.earlyBird);
@@ -309,22 +319,40 @@
     navigator.clipboard.writeText(ticketInfo);
   };
 
+  const quarkBtnFunc = (matchQuarkBtnName: string) => {
+    resetForm();
+
+    const btnConfig = quarkBtnConfig.find((item) => item.name === matchQuarkBtnName);
+
+    counts.value.forEach((item) => {
+      btnConfig?.quarkFuncConfig.forEach((matchItem) => {
+        if (matchItem.category === item.category) {
+          item.num = matchItem.num;
+        }
+      });
+    });
+
+    nextTick(() => {
+      copyTicketInfo();
+    });
+  };
+
   const quarkBtn: QuarkBtn[] = [
+    {
+      name: `一大一小`,
+    },
+    {
+      name: `2大1小`,
+    },
+    {
+      name: `2大2小`,
+    },
+    {
+      name: `2大`,
+    },
     {
       name: `清空`,
       func: resetForm,
-    },
-    {
-      name: `一大一小`,
-      func: () => {
-        resetForm();
-      },
-    },
-    {
-      name: `两大一小`,
-      func: () => {
-        resetForm();
-      },
     },
     {
       name: `均价`,

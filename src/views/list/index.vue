@@ -3,7 +3,7 @@
     <h1>🎫 票务计算器</h1>
 
     <div class="form-group">
-      <van-cell title="选择日期" :value="travelDate" @click="show = true" />
+      <van-cell title="选择日期" :value="useDate" @click="show = true" />
       <van-calendar v-model:show="show" @confirm="onConfirm" />
     </div>
 
@@ -15,7 +15,7 @@
         <identify-lint />
       </van-tab>
       <van-tab title="工具" name="tools" key="tools">
-        <avg />
+        <tools />
       </van-tab>
       <van-tab title="术语" name="term" key="term">
         <term />
@@ -29,7 +29,7 @@
   import Calculator from '@/views/list/components/calculator.vue';
   import IdentifyLint from '@/views/list/components/identifyLint.vue';
   import Term from '@/views/list/components/term.vue';
-  import Avg from '@/views/list/components/avg.vue';
+  import Tools from '@/views/list/components/tools.vue';
 
   // TODO: refactor useDayjs
   dayjs.locale('zh-cn', {
@@ -39,13 +39,13 @@
 
   const formatDate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
 
-  const travelDate = ref(formatDate(new Date()));
-  provide('travelDate', travelDate);
+  const useDate = ref(formatDate(new Date()));
+  provide('useDate', useDate);
   const show = ref(false);
 
   const onConfirm = (value: Date) => {
     show.value = false;
-    travelDate.value = formatDate(value);
+    useDate.value = formatDate(value);
   };
 </script>
 

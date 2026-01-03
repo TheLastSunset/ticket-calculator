@@ -64,7 +64,7 @@
   import type { PickerColumn, PickerConfirmEventParams } from 'vant';
   import type { Numeric } from 'vant/es/utils';
 
-  const travelDate = inject<Ref<string, string>>('travelDate', ref(''));
+  const useDate = inject<Ref<string, string>>('useDate', ref(''));
 
   const input = ref('');
   const lines = ref<TicketInfo[]>([]);
@@ -161,7 +161,7 @@
   };
 
   const getTicketInfo = (birthday: string) => {
-    const years = dayjs(travelDate.value).diff(birthday, 'y');
+    const years = dayjs(useDate.value).diff(birthday, 'y');
     if (years < 2) {
       return {
         ticketType: '免票',
@@ -331,7 +331,7 @@
     let ticketInfo = '';
     ticketInfo += lines.value
       .map((item) => {
-        return `上海乐高乐园 ${dayjs(travelDate.value).format('YYYY-MM-DD')} ${item.ticketType} ${item.idType} 金额
+        return `上海乐高乐园 ${dayjs(useDate.value).format('YYYY-MM-DD')} ${item.ticketType} ${item.idType} 金额
 ${item.name} ${item.id}`;
       })
       .join('\n');
