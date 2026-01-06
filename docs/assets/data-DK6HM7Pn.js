@@ -5,156 +5,6 @@ const e = {
   data: [
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
-      useDate: '2026-01-03',
-      price: 499,
-      preferSaleAmount: 470,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
-      useDate: '2026-01-03',
-      price: 399,
-      preferSaleAmount: 375,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR',
-      useDate: '2026-01-03',
-      price: 399,
-      preferSaleAmount: 375,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
-      useDate: '2026-01-03',
-      price: 439,
-      preferSaleAmount: 415,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
-      useDate: '2026-01-03',
-      price: 339,
-      preferSaleAmount: null,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR',
-      useDate: '2026-01-03',
-      price: 339,
-      preferSaleAmount: null,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT_AND_ONE_CHILD',
-      useDate: '2026-01-03',
-      price: 1229,
-      preferSaleAmount: 1200,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
-      useDate: '2026-01-03',
-      price: 815,
-      preferSaleAmount: 750,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
-      useDate: '2026-01-03',
-      price: 678,
-      preferSaleAmount: 645,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
-      useDate: '2026-01-04',
-      price: 439,
-      preferSaleAmount: 415,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
-      useDate: '2026-01-04',
-      price: 350,
-      preferSaleAmount: 240,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR',
-      useDate: '2026-01-04',
-      price: 350,
-      preferSaleAmount: 330,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
-      useDate: '2026-01-04',
-      price: 379,
-      preferSaleAmount: 370,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
-      useDate: '2026-01-04',
-      price: 290,
-      preferSaleAmount: 285,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR',
-      useDate: '2026-01-04',
-      price: 290,
-      preferSaleAmount: 285,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
-      useDate: '2026-01-04',
-      price: 719,
-      preferSaleAmount: 660,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
-      useDate: '2026-01-04',
-      price: 596,
-      preferSaleAmount: 570,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
-      useDate: '2026-01-05',
-      price: 379,
-      preferSaleAmount: 355,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
-      useDate: '2026-01-05',
-      price: 300,
-      preferSaleAmount: 210,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR',
-      useDate: '2026-01-05',
-      price: 300,
-      preferSaleAmount: 280,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
-      useDate: '2026-01-05',
-      price: 319,
-      preferSaleAmount: 310,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
-      useDate: '2026-01-05',
-      price: 240,
-      preferSaleAmount: 235,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR',
-      useDate: '2026-01-05',
-      price: 240,
-      preferSaleAmount: 235,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
-      useDate: '2026-01-05',
-      price: 623,
-      preferSaleAmount: 575,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
-      useDate: '2026-01-05',
-      price: 510,
-      preferSaleAmount: 485,
-    },
-    {
-      touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-06',
       price: 379,
       preferSaleAmount: 355,
@@ -193,7 +43,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-06',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -223,7 +73,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-07',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -241,7 +91,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-07',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -271,7 +121,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-08',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -289,7 +139,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-08',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -319,7 +169,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-09',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -337,7 +187,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-09',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -349,7 +199,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-10',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -367,7 +217,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-10',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -385,7 +235,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-10',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -397,7 +247,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-11',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -415,7 +265,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-11',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -433,7 +283,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-11',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -463,7 +313,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-12',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -481,7 +331,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-12',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -511,7 +361,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-13',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -529,7 +379,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-13',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -559,7 +409,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-14',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -577,7 +427,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-14',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -607,7 +457,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-15',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -625,7 +475,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-15',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -655,7 +505,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-16',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -673,7 +523,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-16',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -685,7 +535,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-17',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -703,7 +553,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-17',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -721,7 +571,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-17',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -733,7 +583,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-18',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -751,7 +601,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-18',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -769,7 +619,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-18',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -799,7 +649,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-19',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -817,7 +667,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-19',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -847,7 +697,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-20',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -865,7 +715,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-20',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -895,7 +745,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-21',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -913,7 +763,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-21',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -943,7 +793,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-22',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -961,7 +811,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-22',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -991,7 +841,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-23',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1009,7 +859,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-23',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1021,7 +871,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-24',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -1039,7 +889,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-24',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1057,7 +907,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-24',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1069,7 +919,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-25',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -1087,7 +937,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-25',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1105,7 +955,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-25',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1135,7 +985,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-26',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1153,7 +1003,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-26',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1183,7 +1033,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-27',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1201,7 +1051,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-27',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1231,7 +1081,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-28',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1249,7 +1099,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-28',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1279,7 +1129,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-29',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1297,7 +1147,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-29',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1327,7 +1177,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-30',
       price: 319,
-      preferSaleAmount: 310,
+      preferSaleAmount: 305,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1345,7 +1195,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-30',
       price: 623,
-      preferSaleAmount: 575,
+      preferSaleAmount: 560,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
@@ -1357,7 +1207,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-31',
       price: 439,
-      preferSaleAmount: 415,
+      preferSaleAmount: 410,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD',
@@ -1375,7 +1225,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
       useDate: '2026-01-31',
       price: 379,
-      preferSaleAmount: 370,
+      preferSaleAmount: 365,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
@@ -1393,7 +1243,7 @@ const e = {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD',
       useDate: '2026-01-31',
       price: 719,
-      preferSaleAmount: 660,
+      preferSaleAmount: 650,
     },
     {
       touristResortProductCategoryFullCode: 'SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD',
