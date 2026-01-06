@@ -1,7 +1,7 @@
 <template>
   <van-tabs v-model:active="tabActiveName">
-    <van-tab v-for="touristResort in touristResorts" :title="touristResort.simpleName" :name="touristResort.code" :key="touristResort.name">
-      <div v-for="term in termsRef" :key="term.fullText">
+    <van-tab v-for="attraction in displayAttractions" :title="attraction.simpleName" :name="attraction.code" :key="attraction.name">
+      <div v-for="term in displayTerms" :key="term.fullText">
         <div>
           <span>{{ term.simpleText }}</span>
         </div>
@@ -15,14 +15,16 @@
 
 <script setup lang="ts">
   import { terms } from '@/views/list/terms.ts';
-  import { touristResorts } from '@/views/list/touristResort.ts';
+  import { attractions } from '@/views/list/attractions.ts';
   import type { Term } from '@/views/list/list';
 
   const tabActiveName = ref('');
-  const termsRef = ref<Term[]>([]);
+  const displayTerms = ref<Term[]>([]);
+
+  const displayAttractions = attractions.filter((item) => item.visible === undefined || item.visible);
 
   watch([tabActiveName], () => {
-    termsRef.value = terms.filter((term) => !term.touristResort || term.touristResort === tabActiveName.value);
+    displayTerms.value = terms.filter((term) => !term.attraction || term.attraction === tabActiveName.value);
   });
 
   onMounted(() => {
