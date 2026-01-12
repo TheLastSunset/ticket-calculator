@@ -24,7 +24,9 @@
   const displayAttractions = attractions.filter((item) => item.visible === undefined || item.visible);
 
   watch([tabActiveName], () => {
-    displayTerms.value = terms.filter((term) => !term.attraction || term.attraction === tabActiveName.value);
+    displayTerms.value = terms
+      .filter((term) => term.visible === undefined || term.visible)
+      .filter((term) => !term.attraction || term.attraction === tabActiveName.value);
   });
 
   onMounted(() => {

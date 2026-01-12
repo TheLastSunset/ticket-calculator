@@ -252,6 +252,12 @@
       totalOriginalAmount += element.num * ticket.price;
     }
 
+    // 特殊情况下，活动票比早鸟更优惠，则不显示早鸟票
+    if (totalAmount < earlyBirdTotalAmount) {
+      earlyBirdTotalAmount = totalAmount;
+      earlyBirdTotalOriginalAmount = totalOriginalAmount;
+    }
+
     // 计算利润
     earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.costPlatform;
     earlyBirdTotalCost = earlyBirdTotalCommission + earlyBirdTotalCostPlatform;
@@ -301,9 +307,10 @@
     let ticketInfo = `${useDate.value} ${dayjs(useDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
     const finalAmount: number = amountCalculate(standardSummary.value.amount, diffAmount.value.standard);
     const diffDays = dayjs(useDate.value).diff(new Date(), 'd');
-    const isEarlyBirdTicket = diffDays >= 9;
+    const earlyBirdFinalAmount: number = amountCalculate(earlyBirdSummary.value.amount, diffAmount.value.earlyBird);
+    // 特殊情况下，活动票比早鸟更优惠，则不显示早鸟票
+    const isEarlyBirdTicket = diffDays >= 9 && earlyBirdFinalAmount < finalAmount;
     if (isEarlyBirdTicket) {
-      const earlyBirdFinalAmount: number = amountCalculate(earlyBirdSummary.value.amount, diffAmount.value.earlyBird);
       ticketInfo += `
 早鸟票：${earlyBirdFinalAmount}`;
     }
