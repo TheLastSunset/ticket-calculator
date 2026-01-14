@@ -120,10 +120,11 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-  import type { PersonCount, QuarkBtn, Ticket, TicketSummary } from '@/views/list/list';
+  import type { PersonCount, QuarkBtn, Product, ProductSummary } from '@/views/list/list';
   import dayjs from 'dayjs';
-  import { tickets } from '@/views/list/data.ts';
+  import { products } from '@/views/list/data.ts';
   import { showToast } from 'vant';
   import { personCountConfig, quarkBtnConfig } from '@/views/list/components/config/calculator.ts';
 
@@ -148,7 +149,7 @@
     earlyBird: 0,
   });
 
-  const standardSummary = ref<TicketSummary>({
+  const standardSummary = ref<ProductSummary>({
     amount: '0',
     originalAmount: '0',
     costPlatform: '0',
@@ -157,7 +158,7 @@
     profit: '0',
   });
 
-  const earlyBirdSummary = ref<TicketSummary>({
+  const earlyBirdSummary = ref<ProductSummary>({
     amount: '0',
     originalAmount: '0',
     costPlatform: '0',
@@ -186,20 +187,20 @@
     diffAmount.value[type] = (diffAmount.value[type] * 100 + value * 100) / 100;
   };
 
-  function getTicketMap() {
-    const filterTickets = tickets.data.filter((item) => {
+  function getProductMap() {
+    const filterProducts = products.data.filter((item) => {
       return item.useDate === useDate.value;
     });
-    if (filterTickets.length == 0) {
-      showToast('Ticket data not found');
+    if (filterProducts.length == 0) {
+      showToast('Product data not found');
       return;
     }
-    const ticketMap: Map<string, Ticket> = new Map();
-    for (const element of filterTickets) {
-      const ticket: any = element;
-      ticketMap.set(ticket.touristResortProductCategoryFullCode, ticket);
+    const productMap: Map<string, Product> = new Map();
+    for (const element of filterProducts) {
+      const product: any = element;
+      productMap.set(product.touristResortProductCategoryFullCode, product);
     }
-    return ticketMap;
+    return productMap;
   }
 
   const personCounts = computed(() => {
@@ -233,23 +234,23 @@
     let totalCostPlatform = 0;
     const totalCommission = 0;
 
-    const ticketMap: Map<string, Ticket> | undefined = getTicketMap();
-    if (!ticketMap) {
+    const productMap: Map<string, Product> | undefined = getProductMap();
+    if (!productMap) {
       return;
     }
 
     // 计算早鸟
     for (const key in personCounts.value) {
       const element = personCounts.value[key];
-      const ticket = ticketMap.get(element.earlyBirdLink) as Ticket;
-      earlyBirdTotalAmount += element.num * ticket.preferSaleAmount;
-      earlyBirdTotalOriginalAmount += element.num * ticket.price;
+      const product = productMap.get(element.earlyBirdLink) as Product;
+      earlyBirdTotalAmount += element.num * product.preferSaleAmount;
+      earlyBirdTotalOriginalAmount += element.num * product.price;
     }
     // 计算标准
     for (const element of counts.value) {
-      const ticket = ticketMap.get(element.category) as Ticket;
-      totalAmount += element.num * ticket.preferSaleAmount;
-      totalOriginalAmount += element.num * ticket.price;
+      const product = productMap.get(element.category) as Product;
+      totalAmount += element.num * product.preferSaleAmount;
+      totalOriginalAmount += element.num * product.price;
     }
 
     // 特殊情况下，活动票比早鸟更优惠，则不显示早鸟票
@@ -292,7 +293,7 @@
     return Math.ceil(Number.parseFloat(amount) / 5) * 5 + Number.parseFloat(diffAmount + '');
   };
 
-  const copyTicketInfo = () => {
+  const copyProductInfo = () => {
     const formatSimpleText = (type: string) => {
       return `${
         personCounts.value[type].num
@@ -304,26 +305,33 @@
       }`;
     };
 
-    let ticketInfo = `${useDate.value} ${dayjs(useDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
+    let productInfo = `${useDate.value} ${dayjs(useDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
     const finalAmount: number = amountCalculate(standardSummary.value.amount, diffAmount.value.standard);
     const diffDays = dayjs(useDate.value).diff(new Date(), 'd');
     const earlyBirdFinalAmount: number = amountCalculate(earlyBirdSummary.value.amount, diffAmount.value.earlyBird);
     // 特殊情况下，活动票比早鸟更优惠，则不显示早鸟票
-    const isEarlyBirdTicket = diffDays >= 9 && earlyBirdFinalAmount < finalAmount;
-    if (isEarlyBirdTicket) {
-      ticketInfo += `
+    const isEarlyBirdProduct = diffDays >= 9 && earlyBirdFinalAmount < finalAmount;
+    if (isEarlyBirdProduct) {
+      productInfo += `
 早鸟票：${earlyBirdFinalAmount}`;
     }
-    ticketInfo += `
+    productInfo += `
 标准票：${finalAmount}
 临近出游日可能提前售罄，建议提前两天预定`;
-    if (isEarlyBirdTicket) {
-      ticketInfo += `
+    if (isEarlyBirdProduct) {
+      productInfo += `
 
 早鸟价格优惠，不可改签，需提前 10 天预订
 标准可改签一次`;
     }
-    navigator.clipboard.writeText(ticketInfo);
+
+    if (personCounts.value.SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT.num !== 1) {
+      productInfo += `
+
+不升级年卡，您可以自己买官方的半价一小
+工作日 150，节假日 175`;
+    }
+    navigator.clipboard.writeText(productInfo);
   };
 
   const quarkBtnFunc = (matchQuarkBtnName: string) => {
@@ -340,7 +348,7 @@
     });
 
     nextTick(() => {
-      copyTicketInfo();
+      copyProductInfo();
     });
   };
 
@@ -350,9 +358,11 @@
     },
     {
       name: `2大1小`,
+      visible: false,
     },
     {
       name: `2大2小`,
+      visible: false,
     },
     {
       name: `2大`,
@@ -367,7 +377,7 @@
     },
     {
       name: `出票信息`,
-      func: copyTicketInfo,
+      func: copyProductInfo,
     },
   ];
 </script>

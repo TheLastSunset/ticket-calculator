@@ -13,6 +13,8 @@
           @click="
             input = '';
             lines = [];
+            personSummary = '';
+            validSummary = '';
           "
           type="primary"
           size="small"
@@ -83,6 +85,7 @@
     PASSPORT: { fullName: '护照', shortName: '护照' },
     HK_MACAU_PASS: { fullName: '港澳通行证（回乡证）', shortName: '回乡证' },
     TAIWAN_PASS: { fullName: '台湾通行证', shortName: '台湾通行证' },
+    FPRID: { fullName: '外国人永久居留身份证', shortName: '永居' },
     UNKNOWN: { fullName: '未知类型', shortName: '未知' },
   };
   // 票种枚举
@@ -106,11 +109,6 @@
   idPickerSelectedValues.value = [idTypeOptions[0].value];
   ticketPickerSelectedValues.value = [ticketOptions[0].value];
 
-  // TODO: auto plans
-  // const pickerPlans : PickerColumn =  computed(() => {
-  //   return plans.map(item => {return { text: item.text, value: item.value }})
-  // })
-
   // 校验中国身份证号码
   const validateChinaID = (id: string) => {
     const pattern = /^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$/;
@@ -122,7 +120,7 @@
 
     let sum = 0;
     for (let i = 0; i < 17; i++) {
-      sum += parseInt(id[i]) * weights[i];
+      sum += Number.parseInt(id[i]) * weights[i];
     }
 
     const checkCode = codes[sum % 11];
@@ -247,12 +245,10 @@
       line.ticketType = result.details ? result.details.ticketType : '未知';
       if (result.valid === true) {
         line.idValid = '有效';
+      } else if (result.valid === false) {
+        line.idValid = '无效';
       } else {
-        if (result.valid === false) {
-          line.idValid = '无效';
-        } else {
-          line.idValid = '未知';
-        }
+        line.idValid = '未知';
       }
       line.orderPriority = result.details ? result.details.orderPriority : 0;
     });
@@ -331,8 +327,8 @@
     let ticketInfo = '';
     ticketInfo += lines.value
       .map((item) => {
-        return `上海乐高乐园 ${dayjs(useDate.value).format('YYYY-MM-DD')} ${item.ticketType} ${item.idType} 金额
-${item.name} ${item.id}`;
+        return `上海乐高乐园 ${dayjs(useDate.value).format('YYYY-MM-DD')} ${item.ticketType} 金额
+${item.idType} ${item.name} ${item.id}`;
       })
       .join('\n');
     navigator.clipboard.writeText(ticketInfo);

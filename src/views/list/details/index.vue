@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { tickets as detailsData } from '../data';
+  import { products as detailsData } from '../data';
   const router = useRouter();
   const page = ref(1);
 
@@ -27,7 +27,7 @@
   watch(
     () => router,
     (val) => {
-      details.data = detailsData.find((_item, index) => index == parseInt(val.currentRoute.value.query.id as string));
+      details.data = detailsData.find((_item, index) => index == Number.parseInt(val.currentRoute.value.query.id as string));
     },
     { deep: true, immediate: true },
   );

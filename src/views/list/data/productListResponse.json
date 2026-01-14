@@ -1,0 +1,979 @@
+{
+  "success": true,
+  "code": 200,
+  "message": "OK",
+  "data": [
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-14",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-14",
+      "price": 300.00,
+      "preferSaleAmount": 210.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-14",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-14",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-14",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-14",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-14",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-14",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-14",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-15",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-15",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-15",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-15",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-15",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-15",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-15",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-15",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-15",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-16",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-16",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-16",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-16",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-16",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-16",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-16",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-16",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-16",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-17",
+      "price": 439.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-17",
+      "price": 350.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-17",
+      "price": 350.00,
+      "preferSaleAmount": 335.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-17",
+      "price": 379.00,
+      "preferSaleAmount": 365.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-17",
+      "price": 290.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-17",
+      "price": 290.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-17",
+      "price": 719.00,
+      "preferSaleAmount": 650.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-17",
+      "price": 596.00,
+      "preferSaleAmount": 570.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-17",
+      "price": 876.00,
+      "preferSaleAmount": 840.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-18",
+      "price": 439.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-18",
+      "price": 350.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-18",
+      "price": 350.00,
+      "preferSaleAmount": 335.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-18",
+      "price": 379.00,
+      "preferSaleAmount": 365.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-18",
+      "price": 290.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-18",
+      "price": 290.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-18",
+      "price": 719.00,
+      "preferSaleAmount": 650.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-18",
+      "price": 596.00,
+      "preferSaleAmount": 570.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-18",
+      "price": 876.00,
+      "preferSaleAmount": 840.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-19",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-19",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-19",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-19",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-19",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-19",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-19",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-19",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-19",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-20",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-20",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-20",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-20",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-20",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-20",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-20",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-20",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-20",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-21",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-21",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-21",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-21",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-21",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-21",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-21",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-21",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-21",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-22",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-22",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-22",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-22",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-22",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-22",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-22",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-22",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-22",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-23",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-23",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-23",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-23",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-23",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-23",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-23",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-23",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-23",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-24",
+      "price": 439.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-24",
+      "price": 350.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-24",
+      "price": 350.00,
+      "preferSaleAmount": 335.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-24",
+      "price": 379.00,
+      "preferSaleAmount": 365.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-24",
+      "price": 290.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-24",
+      "price": 290.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-24",
+      "price": 719.00,
+      "preferSaleAmount": 650.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-24",
+      "price": 596.00,
+      "preferSaleAmount": 570.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-24",
+      "price": 876.00,
+      "preferSaleAmount": 840.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-25",
+      "price": 439.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-25",
+      "price": 350.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-25",
+      "price": 350.00,
+      "preferSaleAmount": 335.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-25",
+      "price": 379.00,
+      "preferSaleAmount": 365.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-25",
+      "price": 290.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-25",
+      "price": 290.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-25",
+      "price": 719.00,
+      "preferSaleAmount": 650.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-25",
+      "price": 596.00,
+      "preferSaleAmount": 570.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-25",
+      "price": 876.00,
+      "preferSaleAmount": 840.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-26",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-26",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-26",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-26",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-26",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-26",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-26",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-26",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-26",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-27",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-27",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-27",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-27",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-27",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-27",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-27",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-27",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-27",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-28",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-28",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-28",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-28",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-28",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-28",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-28",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-28",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-28",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-29",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-29",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-29",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-29",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-29",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-29",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-29",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-29",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-29",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-30",
+      "price": 379.00,
+      "preferSaleAmount": 355.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-30",
+      "price": 300.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-30",
+      "price": 300.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-30",
+      "price": 319.00,
+      "preferSaleAmount": 305.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-30",
+      "price": 240.00,
+      "preferSaleAmount": 180.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-30",
+      "price": 240.00,
+      "preferSaleAmount": 235.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-30",
+      "price": 623.00,
+      "preferSaleAmount": 560.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-30",
+      "price": 510.00,
+      "preferSaleAmount": 485.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-30",
+      "price": 379.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-31",
+      "price": 439.00,
+      "preferSaleAmount": 420.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-31",
+      "price": 350.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-31",
+      "price": 350.00,
+      "preferSaleAmount": 335.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT",
+      "useDate": "2026-01-31",
+      "price": 379.00,
+      "preferSaleAmount": 365.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD",
+      "useDate": "2026-01-31",
+      "price": 290.00,
+      "preferSaleAmount": 200.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR",
+      "useDate": "2026-01-31",
+      "price": 290.00,
+      "preferSaleAmount": 285.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT_AND_ONE_CHILD",
+      "useDate": "2026-01-31",
+      "price": 719.00,
+      "preferSaleAmount": 650.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR_AND_ONE_CHILD",
+      "useDate": "2026-01-31",
+      "price": 596.00,
+      "preferSaleAmount": 570.00
+    },
+    {
+      "touristResortProductCategoryFullCode": "SHANGHAI_LEGOLAND_ONE_DAY_TWO_ADULT",
+      "useDate": "2026-01-31",
+      "price": 876.00,
+      "preferSaleAmount": 840.00
+    }
+  ]
+}
