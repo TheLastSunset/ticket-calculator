@@ -1,4 +1,4 @@
-import { d as n } from './index-BonFox_P.js';
+import { d as n } from './index-BExn6kEj.js';
 function t(t) {
   return {
     componentName: 'nut-' + t,
