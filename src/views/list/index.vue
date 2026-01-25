@@ -4,7 +4,7 @@
 
     <div class="form-group">
       <van-cell title="选择日期" :value="useDate" @click="show = true" />
-      <van-calendar v-model:show="show" @confirm="onConfirm" />
+      <van-calendar v-model:show="show" @confirm="onConfirm" :format="calendarFormatter" />
     </div>
 
     <van-tabs v-model:active="tabActiveName">
@@ -30,6 +30,8 @@
   import IdentifyLint from '@/views/list/components/identifyLint.vue';
   import Term from '@/views/list/components/term.vue';
   import Tools from '@/views/list/components/tools.vue';
+  import ChinaHolidayAndFestival from '@/views/list/components/config/calendar.ts';
+  import type { CalendarDayItem } from 'vant/lib/calendar/types';
 
   // TODO: refactor useDayjs
   dayjs.locale('zh-cn', {
@@ -46,6 +48,14 @@
   const onConfirm = (value: Date) => {
     show.value = false;
     useDate.value = formatDate(value);
+  };
+
+  const calendarFormatter = (day: CalendarDayItem) => {
+    const result = ChinaHolidayAndFestival.find((item) => item.date === dayjs(day.date).format('YYYY-MM-DD'));
+    if (result !== undefined) {
+      day.topInfo = result.text;
+    }
+    return day;
   };
 </script>
 

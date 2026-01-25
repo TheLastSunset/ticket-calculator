@@ -26,95 +26,49 @@
 
     <div class="form-group">
       <label>差价</label>
-      <div class="counter-group">
-        <button class="counter-btn" @click="changeDiffAmount('standard', -5)">−</button>
-        <van-field v-model="diffAmount.standard" type="number" label="标准" />
-        <button class="counter-btn" @click="changeDiffAmount('standard', 5)">+</button>
-      </div>
-
-      <div class="counter-group">
-        <button class="counter-btn" @click="changeDiffAmount('earlyBird', -5)">−</button>
-        <van-field v-model="diffAmount.earlyBird" type="number" label="早鸟" />
-        <button class="counter-btn" @click="changeDiffAmount('earlyBird', 5)">+</button>
+      <div class="counter-group" v-for="(val, key) in summaries" :key="key">
+        <button class="counter-btn" @click="changeDiffAmount(key, -5)">−</button>
+        <van-field v-model="diffAmount[key]" type="number" :label="val.name" />
+        <button class="counter-btn" @click="changeDiffAmount(key, 5)">+</button>
       </div>
     </div>
 
-    <div class="summary">
-      <h2>💰 费用汇总-标准</h2>
+    <div class="summary" v-for="(val, key) in summaries" :key="key">
+      <h2>💰 费用汇总-{{ val.name }}</h2>
       <div class="summary-item">
         <span class="summary-label">总金额</span>
         <span class="summary-value">
-          ¥<span>{{ standardSummary.amount }}</span>
+          ¥<span>{{ val.amount }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">官方票价</span>
         <span class="summary-value">
-          ¥<span>{{ standardSummary.originalAmount }}</span>
+          ¥<span>{{ val.originalAmount }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总佣金</span>
         <span class="summary-value">
-          ¥<span>{{ standardSummary.commission }}</span>
+          ¥<span>{{ val.commission }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总成本-平台</span>
         <span class="summary-value">
-          ¥<span>{{ standardSummary.costPlatform }}</span>
+          ¥<span>{{ val.costPlatform }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总成本</span>
         <span class="summary-value">
-          ¥<span>{{ standardSummary.totalCost }}</span>
+          ¥<span>{{ val.totalCost }}</span>
         </span>
       </div>
       <div class="summary-item">
         <span class="summary-label">总利润</span>
         <span class="summary-value">
-          ¥<span>{{ standardSummary.profit }}</span>
-        </span>
-      </div>
-    </div>
-
-    <div class="summary">
-      <h2>💰 费用汇总-早鸟</h2>
-      <div class="summary-item">
-        <span class="summary-label">总金额</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.amount }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">官方票价</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.originalAmount }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总佣金</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.commission }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总成本-平台</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.costPlatform }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总成本</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.totalCost }}</span>
-        </span>
-      </div>
-      <div class="summary-item">
-        <span class="summary-label">总利润</span>
-        <span class="summary-value">
-          ¥<span>{{ earlyBirdSummary.profit }}</span>
+          ¥<span>{{ val.profit }}</span>
         </span>
       </div>
     </div>
@@ -122,53 +76,66 @@
 </template>
 
 <script setup lang="ts">
-  import type { PersonCount, QuarkBtn, Product, ProductSummary } from '@/views/list/list';
-  import dayjs from 'dayjs';
+  import type { PersonCount, QuarkBtn, Product, ProductSummary, ProductCategoryDetail } from '@/views/list/list';
   import { products } from '@/views/list/data.ts';
   import { showToast } from 'vant';
-  import { personCountConfig, quarkBtnConfig } from '@/views/list/components/config/calculator.ts';
+  import { basicProducts, personCountConfig, quarkBtnConfig } from '@/views/list/components/config/calculator.ts';
+  import { CalculatorClipboardPlugins } from '@/views/list/components/plugins/clipboard/calculator/index.ts';
+  import type { CalculatorClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
 
   const useDate = inject<Ref<string, string>>('useDate', ref(''));
 
-  const counts = ref<PersonCount[]>(personCountConfig.filter((item) => item.visible));
+  const counts = ref<PersonCount[]>([]);
 
   const resetForm = () => {
     counts.value.forEach((item) => {
       item.num = 0;
     });
-    diffAmount.value.standard = 0;
-    diffAmount.value.earlyBird = 0;
+    // TODO: add to store or config api
+    for (const valueKey in diffAmount.value) {
+      diffAmount.value[valueKey] = 0;
+    }
   };
 
-  const ratio = ref({
+  const ratio = ref<Record<string, number>>({
     costPlatform: 0.02,
   });
 
-  const diffAmount = ref({
-    standard: 0,
-    earlyBird: 0,
-  });
+  // TODO: add to store or config api
+  const diffAmount = ref<Record<string, number>>({});
 
-  const standardSummary = ref<ProductSummary>({
-    amount: '0',
-    originalAmount: '0',
-    costPlatform: '0',
-    commission: '0',
-    totalCost: '0',
-    profit: '0',
-  });
+  const summaries = ref<Record<string, ProductSummary>>({});
 
-  const earlyBirdSummary = ref<ProductSummary>({
-    amount: '0',
-    originalAmount: '0',
-    costPlatform: '0',
-    commission: '0',
-    totalCost: '0',
-    profit: '0',
+  const configInit = () => {
+    counts.value = personCountConfig.filter((item) => item.visible === undefined || item.visible(useDate.value));
+
+    summaries.value = {};
+    diffAmount.value = {};
+    basicProducts
+      .filter((item) => item.visible(useDate.value))
+      .forEach((item) => {
+        summaries.value[item.code] = {
+          name: item.name,
+          needLink: item.needLink,
+          amount: '0',
+          originalAmount: '0',
+          costPlatform: '0',
+          commission: '0',
+          totalCost: '0',
+          profit: '0',
+          book: item.book,
+        } as ProductSummary;
+        diffAmount.value[item.code] = 0;
+      });
+  };
+
+  watch([useDate], () => {
+    configInit();
+    calculate();
   });
 
   watch(
-    [useDate, counts, ratio],
+    [counts, ratio],
     () => {
       calculate();
     },
@@ -184,7 +151,7 @@
 
   const changeDiffAmount = (type: string, value: number) => {
     if (diffAmount.value[type] === 0 && value < 0) return;
-    diffAmount.value[type] = (diffAmount.value[type] * 100 + value * 100) / 100;
+    diffAmount.value[type] = ((diffAmount.value[type] as number) * 100 + value * 100) / 100;
   };
 
   function getProductMap() {
@@ -197,21 +164,39 @@
     }
     const productMap: Map<string, Product> = new Map();
     for (const element of filterProducts) {
-      const product: any = element;
-      productMap.set(product.touristResortProductCategoryFullCode, product);
+      productMap.set(element.attractionProductCategoryFullCode, element);
     }
     return productMap;
   }
 
   const personCounts = computed(() => {
-    const localPersonCounts = {
-      SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT: { num: 0, earlyBirdLink: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT' },
-      SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD: { num: 0, earlyBirdLink: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD' },
-      SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR: { num: 0, earlyBirdLink: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR' },
+    const localPersonCounts: Record<string, any> = {
+      SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT: {
+        num: 0,
+        reference: {
+          earlyBird: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_ADULT',
+          superEarlyBird: 'SHANGHAI_LEGOLAND_SUPER_EARLY_ONE_DAY_ONE_ADULT',
+        },
+      },
+      SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD: {
+        num: 0,
+        reference: {
+          earlyBird: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_CHILD',
+          superEarlyBird: 'SHANGHAI_LEGOLAND_SUPER_EARLY_ONE_DAY_ONE_CHILD',
+        },
+      },
+      SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR: {
+        num: 0,
+        reference: {
+          earlyBird: 'SHANGHAI_LEGOLAND_EARLY_ONE_DAY_ONE_SENIOR',
+          superEarlyBird: 'SHANGHAI_LEGOLAND_SUPER_EARLY_ONE_DAY_ONE_SENIOR',
+        },
+      },
     };
     counts.value.forEach((count) => {
-      if (count.details) {
-        count.details.forEach((detail) => {
+      if (count.insteadSolution) {
+        const details = count.insteadSolution.details as ProductCategoryDetail[];
+        details.forEach((detail) => {
           localPersonCounts[detail.category].num += count.num * detail.num;
         });
       } else {
@@ -223,113 +208,64 @@
 
   // 计算总金额
   function calculate() {
-    let earlyBirdTotalAmount = 0;
-    let earlyBirdTotalOriginalAmount = 0;
-    let earlyBirdTotalCost = 0;
-    let earlyBirdTotalCostPlatform = 0;
-    const earlyBirdTotalCommission = 0;
-    let totalAmount = 0;
-    let totalOriginalAmount = 0;
-    let totalCost = 0;
-    let totalCostPlatform = 0;
-    const totalCommission = 0;
-
     const productMap: Map<string, Product> | undefined = getProductMap();
     if (!productMap) {
       return;
     }
 
-    // 计算早鸟
-    for (const key in personCounts.value) {
-      const element = personCounts.value[key];
-      const product = productMap.get(element.earlyBirdLink) as Product;
-      earlyBirdTotalAmount += element.num * product.preferSaleAmount;
-      earlyBirdTotalOriginalAmount += element.num * product.price;
+    for (const valueKey in summaries.value) {
+      let totalAmount = 0;
+      let totalOriginalAmount = 0;
+      let totalCost = 0;
+      let totalCostPlatform = 0;
+      const totalCommission = 0;
+      const summary = summaries.value[valueKey] as ProductSummary;
+      if (summary.needLink) {
+        // 计算早鸟
+        for (const key in personCounts.value) {
+          const element = personCounts.value[key];
+          const product = productMap.get(element.reference[valueKey]) as Product;
+          totalAmount += element.num * product.preferSaleAmount;
+          totalOriginalAmount += element.num * product.price;
+        }
+      } else {
+        // 计算标准
+        for (const element of counts.value) {
+          const product = productMap.get(element.category) as Product;
+          totalAmount += element.num * product.preferSaleAmount;
+          totalOriginalAmount += element.num * product.price;
+        }
+      }
+
+      totalAmount += Number.parseFloat(diffAmount.value[valueKey] + '');
+      // 计算利润
+      totalCostPlatform = totalAmount * (ratio.value.costPlatform as number);
+      totalCost = totalCommission + totalCostPlatform;
+      const totalProfit = totalAmount - totalCost - totalCommission;
+
+      // 更新显示
+      summary.amount = totalAmount.toFixed(2);
+      summary.originalAmount = totalOriginalAmount.toFixed(2);
+      summary.costPlatform = totalCostPlatform.toFixed(2);
+      summary.commission = totalCommission.toFixed(2);
+      summary.totalCost = totalCost.toFixed(2);
+      summary.profit = totalProfit.toFixed(2);
     }
-    // 计算标准
-    for (const element of counts.value) {
-      const product = productMap.get(element.category) as Product;
-      totalAmount += element.num * product.preferSaleAmount;
-      totalOriginalAmount += element.num * product.price;
-    }
-
-    // 特殊情况下，活动票比早鸟更优惠，则不显示早鸟票
-    if (totalAmount < earlyBirdTotalAmount) {
-      earlyBirdTotalAmount = totalAmount;
-      earlyBirdTotalOriginalAmount = totalOriginalAmount;
-    }
-
-    // 计算利润
-    earlyBirdTotalCostPlatform = earlyBirdTotalAmount * ratio.value.costPlatform;
-    earlyBirdTotalCost = earlyBirdTotalCommission + earlyBirdTotalCostPlatform;
-    const earlyBirdTotalProfit = earlyBirdTotalAmount - earlyBirdTotalCost - earlyBirdTotalCommission;
-
-    // 更新显示
-    earlyBirdSummary.value.amount = earlyBirdTotalAmount.toFixed(2);
-    earlyBirdSummary.value.originalAmount = earlyBirdTotalOriginalAmount.toFixed(2);
-    earlyBirdSummary.value.costPlatform = earlyBirdTotalCostPlatform.toFixed(2);
-    earlyBirdSummary.value.commission = earlyBirdTotalCommission.toFixed(2);
-    earlyBirdSummary.value.totalCost = earlyBirdTotalCost.toFixed(2);
-    earlyBirdSummary.value.profit = earlyBirdTotalProfit.toFixed(2);
-
-    // 计算利润
-    totalCostPlatform = totalAmount * ratio.value.costPlatform;
-    totalCost = totalCommission + totalCostPlatform;
-    const totalProfit = totalAmount - totalCost - totalCommission;
-
-    // 更新显示
-    standardSummary.value.amount = totalAmount.toFixed(2);
-    standardSummary.value.originalAmount = totalOriginalAmount.toFixed(2);
-    standardSummary.value.costPlatform = totalCostPlatform.toFixed(2);
-    standardSummary.value.commission = totalCommission.toFixed(2);
-    standardSummary.value.totalCost = totalCost.toFixed(2);
-    standardSummary.value.profit = totalProfit.toFixed(2);
   }
 
-  // 初始化计算
-  calculate();
-
-  const amountCalculate = (amount: string, diffAmount: number) => {
-    return Math.ceil(Number.parseFloat(amount) / 5) * 5 + Number.parseFloat(diffAmount + '');
-  };
-
   const copyProductInfo = () => {
-    const formatSimpleText = (type: string) => {
-      return `${
-        personCounts.value[type].num
-          ? personCounts.value[type].num +
-            counts.value.find((item) => {
-              return item.category === type;
-            }).simpleText
-          : ''
-      }`;
+    let productInfo = ``;
+    const params: CalculatorClipboardPluginParams = {
+      useDate: useDate.value,
+      personCounts: personCounts.value,
+      counts: counts.value,
+      summaries: summaries.value,
+      diffAmount: diffAmount.value,
     };
-
-    let productInfo = `${useDate.value} ${dayjs(useDate.value).format('dddd')} ${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_CHILD')}${formatSimpleText('SHANGHAI_LEGOLAND_ONE_DAY_ONE_SENIOR')}`;
-    const finalAmount: number = amountCalculate(standardSummary.value.amount, diffAmount.value.standard);
-    const diffDays = dayjs(useDate.value).diff(new Date(), 'd');
-    const earlyBirdFinalAmount: number = amountCalculate(earlyBirdSummary.value.amount, diffAmount.value.earlyBird);
-    // 特殊情况下，活动票比早鸟更优惠，则不显示早鸟票
-    const isEarlyBirdProduct = diffDays >= 9 && earlyBirdFinalAmount < finalAmount;
-    if (isEarlyBirdProduct) {
-      productInfo += `
-早鸟票：${earlyBirdFinalAmount}`;
-    }
-    productInfo += `
-标准票：${finalAmount}
-临近出游日可能提前售罄，建议提前两天预定`;
-    if (isEarlyBirdProduct) {
-      productInfo += `
-
-早鸟价格优惠，不可改签，需提前 10 天预订
-标准可改签一次`;
-    }
-
-    if (personCounts.value.SHANGHAI_LEGOLAND_ONE_DAY_ONE_ADULT.num !== 1) {
-      productInfo += `
-
-不升级年卡，您可以自己买官方的半价一小
-工作日 150，节假日 175`;
+    for (const plugin of CalculatorClipboardPlugins) {
+      if (plugin.condition(params)) {
+        productInfo += plugin.action(params);
+      }
     }
     navigator.clipboard.writeText(productInfo);
   };
@@ -340,7 +276,7 @@
     const btnConfig = quarkBtnConfig.find((item) => item.name === matchQuarkBtnName);
 
     counts.value.forEach((item) => {
-      btnConfig?.quarkFuncConfig.forEach((matchItem) => {
+      btnConfig?.action(useDate.value).forEach((matchItem) => {
         if (matchItem.category === item.category) {
           item.num = matchItem.num;
         }
@@ -380,6 +316,12 @@
       func: copyProductInfo,
     },
   ];
+
+  onMounted(() => {
+    configInit();
+    // 初始化计算
+    calculate();
+  });
 </script>
 
 <style scoped lang="scss">

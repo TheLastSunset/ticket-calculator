@@ -1,6 +1,11 @@
 <template>
   <van-tabs v-model:active="tabActiveName">
-    <van-tab v-for="attraction in displayAttractions" :title="attraction.simpleName" :name="attraction.code" :key="attraction.name">
+    <van-tab
+      v-for="attraction in displayAttractions"
+      :title="attraction.attractionSimpleName"
+      :name="attraction.attractionCode"
+      :key="attraction.attractionCode"
+    >
       <div v-for="term in displayTerms" :key="term.fullText">
         <div>
           <span>{{ term.simpleText }}</span>

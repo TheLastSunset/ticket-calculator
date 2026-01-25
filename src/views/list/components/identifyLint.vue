@@ -62,14 +62,16 @@
 
 <script setup lang="ts">
   import dayjs from 'dayjs';
-  import type { TicketInfo } from '@/views/list/list';
+  import type { ProductInfo } from '@/views/list/list';
   import type { PickerColumn, PickerConfirmEventParams } from 'vant';
   import type { Numeric } from 'vant/es/utils';
+  import type { IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
+  import { IdentifyLintClipboardPlugins } from '@/views/list/components/plugins/clipboard/identifyLint/index.ts';
 
   const useDate = inject<Ref<string, string>>('useDate', ref(''));
 
   const input = ref('');
-  const lines = ref<TicketInfo[]>([]);
+  const lines = ref<ProductInfo[]>([]);
   const personSummary = ref('');
   const validSummary = ref('');
 
@@ -77,7 +79,7 @@
   const showTicketPicker = ref(false);
   const idPickerSelectedValues = ref<Numeric[]>([]);
   const ticketPickerSelectedValues = ref<Numeric[]>([]);
-  const currentLine = ref<TicketInfo>();
+  const currentLine = ref<ProductInfo>();
 
   // 证件类型枚举
   const ID_TYPES = {
@@ -154,11 +156,11 @@
 
     return {
       birthday: `${year}-${month}-${day}`,
-      ...getTicketInfo(id.slice(6, 14)),
+      ...getProductInfo(id.slice(6, 14)),
     };
   };
 
-  const getTicketInfo = (birthday: string) => {
+  const getProductInfo = (birthday: string) => {
     const years = dayjs(useDate.value).diff(birthday, 'y');
     if (years < 2) {
       return {
@@ -267,9 +269,12 @@
 
   const splitLines = () => {
     let temp = input.value;
+    // TODO: first chinese character before add '/n'
+    // last chinese character after add whitespace
+    // TODO: add to store or config api
     const invalidSymbols = [',', '，'];
     invalidSymbols.forEach((item) => {
-      temp = temp.replace(item, ' ');
+      temp = temp.replaceAll(item, ' ');
     });
     const result = temp
       .split('\n')
@@ -284,13 +289,13 @@
         name: nameAndIdentify[0],
         id: nameAndIdentify[1],
         orderPriority: 1,
-      } as TicketInfo;
+      } as ProductInfo;
     });
   };
 
   const identifyTransfer = (i?: number) => {
     if (typeof i === 'number') {
-      const obj: TicketInfo = lines.value[i];
+      const obj = lines.value[i] as ProductInfo;
       const temp = obj.name;
       obj.name = obj.id;
       obj.id = temp;
@@ -315,23 +320,26 @@
 
   const resetIdPicker = () => {
     showIdPicker.value = false;
-    currentLine.value = {} as TicketInfo;
+    currentLine.value = {} as ProductInfo;
   };
 
   const resetTicketPicker = () => {
     showTicketPicker.value = false;
-    currentLine.value = {} as TicketInfo;
+    currentLine.value = {} as ProductInfo;
   };
 
   const handleCopy = () => {
-    let ticketInfo = '';
-    ticketInfo += lines.value
-      .map((item) => {
-        return `上海乐高乐园 ${dayjs(useDate.value).format('YYYY-MM-DD')} ${item.ticketType} 金额
-${item.idType} ${item.name} ${item.id}`;
-      })
-      .join('\n');
-    navigator.clipboard.writeText(ticketInfo);
+    let infos: string[] = [];
+    const params: IdentifyLintClipboardPluginParams = {
+      useDate: useDate.value,
+      remainPersons: Array.from(lines.value),
+    };
+    for (const plugin of IdentifyLintClipboardPlugins) {
+      if (plugin.condition(params)) {
+        infos = infos.concat(plugin.action(params));
+      }
+    }
+    navigator.clipboard.writeText(infos.join('\n'));
   };
 </script>
 
