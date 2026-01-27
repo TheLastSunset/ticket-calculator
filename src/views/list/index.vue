@@ -4,7 +4,7 @@
 
     <div class="form-group">
       <van-cell title="选择日期" :value="useDate" @click="show = true" />
-      <van-calendar v-model:show="show" @confirm="onConfirm" :format="calendarFormatter" />
+      <van-calendar v-model:show="show" @confirm="onConfirm" :formatter="calendarFormatter" />
     </div>
 
     <van-tabs v-model:active="tabActiveName">
@@ -51,9 +51,12 @@
   };
 
   const calendarFormatter = (day: CalendarDayItem) => {
-    const result = ChinaHolidayAndFestival.find((item) => item.date === dayjs(day.date).format('YYYY-MM-DD'));
+    const date = dayjs(day.date);
+    const result = ChinaHolidayAndFestival.find((item) => item.condition(date));
     if (result !== undefined) {
-      day.topInfo = result.text;
+      day.topInfo = result?.topInfo;
+      day.bottomInfo = result?.bottomInfo;
+      day.className = result?.className;
     }
     return day;
   };

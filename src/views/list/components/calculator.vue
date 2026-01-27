@@ -226,14 +226,14 @@
           const element = personCounts.value[key];
           const product = productMap.get(element.reference[valueKey]) as Product;
           totalAmount += element.num * product.preferSaleAmount;
-          totalOriginalAmount += element.num * product.price;
+          totalOriginalAmount += element.num * product.originalPrice;
         }
       } else {
         // 计算标准
         for (const element of counts.value) {
           const product = productMap.get(element.category) as Product;
           totalAmount += element.num * product.preferSaleAmount;
-          totalOriginalAmount += element.num * product.price;
+          totalOriginalAmount += element.num * product.originalPrice;
         }
       }
 
