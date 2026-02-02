@@ -2,25 +2,28 @@
   <div class="content">
     <div class="input-group">
       <div class="input-wrapper">
-        <van-field type="textarea" v-model="input" rows="10" @keyup.enter="handleCheck" placeholder="例如：张三 110101199001011234" />
+        <div>订单 ID</div>
+        <van-field type="text" label="订单 ID" label-align="top" v-model="orderId" />
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-wrapper">
+        <van-field
+          type="textarea"
+          label="身份信息"
+          label-align="top"
+          v-model="input"
+          rows="10"
+          @keyup.enter="handleCheck"
+          placeholder="例如：张三 110101199001011234"
+        />
         <div>票种统计：{{ personSummary }}</div>
         <div>ID 统计：{{ validSummary }}</div>
         <van-button @click="splitLines" type="primary" size="small">分割</van-button>
         <van-button @click="handleCheck" type="primary" size="small">自动识别</van-button>
         <van-button @click="handleCopy" type="primary" size="small">复制</van-button>
         <van-button @click="identifyTransfer" type="primary" size="small">互换</van-button>
-        <van-button
-          @click="
-            input = '';
-            lines = [];
-            personSummary = '';
-            validSummary = '';
-          "
-          type="primary"
-          size="small"
-        >
-          清空
-        </van-button>
+        <van-button @click="resetForm" type="primary" size="small">清空</van-button>
       </div>
     </div>
     <div class="input-group">
@@ -44,7 +47,7 @@
           readonly
           label="票种"
           @click="
-            showTicketPicker = true;
+            showProductPicker = true;
             currentLine = line;
           "
         />
@@ -54,7 +57,7 @@
     <van-popup v-model:show="showIdPicker" round position="bottom">
       <van-picker :columns="idTypeOptions" v-model="idPickerSelectedValues" @cancel="resetIdPicker" @confirm="onIdTypeConfirm" />
     </van-popup>
-    <van-popup v-model:show="showTicketPicker" round position="bottom">
+    <van-popup v-model:show="showProductPicker" round position="bottom">
       <van-picker :columns="ticketOptions" v-model="ticketPickerSelectedValues" @cancel="resetTicketPicker" @confirm="onTicketConfirm" />
     </van-popup>
   </div>
@@ -62,8 +65,8 @@
 
 <script setup lang="ts">
   import dayjs from 'dayjs';
-  import type { ProductInfo } from '@/views/list/list';
-  import type { PickerColumn, PickerConfirmEventParams } from 'vant';
+  import type { ProductInfo } from '@/views/list/types';
+  import { type PickerColumn, type PickerConfirmEventParams, showToast } from 'vant';
   import type { Numeric } from 'vant/es/utils';
   import type { IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
   import { IdentifyLintClipboardPlugins } from '@/views/list/components/plugins/clipboard/identifyLint/index.ts';
@@ -76,11 +79,12 @@
   const validSummary = ref('');
 
   const showIdPicker = ref(false);
-  const showTicketPicker = ref(false);
+  const showProductPicker = ref(false);
   const idPickerSelectedValues = ref<Numeric[]>([]);
   const ticketPickerSelectedValues = ref<Numeric[]>([]);
   const currentLine = ref<ProductInfo>();
 
+  const orderId = ref('');
   // 证件类型枚举
   const ID_TYPES = {
     CHINA_ID: { fullName: '中国居民身份证', shortName: '身份证' },
@@ -272,7 +276,7 @@
     // TODO: first chinese character before add '/n'
     // last chinese character after add whitespace
     // TODO: add to store or config api
-    const invalidSymbols = [',', '，'];
+    const invalidSymbols = [',', '，', '（', '）', '：', '；'];
     invalidSymbols.forEach((item) => {
       temp = temp.replaceAll(item, ' ');
     });
@@ -324,15 +328,20 @@
   };
 
   const resetTicketPicker = () => {
-    showTicketPicker.value = false;
+    showProductPicker.value = false;
     currentLine.value = {} as ProductInfo;
   };
 
   const handleCopy = () => {
+    if (orderId.value.trim() === '') {
+      showToast('Order id must not blank');
+      return;
+    }
     let infos: string[] = [];
     const params: IdentifyLintClipboardPluginParams = {
       useDate: useDate.value,
       remainPersons: Array.from(lines.value),
+      orderId: orderId.value,
     };
     for (const plugin of IdentifyLintClipboardPlugins) {
       if (plugin.condition(params)) {
@@ -340,6 +349,14 @@
       }
     }
     navigator.clipboard.writeText(infos.join('\n'));
+  };
+
+  const resetForm = () => {
+    input.value = '';
+    lines.value = [];
+    orderId.value = '';
+    personSummary.value = '';
+    validSummary.value = '';
   };
 </script>
 

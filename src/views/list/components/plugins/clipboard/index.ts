@@ -18,4 +18,5 @@ export type CalculatorClipboardPluginParams = {
 export type IdentifyLintClipboardPluginParams = {
   useDate: string;
   remainPersons: ProductInfo[];
+  orderId: string;
 };

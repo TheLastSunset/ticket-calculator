@@ -1,34 +1,128 @@
 <template>
   <div>
-    <van-field v-model="totalAmount"></van-field>
-    <van-field v-for="(person, i) in persons" v-model="person.num" :key="i" :label="person.label"></van-field>
-    <div v-for="(person, i) in persons" :key="i">{{ person.label }}</div>
-    <van-button>复制</van-button>
+    <van-tabs v-model:active="tabActiveName">
+      <van-tab title="日历价" name="calendarPrice" key="calendarPrice">
+        <van-field v-model="attraction.text" is-link readonly label="景区" @click="attractionHandle" />
+        <van-field v-model="productCategory.text" is-link readonly label="票种" @click="productCategoryHandle" />
+        <van-calendar :poppable="false" :show-confirm="false" :style="{ height: '500px' }" :formatter="calendarFormatter" />
+        <van-popup v-model:show="showCalendarPricePicker" round position="bottom">
+          <van-picker
+            :columns="calendarPricePickerOptions"
+            v-model="calendarPricePickerSelectedValues"
+            @cancel="resetCalendarPricePicker"
+            @confirm="onCalendarPricePickerConfirm"
+          />
+        </van-popup>
+      </van-tab>
+      <van-tab title="均价" name="avg" key="avg">
+        <van-field v-model="totalAmount"></van-field>
+        <van-field v-for="(person, i) in avgPrice" v-model="person.num" :key="i" :label="person.label"></van-field>
+        <div v-for="(person, i) in avgPrice" :key="i">{{ person.label }}</div>
+        <van-button>复制</van-button>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 <script setup lang="ts">
+  import type { ListApiData } from '@/api/productCategory/types';
+  import { attractions } from '../attractions.ts';
+  import type { CalendarDayItem } from 'vant/lib/calendar/types';
+  import dayjs from 'dayjs';
+  import type { Numeric } from 'vant/es/utils';
+  import type { PickerColumn, PickerConfirmEventParams } from 'vant';
+  import { products, productCategories } from '@/views/list/data/index.ts';
+
+  const tabActiveName = ref('calculator');
+  const attraction = ref({ text: '', value: '' });
+  const productCategory = ref({ text: '', value: '' });
+  const queryForm = ref<Record<string, any>>({});
+
+  const showCalendarPricePicker = ref(false);
+  const calendarPricePickerOptions = ref<PickerColumn>([]);
+
+  const calendarPricePickerSelectedValues = ref<Numeric[]>([]);
+  const cachedProductCategories = ref<ListApiData[]>([]);
+
   const totalAmount = ref(0);
 
-  const persons = [
+  const avgPrice = [
     {
       label: '成人',
       num: 0,
-      avgRatio: 0.55,
-      avgAmount: 0,
+      ratio: 0.55,
+      amount: 0,
     },
     {
       label: '儿童',
       num: 0,
-      avgRatio: 0.45,
-      avgAmount: 0,
+      ratio: 0.45,
+      amount: 0,
     },
     {
       label: '老人',
       num: 0,
-      avgRatio: 0.45,
-      avgAmount: 0,
+      ratio: 0.45,
+      amount: 0,
     },
   ];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let calendarPricePickerConfirmCb = (selectedValues: Numeric[]) => {};
+  const attractionHandle = () => {
+    showCalendarPricePicker.value = true;
+    calendarPricePickerOptions.value = attractions.map((item) => {
+      return { text: item.attractionSimpleName, value: item.attractionCode };
+    });
+    calendarPricePickerConfirmCb = (selectedValues: Numeric[]) => {
+      attraction.value.value = selectedValues[0] as string;
+      attraction.value.text = attractions.find((item) => item.attractionCode === attraction.value.value)?.attractionSimpleName as string;
+      queryForm.value['attraction'] = attraction.value.text;
+    };
+  };
+  const productCategoryHandle = () => {
+    showCalendarPricePicker.value = true;
+    calendarPricePickerOptions.value = cachedProductCategories.value.map((item) => {
+      return { text: item.productCategoryName, value: item.productCategoryCode };
+    });
+    calendarPricePickerConfirmCb = (selectedValues: Numeric[]) => {
+      productCategory.value.value = selectedValues[0] as string;
+      productCategory.value.text = productCategories.data.find((item) => item.productCategoryCode === productCategory.value.value)
+        ?.productCategoryName as string;
+      queryForm.value['productCategory'] = productCategory.value.text;
+    };
+  };
+  const onCalendarPricePickerConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
+    resetCalendarPricePicker();
+    calendarPricePickerConfirmCb(selectedValues);
+  };
+  const resetCalendarPricePicker = () => {
+    showCalendarPricePicker.value = false;
+  };
+
+  const calendarFormatter = (day: CalendarDayItem) => {
+    const date = dayjs(day.date);
+    const result = products.data.find(
+      (item) =>
+        item.useDate === date.format('YYYY-MM-DD') &&
+        item.attractionProductCategoryFullCode.replace(attraction.value.value + '_', '') === productCategory.value.value,
+    );
+    if (result !== undefined) {
+      day.topInfo = result?.originalPrice + '';
+      day.bottomInfo = result?.preferSaleAmount + '';
+      // day.className = result?.className;
+    }
+    console.log(result);
+    return day;
+  };
+
+  onMounted(() => {
+    // list().then((res) => {
+    //   cachedProductCategories.value = res.data;
+    // });
+    cachedProductCategories.value = productCategories.data.filter((item) => {
+      return item.visible === undefined || item.visible;
+    });
+  });
 </script>
 
 <style scoped lang="scss"></style>

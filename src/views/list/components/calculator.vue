@@ -76,12 +76,12 @@
 </template>
 
 <script setup lang="ts">
-  import type { PersonCount, QuarkBtn, Product, ProductSummary, ProductCategoryDetail } from '@/views/list/list';
-  import { products } from '@/views/list/data.ts';
   import { showToast } from 'vant';
+  import type { CalculatorClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
+  import type { PersonCount, QuarkBtn, Product, ProductSummary, ProductCategoryDetail } from '@/views/list/types';
+  import { products } from '@/views/list/data/index.ts';
   import { basicProducts, personCountConfig, quarkBtnConfig } from '@/views/list/components/config/calculator.ts';
   import { CalculatorClipboardPlugins } from '@/views/list/components/plugins/clipboard/calculator/index.ts';
-  import type { CalculatorClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
 
   const useDate = inject<Ref<string, string>>('useDate', ref(''));
 

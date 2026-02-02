@@ -1,6 +1,16 @@
 import type { ClipboardPlugin, IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
 import dayjs from 'dayjs';
 
+export const OrderId: ClipboardPlugin = {
+  enabled: true,
+  condition: () => true,
+  action: (params) => {
+    const { orderId } = params as IdentifyLintClipboardPluginParams;
+    return [`订单 ${orderId}`];
+  },
+  orderPriority: -1000,
+};
+
 export const IdentifyLintStandard: ClipboardPlugin = {
   enabled: true,
   condition: () => true,
@@ -13,7 +23,7 @@ ${item.idType} ${item.name} ${item.id}`);
     });
     return writeTexts;
   },
-  orderPriority: 10,
+  orderPriority: 1000,
 };
 
 /**
@@ -64,6 +74,6 @@ export const IdentifyLintSuperEarly: ClipboardPlugin = {
 //   orderPriority: 100,
 // };
 
-export const IdentifyLintClipboardPlugins: ClipboardPlugin[] = [IdentifyLintStandard, IdentifyLintEarly, IdentifyLintSuperEarly]
+export const IdentifyLintClipboardPlugins: ClipboardPlugin[] = [OrderId, IdentifyLintStandard, IdentifyLintEarly, IdentifyLintSuperEarly]
   .filter((item) => item.enabled)
   .sort((a, b) => a.orderPriority - b.orderPriority);

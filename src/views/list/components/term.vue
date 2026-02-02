@@ -21,7 +21,7 @@
 <script setup lang="ts">
   import { terms } from '@/views/list/terms.ts';
   import { attractions } from '@/views/list/attractions.ts';
-  import type { Term } from '@/views/list/list';
+  import type { Term } from '@/views/list/types';
 
   const tabActiveName = ref('');
   const displayTerms = ref<Term[]>([]);

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import type { CalculatorClipboardPluginParams, ClipboardPlugin } from '@/views/list/components/plugins/clipboard';
 import { isWeekend } from '@/utils/common.ts';
-import type { ProductSummary } from '@/views/list/list';
+import type { ProductSummary } from '@/views/list/types';
 
 const amountCalculate = (amount: string, diffAmount: number) => {
   return Math.ceil(Number.parseFloat(amount) / 5) * 5 + Number.parseFloat(diffAmount + '');
@@ -44,7 +44,7 @@ export const CalculatorStandard: ClipboardPlugin = {
 ${plan.description}`;
     return writeText;
   },
-  orderPriority: 10,
+  orderPriority: -1000,
 };
 
 export const CalculatorSingleAdultOrSenior: ClipboardPlugin = {
