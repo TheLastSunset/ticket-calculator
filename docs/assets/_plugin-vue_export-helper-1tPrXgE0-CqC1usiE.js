@@ -1,4 +1,4 @@
-import { d as n } from './index-97xHZmC1.js';
+import { d as n } from './index-BSops9D8.js';
 function t(t) {
   return {
     componentName: 'nut-' + t,
