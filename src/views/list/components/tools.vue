@@ -14,10 +14,13 @@
           />
         </van-popup>
       </van-tab>
-      <van-tab title="均价" name="avg" key="avg">
-        <van-field v-model="totalAmount"></van-field>
-        <van-field v-for="(person, i) in avgPrice" v-model="person.num" :key="i" :label="person.label"></van-field>
-        <div v-for="(person, i) in avgPrice" :key="i">{{ person.label }}</div>
+      <van-tab title="成本" name="costCalculator" key="costCalculator">
+        <van-field label="金额" v-model="costCalculator.price"></van-field>
+        <van-field label="手续费" v-model="costCalculator.costPlatform"></van-field>
+        <van-field label="佣金" v-model="costCalculator.costCommission"></van-field>
+        <van-field label="原价" v-model="costCalculator.productPrice"></van-field>
+        <van-field label="汇率" v-model="costCalculator.exchangeRate"></van-field>
+        <van-field label="利润" v-model="costCalculator.profit"></van-field>
         <van-button>复制</van-button>
       </van-tab>
     </van-tabs>
@@ -25,12 +28,13 @@
 </template>
 <script setup lang="ts">
   import type { ListApiData } from '@/api/productCategory/types';
-  import { attractions } from '../attractions.ts';
   import type { CalendarDayItem } from 'vant/lib/calendar/types';
-  import dayjs from 'dayjs';
   import type { Numeric } from 'vant/es/utils';
   import type { PickerColumn, PickerConfirmEventParams } from 'vant';
+  import dayjs from 'dayjs';
+  import Decimal from 'decimal.js';
   import { products, productCategories } from '@/views/list/data/index.ts';
+  import { attractions } from '../attractions.ts';
 
   const tabActiveName = ref('calculator');
   const attraction = ref({ text: '', value: '' });
@@ -43,28 +47,33 @@
   const calendarPricePickerSelectedValues = ref<Numeric[]>([]);
   const cachedProductCategories = ref<ListApiData[]>([]);
 
-  const totalAmount = ref(0);
+  const costCalculator = ref({
+    price: 0,
+    costPlatform: 0,
+    costCommission: 0,
+    productPrice: 0,
+    exchangeRate: 1,
+    profit: 0,
+  });
+  watch(
+    [() => costCalculator.value.price],
+    () => {
+      costCalculator.value.costPlatform = new Decimal(costCalculator.value.price).mul(0.02).toNumber();
+    },
+    { deep: true },
+  );
 
-  const avgPrice = [
-    {
-      label: '成人',
-      num: 0,
-      ratio: 0.55,
-      amount: 0,
+  watch(
+    [costCalculator],
+    () => {
+      costCalculator.value.profit = new Decimal(costCalculator.value.price)
+        .sub(new Decimal(costCalculator.value.costPlatform))
+        .sub(costCalculator.value.costCommission)
+        .sub(new Decimal(costCalculator.value.productPrice).mul(costCalculator.value.exchangeRate))
+        .toNumber();
     },
-    {
-      label: '儿童',
-      num: 0,
-      ratio: 0.45,
-      amount: 0,
-    },
-    {
-      label: '老人',
-      num: 0,
-      ratio: 0.45,
-      amount: 0,
-    },
-  ];
+    { deep: true },
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let calendarPricePickerConfirmCb = (selectedValues: Numeric[]) => {};

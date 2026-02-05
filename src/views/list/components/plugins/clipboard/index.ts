@@ -1,4 +1,4 @@
-import type { PersonCount, ProductInfo, ProductSummary } from '@/views/list/list';
+import type { PersonCount, ProductInfo, ProductSummary } from '@/views/list/types';
 
 export interface ClipboardPlugin {
   enabled: boolean;

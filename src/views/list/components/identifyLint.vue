@@ -70,6 +70,7 @@
   import type { Numeric } from 'vant/es/utils';
   import type { IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
   import { IdentifyLintClipboardPlugins } from '@/views/list/components/plugins/clipboard/identifyLint/index.ts';
+  import { invalidSymbols } from '@/chore/invalidSymbols.ts';
 
   const useDate = inject<Ref<string, string>>('useDate', ref(''));
 
@@ -276,7 +277,6 @@
     // TODO: first chinese character before add '/n'
     // last chinese character after add whitespace
     // TODO: add to store or config api
-    const invalidSymbols = [',', '，', '（', '）', '：', '；'];
     invalidSymbols.forEach((item) => {
       temp = temp.replaceAll(item, ' ');
     });

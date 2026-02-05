@@ -79,6 +79,7 @@
   import { showToast } from 'vant';
   import type { CalculatorClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
   import type { PersonCount, QuarkBtn, Product, ProductSummary, ProductCategoryDetail } from '@/views/list/types';
+  import Decimal from 'decimal.js';
   import { products } from '@/views/list/data/index.ts';
   import { basicProducts, personCountConfig, quarkBtnConfig } from '@/views/list/components/config/calculator.ts';
   import { CalculatorClipboardPlugins } from '@/views/list/components/plugins/clipboard/calculator/index.ts';
@@ -151,7 +152,7 @@
 
   const changeDiffAmount = (type: string, value: number) => {
     if (diffAmount.value[type] === 0 && value < 0) return;
-    diffAmount.value[type] = ((diffAmount.value[type] as number) * 100 + value * 100) / 100;
+    diffAmount.value[type] = new Decimal(diffAmount.value[type] as number).plus(value).toNumber();
   };
 
   function getProductMap() {

@@ -1,5 +1,4 @@
-import type { PersonCount, ProductSummary } from '@/views/list/list';
-import { IdentifyLintWorkdayTowAdult } from '@/views/list/components/plugins/clipboard/identifyLint';
+import type { PersonCount, ProductSummary } from '@/views/list/types';
 
 export interface CalculatorPlugin {
   enabled: boolean;
@@ -16,6 +15,4 @@ export type CalculatorPluginParams = {
   diffAmount: Record<string, any>;
 };
 
-export const CalculatorPlugins = [IdentifyLintWorkdayTowAdult]
-  .filter((item) => item.enabled)
-  .sort((a, b) => a.orderPriority - b.orderPriority);
+export const CalculatorPlugins: CalculatorPlugin[] = [].filter((item) => item.enabled).sort((a, b) => a.orderPriority - b.orderPriority);

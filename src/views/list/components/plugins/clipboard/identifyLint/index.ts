@@ -6,7 +6,7 @@ export const OrderId: ClipboardPlugin = {
   condition: () => true,
   action: (params) => {
     const { orderId } = params as IdentifyLintClipboardPluginParams;
-    return [`订单 ${orderId}`];
+    return [`订单 ${orderId} CNY `];
   },
   orderPriority: -1000,
 };
