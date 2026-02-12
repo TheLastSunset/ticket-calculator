@@ -1,4 +1,4 @@
-import { G as r } from './index-D6N6AXjV.js';
+import { G as r } from './index-xCY7pMo5.js';
 function o() {
   return r().proxy.$router || null;
 }
