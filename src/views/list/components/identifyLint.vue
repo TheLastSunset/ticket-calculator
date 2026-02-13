@@ -2,8 +2,8 @@
   <div class="content">
     <div class="input-group">
       <div class="input-wrapper">
-        <div>订单 ID</div>
-        <van-field type="text" label="订单 ID" label-align="top" v-model="orderId" />
+        <van-field type="text" label="订单 ID" label-align="top" v-model="order.id" />
+        <van-field type="number" label="金额" label-align="top" v-model="order.amount" />
       </div>
     </div>
     <div class="input-group">
@@ -65,7 +65,7 @@
 
 <script setup lang="ts">
   import dayjs from 'dayjs';
-  import type { ProductInfo } from '@/views/list/types';
+  import type { ProductInfo, Order } from '@/views/list/types';
   import { type PickerColumn, type PickerConfirmEventParams, showToast } from 'vant';
   import type { Numeric } from 'vant/es/utils';
   import type { IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
@@ -85,7 +85,10 @@
   const ticketPickerSelectedValues = ref<Numeric[]>([]);
   const currentLine = ref<ProductInfo>();
 
-  const orderId = ref('');
+  const order = ref<Order>({
+    id: '',
+    amount: undefined,
+  });
   // 证件类型枚举
   const ID_TYPES = {
     CHINA_ID: { fullName: '中国居民身份证', shortName: '身份证' },
@@ -333,7 +336,7 @@
   };
 
   const handleCopy = () => {
-    if (orderId.value.trim() === '') {
+    if (order.value.id.trim() === '') {
       showToast('Order id must not blank');
       return;
     }
@@ -341,7 +344,7 @@
     const params: IdentifyLintClipboardPluginParams = {
       useDate: useDate.value,
       remainPersons: Array.from(lines.value),
-      orderId: orderId.value,
+      order: order.value,
     };
     for (const plugin of IdentifyLintClipboardPlugins) {
       if (plugin.condition(params)) {
@@ -354,7 +357,10 @@
   const resetForm = () => {
     input.value = '';
     lines.value = [];
-    orderId.value = '';
+    order.value = {
+      id: '',
+      amount: undefined,
+    };
     personSummary.value = '';
     validSummary.value = '';
   };

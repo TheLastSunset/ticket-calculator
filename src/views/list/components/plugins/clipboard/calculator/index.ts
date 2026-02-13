@@ -47,6 +47,15 @@ ${plan.description}`;
   orderPriority: -1000,
 };
 
+export const CalculatorCommon: ClipboardPlugin = {
+  enabled: false,
+  condition: () => true,
+  action: () => {
+    return `非团票，不用集合，随时入园，入园后确认收货`;
+  },
+  orderPriority: 1,
+};
+
 export const CalculatorSingleAdultOrSenior: ClipboardPlugin = {
   enabled: false,
   condition: (params) => {
@@ -68,6 +77,6 @@ export const CalculatorSingleAdultOrSenior: ClipboardPlugin = {
   orderPriority: 100,
 };
 
-export const CalculatorClipboardPlugins: ClipboardPlugin[] = [CalculatorStandard, CalculatorSingleAdultOrSenior]
+export const CalculatorClipboardPlugins: ClipboardPlugin[] = [CalculatorCommon, CalculatorStandard, CalculatorSingleAdultOrSenior]
   .filter((item) => item.enabled)
   .sort((a, b) => a.orderPriority - b.orderPriority);

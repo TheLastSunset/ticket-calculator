@@ -1,12 +1,12 @@
 import type { ClipboardPlugin, IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
 import dayjs from 'dayjs';
 
-export const OrderId: ClipboardPlugin = {
+export const IdentifyLintOrder: ClipboardPlugin = {
   enabled: true,
   condition: () => true,
   action: (params) => {
-    const { orderId } = params as IdentifyLintClipboardPluginParams;
-    return [`订单 ${orderId} CNY `];
+    const { order } = params as IdentifyLintClipboardPluginParams;
+    return [`订单 XY${order.id} CNY ${order.amount ?? 0}`];
   },
   orderPriority: -1000,
 };
@@ -18,7 +18,7 @@ export const IdentifyLintStandard: ClipboardPlugin = {
     const { useDate, remainPersons } = params as IdentifyLintClipboardPluginParams;
     const writeTexts: string[] = [];
     remainPersons.forEach((item) => {
-      writeTexts.push(`上海乐高乐园 ${dayjs(useDate).format('YYYY-MM-DD')} ${item.ticketType} 金额
+      writeTexts.push(`上海乐高乐园 ${dayjs(useDate).format('YYYY-MM-DD')} ${item.ticketType} 金额 CNY 
 ${item.idType} ${item.name} ${item.id}`);
     });
     return writeTexts;
@@ -53,7 +53,7 @@ export const IdentifyLintSuperEarly: ClipboardPlugin = {
 };
 
 /**
- * 两成人
+ * 两大
  */
 // export const IdentifyLintWorkdayTowAdult: ClipboardPlugin = {
 //   enabled: false,
@@ -74,6 +74,11 @@ export const IdentifyLintSuperEarly: ClipboardPlugin = {
 //   orderPriority: 100,
 // };
 
-export const IdentifyLintClipboardPlugins: ClipboardPlugin[] = [OrderId, IdentifyLintStandard, IdentifyLintEarly, IdentifyLintSuperEarly]
+export const IdentifyLintClipboardPlugins: ClipboardPlugin[] = [
+  IdentifyLintOrder,
+  IdentifyLintStandard,
+  IdentifyLintEarly,
+  IdentifyLintSuperEarly,
+]
   .filter((item) => item.enabled)
   .sort((a, b) => a.orderPriority - b.orderPriority);

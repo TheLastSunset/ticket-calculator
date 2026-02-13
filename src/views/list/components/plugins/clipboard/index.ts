@@ -1,4 +1,4 @@
-import type { PersonCount, ProductInfo, ProductSummary } from '@/views/list/types';
+import type { Order, PersonCount, ProductInfo, ProductSummary } from '@/views/list/types';
 
 export interface ClipboardPlugin {
   enabled: boolean;
@@ -18,5 +18,5 @@ export type CalculatorClipboardPluginParams = {
 export type IdentifyLintClipboardPluginParams = {
   useDate: string;
   remainPersons: ProductInfo[];
-  orderId: string;
+  order: Order;
 };
