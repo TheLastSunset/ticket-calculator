@@ -18,17 +18,18 @@ import {
   m as g,
   u as y,
   z as b,
-  A as h,
-} from './index-B9fbPx4y.js';
-import { _ as j } from './index-XkElSx3O.js';
-import { u as w } from './user-BVflBE9z.js';
-import { l as x, a as $, w as O } from './with-install-Ch3FF0uS-BGOdKNKA.js';
-import { _, c as k } from './_plugin-vue_export-helper-1tPrXgE0-C3m8BNDR.js';
-import { u as z, a as P } from './useParent-D6DiuxZZ-1HqBLsu6.js';
+  A as j,
+} from './index-BVTDfLT_.js';
+import { _ as h } from './index-BpDWjro8.js';
+import { u as x } from './user-Cw3t8EvU.js';
+import { l as w, a as $, w as O } from './with-install-Ch3FF0uS-BtlYAFtd.js';
+import { _, c as k } from './_plugin-vue_export-helper-1tPrXgE0-C3lvFoYW.js';
+import { u as z, a as P } from './useParent-D6DiuxZZ-CIn4rc6D.js';
 import { p as S } from './pxCheck-DN6FYV6q-8OyS8IyB.js';
-import { u as C } from './index-aiGQ-EiA-DwgDEGuD.js';
-import './function-call-AUbPRGBn.js';
-import './index-DVoJrCe5.js';
+import { u as C } from './index-aiGQ-EiA-BK0get8v.js';
+import './index-iLhJhSY-.js';
+import './function-call-LNN5-qQc.js';
+import './index-DOTaIcLV.js';
 const N = $('dongdong'),
   B = [
     r(
@@ -42,7 +43,7 @@ const N = $('dongdong'),
       -1,
     ),
   ];
-const q = x(N, [
+const q = w(N, [
     [
       'render',
       function (r, s, o, n, u, i) {
@@ -149,18 +150,18 @@ const K = { class: 'nut-grid-item__text' },
                 [`${e}--clickable`]: g.clickable || d.to || d.url,
               };
             }),
-            h = C(),
-            j = (e) => {
+            j = C(),
+            h = (e) => {
               (m('click', e),
-                d.to && h
-                  ? h[d.replace ? 'replace' : 'push'](d.to)
+                d.to && j
+                  ? j[d.replace ? 'replace' : 'push'](d.to)
                   : d.url && (d.replace ? location.replace(d.url) : (location.href = d.url)));
             };
           return (s, o) => (
             t(),
             e(
               'view',
-              { class: 'nut-grid-item', style: a(y.value), onClick: j },
+              { class: 'nut-grid-item', style: a(y.value), onClick: h },
               [
                 r(
                   'view',
@@ -237,8 +238,8 @@ const re = _(
   ne = s({
     __name: 'index',
     setup(a) {
-      const l = h(),
-        s = w(),
+      const l = j(),
+        s = x(),
         n = o(() => {
           const { name: e = '' } = s.getUserInfo || {};
           return e;
@@ -248,7 +249,7 @@ const re = _(
         };
       return (a, l) => {
         const s = re,
-          o = j,
+          o = h,
           d = W,
           m = M;
         return (
