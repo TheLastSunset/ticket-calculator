@@ -41,19 +41,11 @@ export const CalculatorStandard: ClipboardPlugin = {
     }
     writeText += `
 报价：${plan.price}
+非团票，不用集合，随时不限次入园，入园后确认收货
 ${plan.description}`;
     return writeText;
   },
   orderPriority: -1000,
-};
-
-export const CalculatorCommon: ClipboardPlugin = {
-  enabled: false,
-  condition: () => true,
-  action: () => {
-    return `非团票，不用集合，随时入园，入园后确认收货`;
-  },
-  orderPriority: 1,
 };
 
 export const CalculatorSingleAdultOrSenior: ClipboardPlugin = {
@@ -77,6 +69,6 @@ export const CalculatorSingleAdultOrSenior: ClipboardPlugin = {
   orderPriority: 100,
 };
 
-export const CalculatorClipboardPlugins: ClipboardPlugin[] = [CalculatorCommon, CalculatorStandard, CalculatorSingleAdultOrSenior]
+export const CalculatorClipboardPlugins: ClipboardPlugin[] = [CalculatorStandard, CalculatorSingleAdultOrSenior]
   .filter((item) => item.enabled)
   .sort((a, b) => a.orderPriority - b.orderPriority);

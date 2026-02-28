@@ -16,12 +16,18 @@
       </van-tab>
       <van-tab title="成本" name="costCalculator" key="costCalculator">
         <van-field label="金额" v-model="costCalculator.price"></van-field>
-        <van-field label="手续费" v-model="costCalculator.costPlatform"></van-field>
-        <van-field label="佣金" v-model="costCalculator.costCommission"></van-field>
-        <van-field label="原价" v-model="costCalculator.productPrice"></van-field>
+        <van-field label="成本-平台" v-model="costCalculator.costPlatform"></van-field>
+        <van-field label="成本-佣金" v-model="costCalculator.costCommission"></van-field>
+        <van-field label="成本-产品" v-model="costCalculator.costProductPrice"></van-field>
         <van-field label="汇率" v-model="costCalculator.exchangeRate"></van-field>
         <van-field label="利润" v-model="costCalculator.profit"></van-field>
         <van-button>复制</van-button>
+      </van-tab>
+      <van-tab title="绑定信息" name="bind" key="bind">
+        <van-field type="textarea" label="信息" label-align="top" v-model="bindInfo.originalText" rows="4" />
+        <van-field type="textarea" label="格式化" label-align="top" v-model="bindInfo.formatedText" rows="4" />
+        <van-button @click="bindInfoFormat" type="primary" size="small">格式化</van-button>
+        <van-button @click="copyBindInfo" type="primary" size="small">复制</van-button>
       </van-tab>
     </van-tabs>
   </div>
@@ -47,11 +53,16 @@
   const calendarPricePickerSelectedValues = ref<Numeric[]>([]);
   const cachedProductCategories = ref<ListApiData[]>([]);
 
+  const bindInfo = ref({
+    originalText: '',
+    formatedText: '',
+  });
+
   const costCalculator = ref({
     price: 0,
     costPlatform: 0,
     costCommission: 0,
-    productPrice: 0,
+    costProductPrice: 0,
     exchangeRate: 1,
     profit: 0,
   });
@@ -69,7 +80,7 @@
       costCalculator.value.profit = new Decimal(costCalculator.value.price)
         .sub(new Decimal(costCalculator.value.costPlatform))
         .sub(costCalculator.value.costCommission)
-        .sub(new Decimal(costCalculator.value.productPrice).mul(costCalculator.value.exchangeRate))
+        .sub(new Decimal(costCalculator.value.costProductPrice).mul(costCalculator.value.exchangeRate))
         .toNumber();
     },
     { deep: true },
@@ -122,6 +133,18 @@
     }
     console.log(result);
     return day;
+  };
+
+  const bindInfoFormat = () => {
+    const result = bindInfo.value.originalText.split('\n').filter((item) => item !== '');
+    bindInfo.value.formatedText = `订单号
+${result[1]?.trim()}
+证件号
+${result[0]?.trim()}`;
+  };
+
+  const copyBindInfo = () => {
+    navigator.clipboard.writeText(bindInfo.value.formatedText);
   };
 
   onMounted(() => {

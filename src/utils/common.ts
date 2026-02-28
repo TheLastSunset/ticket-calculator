@@ -6,3 +6,7 @@ export function isWeekend(dateStr: string): boolean {
 
   return dayOfWeek === 0 || dayOfWeek === 6;
 }
+
+export function getRandomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

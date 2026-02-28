@@ -17,6 +17,6 @@ export type CalculatorClipboardPluginParams = {
 
 export type IdentifyLintClipboardPluginParams = {
   useDate: string;
-  remainPersons: ProductInfo[];
+  remainPersons: Partial<Record<string, ProductInfo[]>>;
   order: Order;
 };

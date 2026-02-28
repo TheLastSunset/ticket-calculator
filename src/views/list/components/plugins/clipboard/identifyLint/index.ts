@@ -1,6 +1,15 @@
 import type { ClipboardPlugin, IdentifyLintClipboardPluginParams } from '@/views/list/components/plugins/clipboard';
 import dayjs from 'dayjs';
 
+const orderRef: Record<string, number> = {
+  成人: 1,
+  儿童: 2,
+  老人: 3,
+};
+const compareFn = (key1: string, key2: string) => {
+  return (orderRef[key1] ?? 0) - (orderRef[key2] ?? 0);
+};
+
 export const IdentifyLintOrder: ClipboardPlugin = {
   enabled: true,
   condition: () => true,
@@ -16,22 +25,30 @@ export const IdentifyLintStandard: ClipboardPlugin = {
   condition: () => true,
   action: (params) => {
     const { useDate, remainPersons } = params as IdentifyLintClipboardPluginParams;
+    const playDate = dayjs(useDate).format('YYYY-MM-DD');
     const writeTexts: string[] = [];
-    remainPersons.forEach((item) => {
-      writeTexts.push(`上海乐高乐园 ${dayjs(useDate).format('YYYY-MM-DD')} ${item.ticketType} 金额 CNY 
-${item.idType} ${item.name} ${item.id}`);
-    });
+    Object.keys(remainPersons)
+      .sort(compareFn)
+      .forEach((key) => {
+        const persons = remainPersons[key] ?? [];
+        persons.forEach((item) => {
+          writeTexts.push(`上海乐高乐园 ${playDate} ${item.ticketType} 金额 CNY 
+${item.idType} ${item.ticketType} ${item.name} ${item.id}`);
+        });
+      });
     return writeTexts;
   },
   orderPriority: 1000,
 };
 
 /**
- * 早鸟
+ * 成人-早鸟
  */
-export const IdentifyLintEarly: ClipboardPlugin = {
+export const IdentifyLintEarlyAdult: ClipboardPlugin = {
   enabled: false,
-  condition: () => true,
+  condition: ({ useDate }) => {
+    return dayjs(useDate).diff(new Date(), 'd') >= 9;
+  },
   action: () => {
     const writeTexts: string[] = [];
     return writeTexts;
@@ -77,7 +94,7 @@ export const IdentifyLintSuperEarly: ClipboardPlugin = {
 export const IdentifyLintClipboardPlugins: ClipboardPlugin[] = [
   IdentifyLintOrder,
   IdentifyLintStandard,
-  IdentifyLintEarly,
+  IdentifyLintEarlyAdult,
   IdentifyLintSuperEarly,
 ]
   .filter((item) => item.enabled)

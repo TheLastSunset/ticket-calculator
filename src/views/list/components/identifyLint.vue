@@ -14,7 +14,6 @@
           label-align="top"
           v-model="input"
           rows="10"
-          @keyup.enter="handleCheck"
           placeholder="例如：张三 110101199001011234"
         />
         <div>票种统计：{{ personSummary }}</div>
@@ -255,6 +254,10 @@
       line.ticketType = result.details ? result.details.ticketType : '未知';
       if (result.valid === true) {
         line.idValid = '有效';
+        if (line.idType === '身份证') {
+          // 'x' upper to 'X'
+          line.id = line.id.toUpperCase();
+        }
       } else if (result.valid === false) {
         line.idValid = '无效';
       } else {
@@ -343,7 +346,7 @@
     let infos: string[] = [];
     const params: IdentifyLintClipboardPluginParams = {
       useDate: useDate.value,
-      remainPersons: Array.from(lines.value),
+      remainPersons: Object.groupBy(lines.value, ({ ticketType }) => ticketType ?? '未知'),
       order: order.value,
     };
     for (const plugin of IdentifyLintClipboardPlugins) {

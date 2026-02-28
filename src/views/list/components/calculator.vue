@@ -48,13 +48,19 @@
         </span>
       </div>
       <div class="summary-item">
-        <span class="summary-label">总佣金</span>
+        <span class="summary-label">成本-产品价格</span>
         <span class="summary-value">
-          ¥<span>{{ val.commission }}</span>
+          ¥<span>{{ val.costProductPrice }}</span>
         </span>
       </div>
       <div class="summary-item">
-        <span class="summary-label">总成本-平台</span>
+        <span class="summary-label">成本-佣金</span>
+        <span class="summary-value">
+          ¥<span>{{ val.costCommission }}</span>
+        </span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">成本-平台</span>
         <span class="summary-value">
           ¥<span>{{ val.costPlatform }}</span>
         </span>
@@ -120,8 +126,9 @@
           needLink: item.needLink,
           amount: '0',
           originalAmount: '0',
+          costProductPrice: '0',
           costPlatform: '0',
-          commission: '0',
+          costCommission: '0',
           totalCost: '0',
           profit: '0',
           book: item.book,
@@ -217,8 +224,9 @@
     for (const valueKey in summaries.value) {
       let totalAmount = 0;
       let totalOriginalAmount = 0;
-      let totalCost = 0;
+      let totalCostPrice = 0;
       let totalCostPlatform = 0;
+      let totalCost = 0;
       const totalCommission = 0;
       const summary = summaries.value[valueKey] as ProductSummary;
       if (summary.needLink) {
@@ -227,13 +235,18 @@
           const element = personCounts.value[key];
           const product = productMap.get(element.reference[valueKey]) as Product;
           totalAmount += element.num * product.preferSaleAmount;
+          totalCostPrice += element.num * product.price;
           totalOriginalAmount += element.num * product.originalPrice;
         }
       } else {
         // 计算标准
         for (const element of counts.value) {
           const product = productMap.get(element.category) as Product;
+          if (product === undefined) {
+            debugger;
+          }
           totalAmount += element.num * product.preferSaleAmount;
+          totalCostPrice += element.num * product.price;
           totalOriginalAmount += element.num * product.originalPrice;
         }
       }
@@ -241,14 +254,15 @@
       totalAmount += Number.parseFloat(diffAmount.value[valueKey] + '');
       // 计算利润
       totalCostPlatform = totalAmount * (ratio.value.costPlatform as number);
-      totalCost = totalCommission + totalCostPlatform;
-      const totalProfit = totalAmount - totalCost - totalCommission;
+      totalCost = totalCommission + totalCostPlatform + totalCostPrice;
+      const totalProfit = totalAmount - totalCost;
 
       // 更新显示
       summary.amount = totalAmount.toFixed(2);
       summary.originalAmount = totalOriginalAmount.toFixed(2);
+      summary.costProductPrice = totalCostPrice.toFixed(2);
       summary.costPlatform = totalCostPlatform.toFixed(2);
-      summary.commission = totalCommission.toFixed(2);
+      summary.costCommission = totalCommission.toFixed(2);
       summary.totalCost = totalCost.toFixed(2);
       summary.profit = totalProfit.toFixed(2);
     }
@@ -289,34 +303,27 @@
     });
   };
 
-  const quarkBtn: QuarkBtn[] = [
-    {
-      name: `一大一小`,
-    },
-    {
-      name: `2大1小`,
-      visible: false,
-    },
-    {
-      name: `2大2小`,
-      visible: false,
-    },
-    {
-      name: `2大`,
-    },
-    {
-      name: `清空`,
-      func: resetForm,
-    },
-    {
-      name: `均价`,
-      func: () => {},
-    },
-    {
-      name: `出票信息`,
-      func: copyProductInfo,
-    },
-  ];
+  const quarkBtn: QuarkBtn[] = quarkBtnConfig
+    .filter((item) => item.visible === undefined || item.visible)
+    .map((item) => {
+      return {
+        name: item.name,
+      } as QuarkBtn;
+    })
+    .concat([
+      {
+        name: `清空`,
+        func: resetForm,
+      },
+      {
+        name: `均价`,
+        func: () => {},
+      },
+      {
+        name: `出票信息`,
+        func: copyProductInfo,
+      },
+    ]);
 
   onMounted(() => {
     configInit();

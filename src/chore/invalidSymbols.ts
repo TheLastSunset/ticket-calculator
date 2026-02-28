@@ -1,1 +1,1 @@
-export const invalidSymbols: string[] = [',', '，', '（', '）', '：', '；', '。'];
+export const invalidSymbols: string[] = [',', '，', '（', '）', '(', ')', ':', '：', '；', '。', '.'];
